@@ -10,8 +10,8 @@ helm install markteplace <chart-name>
 ```
 ## adding a chart to the repo 
 1. consider adding your chart under `charts` directory
-2. do helm lint charts/<your-chart-name>
-3. re-generate index.yaml 
+2. do helm lint `charts/<your-chart-name>`
+3. re-generate `index.yaml` 
 ```
 helm repo index --url https://threefoldtech.github.io/marketplace-charts/ --merge index.yaml .
 ```
