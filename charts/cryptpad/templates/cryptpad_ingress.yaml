@@ -1,6 +1,7 @@
 {{- if .Values.ingresscryptpad.enabled -}}
 {{- $svcName := .Values.servicecryptpad.name -}}
 {{- $svcPort := .Values.servicecryptpad.port -}}
+{{- $ingressHost := .Values.ingresscryptpad.host -}}
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
@@ -23,15 +24,13 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingresscryptpad.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ $ingressHost }}
       http:
         paths:
-          {{- range .paths }}
+          {{- range .Values.ingresscryptpad.paths }}
           - path: {{ . }}
             backend:
               serviceName: {{ $svcName }}
               servicePort: {{ $svcPort }}
           {{- end }}
-    {{- end }}
   {{- end }}

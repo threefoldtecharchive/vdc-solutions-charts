@@ -10,8 +10,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "test"
 
-imagePullSecrets:
-  - name: "regcred"
+imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
@@ -38,7 +37,7 @@ securityContext: {}
   # runAsUser: 1000
 
 servicecryptpad:
-  name: servicecryptpad
+  name: cryptpad
   type: ClusterIP
   port: 8080
   targetPort: 3000
@@ -48,10 +47,9 @@ ingresscryptpad:
   annotations:
     kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: "ingressdomain" # TODO
-      paths:
-      - "/"
+  host: "ingressdomain" # replaced when installing chart by --set
+  paths:
+    - "/"
 
   tls: []
   #  - secretName: chart-example-tls
