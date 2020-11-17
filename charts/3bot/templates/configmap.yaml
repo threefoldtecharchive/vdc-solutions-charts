@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "env-config"
+data:
+  backup_password: {{quote .Values.env.backup_password}}
+  threebot_name: {{quote .Values.env.threebot_name}}
+  instance_name: {{quote .Values.env.instance_name}}
