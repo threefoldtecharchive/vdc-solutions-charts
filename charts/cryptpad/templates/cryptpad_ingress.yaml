@@ -1,0 +1,37 @@
+{{- if .Values.ingresscryptpad.enabled -}}
+{{- $svcName := .Values.servicecryptpad.name -}}
+{{- $svcPort := .Values.servicecryptpad.port -}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $svcName }}
+  labels:
+    {{- include "cryptpad.labels" . | nindent 4 }}
+  {{- with .Values.ingresscryptpad.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.ingresscryptpad.tls }}
+  tls:
+    {{- range .Values.ingresscryptpad.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.ingresscryptpad.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ . }}
+            backend:
+              serviceName: {{ $svcName }}
+              servicePort: {{ $svcPort }}
+          {{- end }}
+    {{- end }}
+  {{- end }}

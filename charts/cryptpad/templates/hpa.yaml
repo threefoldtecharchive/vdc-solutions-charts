@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "cryptpad-test.fullname" . }}
+  name: {{ include "cryptpad.fullname" . }}
   labels:
-    {{- include "cryptpad-test.labels" . | nindent 4 }}
+    {{- include "cryptpad.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "cryptpad-test.fullname" . }}
+    name: {{ include "cryptpad.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
