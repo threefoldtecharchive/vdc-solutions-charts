@@ -12,7 +12,7 @@
 
     helm install markteplace <chart-name>
 
-## adding a chart to the repo
+## adding/modifying a chart in the repo
 
 1.  consider adding your chart under `charts` directory
 2.  do helm lint `charts/<your-chart-name>`

@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-18T11:45:01.346896268+02:00"
+    created: "2020-11-18T11:57:12.556485735+02:00"
     description: A Helm chart for Kubernetes
     digest: 11db8efe0553909b530b6a16ac2812be9401e163e85326543ddc278edf7c1cfa
     name: 3bot
@@ -14,9 +14,9 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-18T11:45:01.348082096+02:00"
+    created: "2020-11-18T11:57:12.557338702+02:00"
     description: A Helm chart for Cryptpad
-    digest: 082d68e12947ad05dfb4e8d6e09293cc4c2f09512d00a4e74369b3216cc13f09
+    digest: 848213ea50f678ac529f28025e3a827e1458540739706d488afd8baf190f7d10
     name: cryptpad
     type: application
     urls:
@@ -25,7 +25,7 @@ entries:
   cryptpad-test:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-18T11:45:01.349128603+02:00"
+    created: "2020-11-18T11:57:12.558731052+02:00"
     description: A Helm chart for Cryptpad
     digest: 5d90c7f14811b6b8a42e6f31fde58467fe7b8a40f6cfeb1f96cf9fb517c4ca6d
     name: cryptpad-test
@@ -33,4 +33,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/marketplace-charts/cryptpad-test-0.1.0.tgz
     version: 0.1.0
-generated: "2020-11-18T11:45:01.3456702+02:00"
+generated: "2020-11-18T11:57:12.554274967+02:00"
