@@ -29,29 +29,20 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          command: {{.Values.entryPoint}}
+          args: {{.Values.entryPointArgs}}
           env:
-            - name: "BACKUP_PASSWORD"
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: backup_password
-            - name: "THREEBOT_NAME"
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: threebot_name
-            - name: "INSTANCE_NAME"
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: instance_name
+          {{- range $var := .Values.env }}
+            - name: {{ quote $var.name }}
+              value: {{ quote $var.value }}
+          {{- end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: https
-              containerPort: 443
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           # livenessProbe:
           #   httpGet:
