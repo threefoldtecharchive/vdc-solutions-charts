@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+data:
+  conf.json: |-
+    {
+        "api": "{{ .Values.protocol }}://{{ .Values.domain }}/api/v1/",
+        "debug": "false",
+        "publicRegisterEnabled": true,
+        "feedbackEnabled": true,
+        "privacyPolicyUrl": null,
+        "termsOfServiceUrl": null,
+        "maxUploadFileSize": null
+    }

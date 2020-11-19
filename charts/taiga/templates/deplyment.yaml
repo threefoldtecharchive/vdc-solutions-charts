@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-deployment
+  labels:
+    app: taiga
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taiga
+  template:
+    metadata:
+      labels:
+        app: taiga
+    spec:
+      containers:
+        - name: taiga
+          image: taigaio/taiga5:latest
+          command: ["taiga-ctl"]
+          args: ["migrate", "populate-db", "run-server"] 
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /opt/taiga-back/settings/local.py
+              name: backend
+              subPath: local.py
+            - mountPath: /etc/opt/taiga-back/settings.py
+              name: backend
+              subPath: settings.py
+            - mountPath: /opt/taiga-front/conf.json
+              name: frontend
+              subPath: conf.json
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 40
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+      volumes:
+        - name: backend
+          configMap:
+            name: backend-config
+        - name: frontend
+          configMap:
+            name: frontend-config

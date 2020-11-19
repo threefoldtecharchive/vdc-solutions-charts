@@ -1,0 +1,10 @@
+postgresql:
+  fullnameOverride: omar
+  postgresqlDatabase: taiga
+  postgresqlPassword: changeme
+  postgresqlUsername: taiga
+
+
+domain: omartaiga.tfgw-testnet-01.gateway.tf
+domainWithoutPort: omartaiga.tfgw-testnet-01.gateway.tf
+protocol: https

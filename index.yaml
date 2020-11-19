@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-19T17:53:46.372233155+02:00"
+    created: "2020-11-19T18:08:57.437966173+02:00"
     description: A Helm chart for Kubernetes
     digest: 2086e6bcf349f4101e995307e9692319b17f1a431c7af028c9bb317a54736de4
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-19T17:53:46.372701153+02:00"
+    created: "2020-11-19T18:08:57.439063758+02:00"
     description: A Helm chart for Cryptpad
     digest: 848213ea50f678ac529f28025e3a827e1458540739706d488afd8baf190f7d10
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   cryptpad-test:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-19T17:53:46.373131049+02:00"
+    created: "2020-11-19T18:08:57.440489786+02:00"
     description: A Helm chart for Cryptpad
     digest: 5d90c7f14811b6b8a42e6f31fde58467fe7b8a40f6cfeb1f96cf9fb517c4ca6d
     name: cryptpad-test
@@ -36,7 +36,7 @@ entries:
   mattermost-team-edition:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-11-19T17:53:46.375810927+02:00"
+    created: "2020-11-19T18:08:57.445415974+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -57,7 +57,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-11-19T17:53:46.38391654+02:00"
+    created: "2020-11-19T18:08:57.46116312+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -86,4 +86,18 @@ entries:
     urls:
     - https://threefoldtech.github.io/marketplace-charts/peertube-0.0.1.tgz
     version: 0.0.1
-generated: "2020-11-19T17:53:46.371579428+02:00"
+  taiga:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2020-11-19T18:08:57.465893333+02:00"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.0.0
+    description: Taiga helm chart
+    digest: 923bf61dd1c5edb1960d15f80c14cfaa1a2004a2fa9fd3ec6a9031f03f762837
+    name: taiga
+    urls:
+    - https://threefoldtech.github.io/marketplace-charts/taiga-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-11-19T18:08:57.436438852+02:00"
