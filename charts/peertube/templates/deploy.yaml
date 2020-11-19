@@ -27,10 +27,10 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           requests:
-            memory: "512Mi"
+            memory: "1024Mi"
             cpu: "250m"
           limits:
-            memory: "512Mi"
+            memory: "1024Mi"
             cpu: "250m"
         env:
         - name: PEERTUBE_SIGNUP_ENABLED
