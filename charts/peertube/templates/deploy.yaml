@@ -28,10 +28,10 @@ spec:
         resources:
           requests:
             memory: "1024Mi"
-            cpu: "250m"
+            cpu: "1000m"
           limits:
             memory: "1024Mi"
-            cpu: "250m"
+            cpu: "1000m"
         env:
         - name: PEERTUBE_SIGNUP_ENABLED
           value: "true"
