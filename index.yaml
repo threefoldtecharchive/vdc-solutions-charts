@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-18T12:35:26.686231771+02:00"
+    created: "2020-11-19T10:37:56.091130126+02:00"
     description: A Helm chart for Kubernetes
     digest: 2086e6bcf349f4101e995307e9692319b17f1a431c7af028c9bb317a54736de4
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-18T12:35:26.687084827+02:00"
+    created: "2020-11-19T10:37:56.09209447+02:00"
     description: A Helm chart for Cryptpad
     digest: 848213ea50f678ac529f28025e3a827e1458540739706d488afd8baf190f7d10
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   cryptpad-test:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-18T12:35:26.68802318+02:00"
+    created: "2020-11-19T10:37:56.092963889+02:00"
     description: A Helm chart for Cryptpad
     digest: 5d90c7f14811b6b8a42e6f31fde58467fe7b8a40f6cfeb1f96cf9fb517c4ca6d
     name: cryptpad-test
@@ -33,4 +33,36 @@ entries:
     urls:
     - https://threefoldtech.github.io/marketplace-charts/cryptpad-test-0.1.0.tgz
     version: 0.1.0
-generated: "2020-11-18T12:35:26.685233388+02:00"
+  peertube:
+  - apiVersion: v2
+    appVersion: production-stretch
+    created: "2020-11-19T10:37:56.109575227+02:00"
+    dependencies:
+    - condition: deps.pg.managed
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.0.0
+    - condition: deps.redis.managed
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.0.1
+    description: Federated (ActivityPub) video streaming platform using P2P (BitTorrent)
+      directly in the web browser with WebTorrent.
+    digest: 2e9d018f7235e24b58e21997bea7e6390139ef1dac0695065eb801fd7f874b0a
+    home: https://joinpeertube.org/
+    icon: https://joinpeertube.org/favicon.png
+    keywords:
+    - peertube
+    - video
+    - streaming
+    - p2p
+    maintainers:
+    - name: Amit Kumar Gupta (Original owner)
+      url: https://akgupta.ca
+    name: peertube
+    sources:
+    - https://github.com/Chocobozzz/PeerTube
+    urls:
+    - https://threefoldtech.github.io/marketplace-charts/peertube-0.0.1.tgz
+    version: 0.0.1
+generated: "2020-11-19T10:37:56.089757399+02:00"
