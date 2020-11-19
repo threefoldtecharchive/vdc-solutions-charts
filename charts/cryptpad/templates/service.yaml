@@ -1,7 +1,8 @@
+{{- $svcName := printf "%s-%s" .Values.servicecryptpad.name .Release.Name -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.servicecryptpad.name}}
+  name: {{ $svcName }}
   labels:
     {{- include "cryptpad.labels" . | nindent 4 }}
 spec:

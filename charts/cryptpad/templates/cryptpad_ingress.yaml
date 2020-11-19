@@ -1,5 +1,5 @@
 {{- if .Values.ingresscryptpad.enabled -}}
-{{- $svcName := .Values.servicecryptpad.name -}}
+{{- $svcName := printf "%s-%s" .Values.servicecryptpad.name .Release.Name -}}
 {{- $svcPort := .Values.servicecryptpad.port -}}
 {{- $ingressHost := .Values.ingresscryptpad.host -}}
 apiVersion: networking.k8s.io/v1beta1
