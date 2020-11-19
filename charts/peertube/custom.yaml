@@ -1,0 +1,16 @@
+deps:
+        smtp:
+                username: omar.elawady.alternative@gmail.com
+                from: omar.elawady.alternative@gmail.com
+                password: password
+                hostname: smtp.gmail.com
+                port: 465
+ingress:
+        tls:
+                enabled: false
+
+adminEmail: omar.elawady.alternative@gmail.com
+
+webserver:
+        hostname: peertubek8s.tfgw-testnet-01.gateway.tf
+

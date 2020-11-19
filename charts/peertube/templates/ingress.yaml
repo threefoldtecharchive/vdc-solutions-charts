@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "peertube.fullName" . }}
+  labels:
+    app: {{ template "peertube.fullName" . }}
+    chart: {{ template "peertube.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  rules:
+    - host: {{ .Values.webserver.hostname }}
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: {{ template "peertube.fullName" . }}
+            servicePort: ing2svc
