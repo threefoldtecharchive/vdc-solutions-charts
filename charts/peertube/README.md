@@ -2,7 +2,7 @@
 
 Federated (ActivityPub) video streaming platform using P2P (BitTorrent) directly in the web browser with WebTorrent.
 
-Make sure to override the webserver.hostname to the right domain name.
+Make sure to override the `webserver.hostname` and the smtp when installing the chart.
 
 ## Introduction
 
