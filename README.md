@@ -15,12 +15,12 @@
 ## adding/modifying a chart in the repo
 
 1.  consider adding your chart under `charts` directory
-2.  do helm lint `charts/<your-chart-name>`
+2.  do `helm lint charts/<your-chart-name>`
 3.  regenerate the packages `helm package charts/<your-chart-name>`
 4.  re-generate `index.yaml` 
 
 
-    helm repo index --url https://threefoldtech.github.io/marketplace-charts/ --merge index.yaml .
+    `helm repo index --url https://threefoldtech.github.io/marketplace-charts/ --merge index.yaml .`
 
 5.  push your changes
 
