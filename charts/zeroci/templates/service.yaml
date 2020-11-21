@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "zeroci.fullname" . }}
+  labels:
+    {{- include "zeroci.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      protocol: TCP
+      name: zeroci
+  selector:
+    {{- include "zeroci.selectorLabels" . | nindent 4 }}

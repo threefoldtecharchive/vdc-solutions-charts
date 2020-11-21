@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: "{{ include "zeroci.fullname" . }}-redis"
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: ""
+  hostPath:
+    path: {{ .Values.volumes.redis }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ include "zeroci.fullname" . }}-redis"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 7Gi
+  storageClassName: ""
+  volumeName: "{{ include "zeroci.fullname" . }}-redis"
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: "{{ include "zeroci.fullname" . }}-persistent"
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: ""
+  hostPath:
+    path: {{ .Values.volumes.persistent }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ include "zeroci.fullname" . }}-persistent"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 7Gi
+  storageClassName: ""
+  volumeName: "{{ include "zeroci.fullname" . }}-persistent"
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: "{{ include "zeroci.fullname" . }}-bin"
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: ""
+  hostPath:
+    path: {{ .Values.volumes.bin }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ include "zeroci.fullname" . }}-bin"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 3Gi
+  storageClassName: ""
+  volumeName: "{{ include "zeroci.fullname" . }}-bin"

@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "zeroci.fullname" . }}
+  labels:
+    {{- include "zeroci.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "zeroci.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "zeroci.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "zeroci.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: zeroci
+              containerPort: {{ .Values.ports.port }}
+            - name: redis
+              containerPort: {{ .Values.ports.redis }}
+          env:
+            - name: NAMESPACE
+              value: {{ .Release.Namespace }}
+            - name: REDIS
+              value: "{{ include "zeroci.fullname" . }}-redis"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: bin
+              mountPath: {{ .Values.volumeMounts.bin }}
+            - name: redis
+              mountPath: {{ .Values.volumeMounts.redis }}
+            - name: persistent
+              mountPath: {{ .Values.volumeMounts.persistent }}
+
+      volumes:
+      - name: bin
+        persistentVolumeClaim:
+          claimName: "{{ include "zeroci.fullname" . }}-bin"
+      - name: redis
+        persistentVolumeClaim:
+          claimName: "{{ include "zeroci.fullname" . }}-redis"
+      - name: persistent
+        persistentVolumeClaim:
+          claimName: "{{ include "zeroci.fullname" . }}-persistent"
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
