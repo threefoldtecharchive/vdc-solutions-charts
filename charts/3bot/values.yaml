@@ -49,13 +49,13 @@ ingress:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: kubeashraf1.tfgw-testnet-01.gateway.tf
+    - host: my-host.local
       paths: 
         - /
   tls:
-    - secretName: kubeashraf
+    - secretName: secret_name
       hosts:
-        - kubeashraf1.tfgw-testnet-01.gateway.tf
+        - my-host.local
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -84,8 +84,8 @@ affinity: {}
 
 env:
   - name: "BACKUP_PASSWORD"
-    value: "1111"
+    value: "backup_password"
   - name: "THREEBOT_NAME"
-    value: "rafybenjamin"
+    value: "threebot_name"
   - name: "INSTANCE_NAME"
-    value: "hamada"
+    value: "instance_name"

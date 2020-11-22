@@ -4,13 +4,14 @@
 
 -   Adding the repo to your helm 
 
-
-     helm repo add marketplace https://threefoldtech.github.io/marketplace-charts/
-
+    ```
+    helm repo add marketplace https://threefoldtech.github.io/marketplace-charts/
+    ```
 -   install a chart 
 
-
-    helm install markteplace <chart-name>
+    ```
+    helm install markteplace/<chart-name>
+    ```
 
 ## adding/modifying a chart in the repo
 
