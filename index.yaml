@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-21T16:57:56.72695724+02:00"
+    created: "2020-11-22T11:47:07.736378215+02:00"
     description: A Helm chart for Kubernetes
     digest: 2086e6bcf349f4101e995307e9692319b17f1a431c7af028c9bb317a54736de4
     name: 3bot
@@ -14,9 +14,9 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-21T16:57:56.727395544+02:00"
+    created: "2020-11-22T11:47:07.736928322+02:00"
     description: A Helm chart for Cryptpad
-    digest: 848213ea50f678ac529f28025e3a827e1458540739706d488afd8baf190f7d10
+    digest: 136f9cddd5c4fb835b5b3aeba15abffb8e9e35b1670b7aa625017e28696682de
     name: cryptpad
     type: application
     urls:
@@ -25,7 +25,7 @@ entries:
   cryptpad-test:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-21T16:57:56.727822513+02:00"
+    created: "2020-11-22T11:47:07.737451641+02:00"
     description: A Helm chart for Cryptpad
     digest: 5d90c7f14811b6b8a42e6f31fde58467fe7b8a40f6cfeb1f96cf9fb517c4ca6d
     name: cryptpad-test
@@ -36,7 +36,7 @@ entries:
   mattermost-team-edition:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-11-21T16:57:56.73052532+02:00"
+    created: "2020-11-22T11:47:07.741186816+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -57,7 +57,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-11-21T16:57:56.740373857+02:00"
+    created: "2020-11-22T11:47:07.751176143+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -89,7 +89,7 @@ entries:
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-21T16:57:56.745511191+02:00"
+    created: "2020-11-22T11:47:07.756596574+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -103,7 +103,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-21T16:57:56.746413383+02:00"
+    created: "2020-11-22T11:47:07.757381622+02:00"
     description: zeroci helm chart
     digest: b95fa66515096524446c49bdfcdd4d615998cefbc9a2d3709445e6e5556c9c1c
     name: zeroci
@@ -111,4 +111,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/marketplace-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2020-11-21T16:57:56.726328593+02:00"
+generated: "2020-11-22T11:47:07.73558487+02:00"
