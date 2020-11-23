@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-22T16:41:15.80019488+02:00"
+    created: "2020-11-23T16:47:37.464414479+02:00"
     description: A Helm chart for Kubernetes
     digest: 2086e6bcf349f4101e995307e9692319b17f1a431c7af028c9bb317a54736de4
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-22T16:41:15.801700891+02:00"
+    created: "2020-11-23T16:47:37.465047643+02:00"
     description: A Helm chart for Cryptpad
     digest: 136f9cddd5c4fb835b5b3aeba15abffb8e9e35b1670b7aa625017e28696682de
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   cryptpad-test:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-22T16:41:15.80301886+02:00"
+    created: "2020-11-23T16:47:37.465707331+02:00"
     description: A Helm chart for Cryptpad
     digest: 5d90c7f14811b6b8a42e6f31fde58467fe7b8a40f6cfeb1f96cf9fb517c4ca6d
     name: cryptpad-test
@@ -38,7 +38,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-11-22T16:41:15.83520987+02:00"
+    created: "2020-11-23T16:47:37.486875616+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -76,10 +76,65 @@ entries:
     urls:
     - https://threefoldtech.github.io/marketplace-charts/kube-prometheus-3.0.0.tgz
     version: 3.0.0
+  kube-prometheus-stack:
+  - annotations:
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus-operator/kube-prometheus
+      artifacthub.io/operator: "true"
+    apiVersion: v2
+    appVersion: 0.43.2
+    created: "2020-11-23T16:47:37.512057384+02:00"
+    dependencies:
+    - condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://charts.helm.sh/stable
+      version: 2.9.*
+    - condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 1.12.*
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 5.8.*
+    description: kube-prometheus-stack collects Kubernetes manifests, Grafana dashboards,
+      and Prometheus rules combined with documentation and scripts to provide easy
+      to operate end-to-end Kubernetes cluster monitoring with Prometheus using the
+      Prometheus Operator.
+    digest: 806dceb6a371c08de5f91226db77f146622b991f0bc55e346a7ea5d5e783ddc4
+    home: https://github.com/prometheus-operator/kube-prometheus
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - operator
+    - prometheus
+    - kube-prometheus
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: vsliouniaev
+    - name: bismarck
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: github.gkarthiks@gmail.com
+      name: gkarthiks
+    - email: scott@r6by.com
+      name: scottrigby
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    name: kube-prometheus-stack
+    sources:
+    - https://github.com/prometheus-community/helm-charts
+    - https://github.com/prometheus-operator/kube-prometheus
+    type: application
+    urls:
+    - https://threefoldtech.github.io/marketplace-charts/kube-prometheus-stack-12.0.3.tgz
+    version: 12.0.3
   mattermost-team-edition:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-11-22T16:41:15.839932983+02:00"
+    created: "2020-11-23T16:47:37.516584256+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -100,7 +155,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-11-22T16:41:15.852178243+02:00"
+    created: "2020-11-23T16:47:37.524633482+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -132,7 +187,7 @@ entries:
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-22T16:41:15.858523202+02:00"
+    created: "2020-11-23T16:47:37.531333695+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -146,7 +201,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-22T16:41:15.862731733+02:00"
+    created: "2020-11-23T16:47:37.53203677+02:00"
     description: zeroci helm chart
     digest: b95fa66515096524446c49bdfcdd4d615998cefbc9a2d3709445e6e5556c9c1c
     name: zeroci
@@ -154,4 +209,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/marketplace-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2020-11-22T16:41:15.798033634+02:00"
+generated: "2020-11-23T16:47:37.463465682+02:00"
