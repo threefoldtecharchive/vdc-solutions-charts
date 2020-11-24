@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-23T16:47:37.464414479+02:00"
+    created: "2020-11-24T10:56:42.219731954+02:00"
     description: A Helm chart for Kubernetes
     digest: 2086e6bcf349f4101e995307e9692319b17f1a431c7af028c9bb317a54736de4
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-23T16:47:37.465047643+02:00"
+    created: "2020-11-24T10:56:42.220420181+02:00"
     description: A Helm chart for Cryptpad
     digest: 136f9cddd5c4fb835b5b3aeba15abffb8e9e35b1670b7aa625017e28696682de
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   cryptpad-test:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-23T16:47:37.465707331+02:00"
+    created: "2020-11-24T10:56:42.22136472+02:00"
     description: A Helm chart for Cryptpad
     digest: 5d90c7f14811b6b8a42e6f31fde58467fe7b8a40f6cfeb1f96cf9fb517c4ca6d
     name: cryptpad-test
@@ -38,7 +38,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-11-23T16:47:37.486875616+02:00"
+    created: "2020-11-24T10:56:42.253806983+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -86,7 +86,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-11-23T16:47:37.512057384+02:00"
+    created: "2020-11-24T10:56:42.285778604+02:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -134,7 +134,7 @@ entries:
   mattermost-team-edition:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-11-23T16:47:37.516584256+02:00"
+    created: "2020-11-24T10:56:42.292260767+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -155,7 +155,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-11-23T16:47:37.524633482+02:00"
+    created: "2020-11-24T10:56:42.306636679+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -187,13 +187,13 @@ entries:
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-23T16:47:37.531333695+02:00"
+    created: "2020-11-24T10:56:42.311439148+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: 10.0.0
     description: Taiga helm chart
-    digest: 923bf61dd1c5edb1960d15f80c14cfaa1a2004a2fa9fd3ec6a9031f03f762837
+    digest: d2f00d37c9617da6224dad322ce4bb8a9d559446d48b691229af1f8501a1118f
     name: taiga
     urls:
     - https://threefoldtech.github.io/marketplace-charts/taiga-0.1.0.tgz
@@ -201,7 +201,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-23T16:47:37.53203677+02:00"
+    created: "2020-11-24T10:56:42.312134944+02:00"
     description: zeroci helm chart
     digest: b95fa66515096524446c49bdfcdd4d615998cefbc9a2d3709445e6e5556c9c1c
     name: zeroci
@@ -209,4 +209,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/marketplace-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2020-11-23T16:47:37.463465682+02:00"
+generated: "2020-11-24T10:56:42.218632536+02:00"
