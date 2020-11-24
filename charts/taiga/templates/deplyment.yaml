@@ -40,6 +40,8 @@ spec:
             httpGet:
               path: /
               port: 8080
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: backend
           configMap:

@@ -4,7 +4,7 @@ metadata:
   name: taiga-ingress
 spec:
   rules:
-    - host: {{ .Values.hostname }}
+    - host: {{ .Values.domain }}
       http:
         paths:
         - path: /
