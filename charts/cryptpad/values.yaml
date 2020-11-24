@@ -37,13 +37,13 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-servicecryptpad:
+service:
   name: cryptpad
   type: ClusterIP
   port: 8080
   targetPort: 3000
 
-ingresscryptpad:
+ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: traefik
