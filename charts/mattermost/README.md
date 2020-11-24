@@ -6,7 +6,7 @@
 
 ```bash
 helm dependency update
-helm install -f values.yaml  mattermost-hamada . \
+helm install -f values.yaml  mattermost . \
   --set mysql.mysqlUser=userName \
   --set mysql.mysqlPassword=userPassword \
   --set mysql.mysqlRootPassword=userPassword \
