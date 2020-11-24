@@ -7,9 +7,9 @@
 ```bash
 helm dependency update
 helm install -f values.yaml  mattermost-hamada . \
-  --set mysql.mysqlUser=ellol \
-  --set mysql.mysqlPassword=ellol \
-  --set mysql.mysqlRootPassword=abdo \
+  --set mysql.mysqlUser=userName \
+  --set mysql.mysqlPassword=userPassword \
+  --set mysql.mysqlRootPassword=userPassword \
   --set ingress.host="example.yourdomain.com"
 ```
 
