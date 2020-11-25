@@ -70,9 +70,9 @@ First, you will need to create the additional configuration. Below we are making
   ```
   or instead of the previous step you can pull the chart and add the secret file to it under `kube-prometheus/templates/prometheus`
 - then install your chart with the new config like the following
-  ```
+```
 helm --kubeconfig k8s_config.yaml install prometheusstack  prometheus-community/kube-prometheus-stack  --set prometheus.ingress.enabled=true --set prometheus.ingress.hosts[0]=kubeashraf1.tfgw-testnet-01.gateway.tf --set prometheus.service.port=80 --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.enabled=true --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.name=additional-scrape-configs --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.key=prometheus-additional.yaml --set prometheusSpec.replicas=3 --set grafana.ingress.enabled=true --set grafana.ingress.hosts[0]=grafana.tfgw-testnet-01.gateway.tf --set grafana.ingress.path=/ --set resources.limits.cpu=200m  --set resources.limits.memory=200Mi --set resources.requests.cpu=100m --set resources.requests.memory=100Mi
-  ```
+```
   
 ## Uninstall Chart
 
