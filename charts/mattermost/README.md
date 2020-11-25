@@ -17,7 +17,7 @@ helm install -f values.yaml  mattermost . \
 
 ```bash
 $ helm repo add mattermost https://helm.mattermost.com
-$ helm install mattermost/mattermost-team-edition \
+$ helm install mattermost/mattermost \
   --set mysql.mysqlUser=sampleUser \
   --set mysql.mysqlPassword=samplePassword \
 ```
@@ -39,11 +39,11 @@ cluster using the [Helm](https://helm.sh) package manager.
 To install the chart with the release name `my-release`:
 
 ```bash
-$ helm install --name my-release stable/mattermost-team-edition
+$ helm install --name my-release stable/mattermost
 ```
  **Helm v3 command**
 ```bash
-$ helm install my-release stable/mattermost-team-edition
+$ helm install my-release stable/mattermost
 ```
 
 The command deploys Mattermost on the Kubernetes cluster in the default configuration. The [configuration](#configuration)
@@ -73,8 +73,8 @@ The following table lists the configurable parameters of the Mattermost Team Edi
 
 Parameter                             | Description                                                                                     | Default
 ---                                   | ---                                                                                             | ---
-`configJSON`                          | The `config.json` configuration to be used by the mattermost server. The values you provide will by using Helm's merging behavior override individual default values only. See the [example configuration](#example-configuration) and the [Mattermost documentation](https://docs.mattermost.com/administration/config-settings.html) for details. |  See `configJSON` in [values.yaml](https://github.com/helm/charts/blob/master/stable/mattermost-team-edition/values.yaml)
-`image.repository`                    | Container image repository                                                                      | `mattermost/mattermost-team-edition`
+`configJSON`                          | The `config.json` configuration to be used by the mattermost server. The values you provide will by using Helm's merging behavior override individual default values only. See the [example configuration](#example-configuration) and the [Mattermost documentation](https://docs.mattermost.com/administration/config-settings.html) for details. |  See `configJSON` in [values.yaml](https://github.com/helm/charts/blob/master/stable/mattermost/values.yaml)
+`image.repository`                    | Container image repository                                                                      | `mattermost/mattermost`
 `image.tag`                           | Container image tag                                                                             | `5.13.2`
 `image.imagePullPolicy`               | Container image pull policy                                                                     | `IfNotPresent`
 `initContainerImage.repository`       | Init container image repository                                                                 | `appropriate/curl`
@@ -106,13 +106,13 @@ $ helm install --name my-release \
   --set image.tag=5.12.4 \
   --set mysql.mysqlUser=sampleUser \
   --set mysql.mysqlPassword=samplePassword \
-  mattermost/mattermost-team-edition
+  mattermost/mattermost
 ```
 
 Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,
 
 ```bash
-$ helm install --name my-release -f values.yaml mattermost/mattermost-team-edition
+$ helm install --name my-release -f values.yaml mattermost/mattermost
 ```
 
 ### Example configuration

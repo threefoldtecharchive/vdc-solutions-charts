@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-25T11:17:45.602578007+02:00"
+    created: "2020-11-25T12:56:43.65666949+02:00"
     description: A Helm chart for Kubernetes
     digest: 2086e6bcf349f4101e995307e9692319b17f1a431c7af028c9bb317a54736de4
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-25T11:17:45.603051858+02:00"
+    created: "2020-11-25T12:56:43.657151783+02:00"
     description: A Helm chart for Cryptpad
     digest: cf9e0a5d7f940eaf930a73b8ca24040bb50914df3f3e7fdb9139ab2c8de5ec28
     name: cryptpad
@@ -27,7 +27,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-11-25T11:17:45.617973321+02:00"
+    created: "2020-11-25T12:56:43.674511424+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -75,7 +75,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-11-25T11:17:45.634715466+02:00"
+    created: "2020-11-25T12:56:43.696193263+02:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -123,14 +123,14 @@ entries:
   mattermost:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-11-25T11:17:45.637591865+02:00"
+    created: "2020-11-25T12:56:43.699997499+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
       repository: https://charts.helm.sh/stable
       version: 1.6.4
     description: Mattermost Team Edition server.
-    digest: 314208b04c3a69d0f9d5ca3004604dbd2a6a4d9af93414f069116577fa9116cd
+    digest: 3123b27237459ab5db2e711ab141e8c707e2152b52ff0bf320bd47876238e2a3
     home: https://mattermost.com
     icon: http://www.mattermost.org/wp-content/uploads/2016/04/icon.png
     keywords:
@@ -141,31 +141,10 @@ entries:
     urls:
     - https://threefoldtech.github.io/marketplace-charts/mattermost-3.19.0.tgz
     version: 3.19.0
-  mattermost-team-edition:
-  - apiVersion: v1
-    appVersion: 5.29.0
-    created: "2020-11-25T11:17:45.639840361+02:00"
-    dependencies:
-    - condition: mysql.enabled
-      name: mysql
-      repository: https://charts.helm.sh/stable
-      version: 1.6.4
-    description: Mattermost Team Edition server.
-    digest: 42e65173a5eebe6c57f268d52db104942724a0471ca10dbd9a43455af8777508
-    home: https://mattermost.com
-    icon: http://www.mattermost.org/wp-content/uploads/2016/04/icon.png
-    keywords:
-    - mattermost
-    - communication
-    - team collaboration
-    name: mattermost-team-edition
-    urls:
-    - https://threefoldtech.github.io/marketplace-charts/mattermost-team-edition-3.19.0.tgz
-    version: 3.19.0
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-11-25T11:17:45.648212837+02:00"
+    created: "2020-11-25T12:56:43.707391987+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -197,7 +176,7 @@ entries:
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-11-25T11:17:45.651285432+02:00"
+    created: "2020-11-25T12:56:43.711969291+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -211,7 +190,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-25T11:17:45.651706544+02:00"
+    created: "2020-11-25T12:56:43.712486417+02:00"
     description: zeroci helm chart
     digest: b95fa66515096524446c49bdfcdd4d615998cefbc9a2d3709445e6e5556c9c1c
     name: zeroci
@@ -219,4 +198,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/marketplace-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2020-11-25T11:17:45.60190607+02:00"
+generated: "2020-11-25T12:56:43.655942859+02:00"

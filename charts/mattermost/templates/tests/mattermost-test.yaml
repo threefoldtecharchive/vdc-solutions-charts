@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include  "mattermost-team-edition.fullname" . }}-test-{{ randAlphaNum 5 | lower }}"
+  name: "{{ include  "mattermost.fullname" . }}-test-{{ randAlphaNum 5 | lower }}"
   labels:
-    app.kubernetes.io/name: {{ include "mattermost-team-edition.name" . }}
+    app.kubernetes.io/name: {{ include "mattermost.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    helm.sh/chart: {{ include "mattermost-team-edition.chart" . }}
+    helm.sh/chart: {{ include "mattermost.chart" . }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -23,7 +23,7 @@ spec:
   volumes:
   - name: tests
     configMap:
-      name: {{ include  "mattermost-team-edition.fullname" . }}-tests
+      name: {{ include  "mattermost.fullname" . }}-tests
   - name: tools
     emptyDir: {}
   restartPolicy: Never

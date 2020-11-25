@@ -1,6 +1,6 @@
 You can easily connect to the remote instance from your browser. Forward the webserver port to localhost:8065
 
-- kubectl port-forward --namespace {{ .Release.Namespace }} $(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "mattermost-team-edition.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath='{ .items[0].metadata.name }') 8080:8065
+- kubectl port-forward --namespace {{ .Release.Namespace }} $(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "mattermost.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath='{ .items[0].metadata.name }') 8080:8065
 
 {{ if eq .Values.service.type "LoadBalancer"}}
 {{- if .Values.service.loadBalancerIP }}
@@ -11,7 +11,7 @@ Mattermost will be available at:
 {{ else }}
 You can connect to Mattermost by using the IP printed by this commmand on port {{ .Values.service.externalPort }}:
 
-  MATTERMOST_IP=`kubectl get --namespace {{ .Release.Namespace }} service {{  include "mattermost-team-edition.name" . }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'`
+  MATTERMOST_IP=`kubectl get --namespace {{ .Release.Namespace }} service {{  include "mattermost.name" . }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'`
   echo $MATTERMOST_IP
 
 {{ end }}
@@ -36,7 +36,7 @@ https://{{ .Values.ingress.host }}
 
 To expose Mattermost via an Ingress you need to set host and enable ingress.
 
-helm install --set host=mattermost.yourdomain.com --set ingress.enabled=true stable/mattermost-team-edition
+helm install --set host=mattermost.yourdomain.com --set ingress.enabled=true stable/mattermost
 {{ end }}
 
 {{ include "mattermost.warnings" . }}

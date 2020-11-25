@@ -2,7 +2,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "mattermost-team-edition.name" -}}
+{{- define "mattermost.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
@@ -11,7 +11,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "mattermost-team-edition.fullname" -}}
+{{- define "mattermost.fullname" -}}
 {{- if .Values.fullnameOverride -}}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -27,7 +27,7 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "mattermost-team-edition.chart" -}}
+{{- define "mattermost.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
@@ -36,7 +36,7 @@ Return the appropriate apiVersion for ingress. Based on
 1) Helm Version (.Capabilities has been changed in v3)
 2) Kubernetes Version
 */}}
-{{- define "mattermost-team-edition.ingress.apiVersion" -}}
+{{- define "mattermost.ingress.apiVersion" -}}
 {{- if semverCompare ">=1.4-0, <1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 "extensions/v1beta1"
 {{- else if semverCompare "^1.14-0" .Capabilities.KubeVersion.GitVersion -}}

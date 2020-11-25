@@ -5,15 +5,15 @@ metadata:
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
 {{- end }}
-  name: {{ include "mattermost-team-edition.name" . }}
+  name: {{ include "mattermost.name" . }}
   labels:
-    app.kubernetes.io/name: {{ include "mattermost-team-edition.name" . }}
+    app.kubernetes.io/name: {{ include "mattermost.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    helm.sh/chart: {{ include "mattermost-team-edition.chart" . }}
+    helm.sh/chart: {{ include "mattermost.chart" . }}
 spec:
   selector:
-    app.kubernetes.io/name: {{ include "mattermost-team-edition.name" . }}
+    app.kubernetes.io/name: {{ include "mattermost.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
   type: {{ .Values.service.type }}
@@ -21,7 +21,7 @@ spec:
   - port: {{ .Values.service.externalPort }}
     targetPort: http
     protocol: TCP
-    name: {{  include "mattermost-team-edition.name" . }}
+    name: {{  include "mattermost.name" . }}
 {{- if .Values.service.loadBalancerIP }}
   loadBalancerIP: {{ .Values.service.loadBalancerIP }}
 {{- end }}

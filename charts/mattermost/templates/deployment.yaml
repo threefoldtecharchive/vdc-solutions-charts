@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mattermost-team-edition.fullname" . }}
+  name: {{ include "mattermost.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "mattermost-team-edition.name" . }}
+    app.kubernetes.io/name: {{ include "mattermost.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    helm.sh/chart: {{ include "mattermost-team-edition.chart" . }}
+    helm.sh/chart: {{ include "mattermost.chart" . }}
 spec:
   replicas: 1
   strategy:
@@ -15,7 +15,7 @@ spec:
   revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "mattermost-team-edition.name" . }}
+      app.kubernetes.io/name: {{ include "mattermost.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
       app.kubernetes.io/managed-by: {{ .Release.Service }}
   template:
@@ -26,10 +26,10 @@ spec:
         {{- .Values.extraPodAnnotations | toYaml | nindent 8 }}
         {{- end }}
       labels:
-        app.kubernetes.io/name: {{ include "mattermost-team-edition.name" . }}
+        app.kubernetes.io/name: {{ include "mattermost.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
         app.kubernetes.io/managed-by: {{ .Release.Service }}
-        helm.sh/chart: {{ include "mattermost-team-edition.chart" . }}
+        helm.sh/chart: {{ include "mattermost.chart" . }}
     spec:
       initContainers:
       {{- if not .Values.externalDB.enabled }}
@@ -86,11 +86,11 @@ spec:
       {{- end }}
       - name: config-json
         secret:
-          secretName: {{ include "mattermost-team-edition.fullname" . }}-config-json
+          secretName: {{ include "mattermost.fullname" . }}-config-json
       - name: mattermost-data
       {{ if .Values.persistence.data.enabled }}
         persistentVolumeClaim:
-          claimName: {{ .Values.persistence.data.existingClaim | default (include "mattermost-team-edition.fullname" .) }}
+          claimName: {{ .Values.persistence.data.existingClaim | default (include "mattermost.fullname" .) }}
       {{ else }}
         emptyDir: {}
       {{ end }}
@@ -100,7 +100,7 @@ spec:
           {{ if .Values.persistence.plugins.existingClaim }}
           claimName: {{.Values.persistence.plugins.existingClaim }}
           {{ else }}
-          claimName: {{ default (include "mattermost-team-edition.fullname" .) }}-plugins
+          claimName: {{ default (include "mattermost.fullname" .) }}-plugins
           {{ end }}
       {{ else }}
         emptyDir: {}

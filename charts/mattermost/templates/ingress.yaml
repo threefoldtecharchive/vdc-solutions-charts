@@ -1,17 +1,17 @@
 {{ $ingress := .Values.ingress }}
 {{- $ingressHost := .Values.ingress.host -}}
 {{ if $ingress.enabled }}
-{{ $serviceName := include "mattermost-team-edition.name" . }}
+{{ $serviceName := include "mattermost.name" . }}
 {{ $servicePort := .Values.service.externalPort }}
-apiVersion: {{ include "mattermost-team-edition.ingress.apiVersion" . }}
+apiVersion: {{ include "mattermost.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
-  name: {{ include "mattermost-team-edition.name" . }}
+  name: {{ include "mattermost.name" . }}
   labels:
-    app.kubernetes.io/name: {{ include "mattermost-team-edition.name" . }}
+    app.kubernetes.io/name: {{ include "mattermost.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    helm.sh/chart: {{ include "mattermost-team-edition.chart" . }}
+    helm.sh/chart: {{ include "mattermost.chart" . }}
   annotations:
     {{- if .Values.ingress.tls }}
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
