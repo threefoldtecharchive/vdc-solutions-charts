@@ -5,7 +5,7 @@
 -   Adding the repo to your helm 
 
     ```
-    helm repo add marketplace https://threefoldtech.github.io/marketplace-charts/
+    helm repo add marketplace https://threefoldtech.github.io/vdc-solutions-charts/
     ```
 -   install a chart 
 
@@ -21,7 +21,7 @@
 4.  re-generate `index.yaml` 
 
 
-    `helm repo index --url https://threefoldtech.github.io/marketplace-charts/ --merge index.yaml .`
+    `helm repo index --url https://threefoldtech.github.io/vdc-solutions-charts/ --merge index.yaml .`
 
 5.  push your changes
 
