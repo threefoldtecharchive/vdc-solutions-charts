@@ -3,31 +3,31 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-01T15:09:52.421847568+02:00"
+    created: "2020-12-02T19:02:44.602515857+02:00"
     description: A Helm chart for Kubernetes
     digest: 2086e6bcf349f4101e995307e9692319b17f1a431c7af028c9bb317a54736de4
     name: 3bot
     type: application
     urls:
-    - https://threefoldtech.github.io/marketplace-charts/3bot-0.1.0.tgz
+    - https://threefoldtech.github.io/vdc-solutions-charts/3bot-0.1.0.tgz
     version: 0.1.0
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-01T15:09:52.422401602+02:00"
+    created: "2020-12-02T19:02:44.603370151+02:00"
     description: A Helm chart for Cryptpad
     digest: 8a559fb1c4d772325f1f3b6663d0272345180fa64d2f99f37c23d53d5a9397ac
     name: cryptpad
     type: application
     urls:
-    - https://threefoldtech.github.io/marketplace-charts/cryptpad-0.1.0.tgz
+    - https://threefoldtech.github.io/vdc-solutions-charts/cryptpad-0.1.0.tgz
     version: 0.1.0
   kube-prometheus:
   - annotations:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-01T15:09:52.44082933+02:00"
+    created: "2020-12-02T19:02:44.6193452+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -63,7 +63,7 @@ entries:
     - https://github.com/bitnami/bitnami-docker-alertmanager
     - https://github.com/prometheus-operator/kube-prometheus
     urls:
-    - https://threefoldtech.github.io/marketplace-charts/kube-prometheus-3.0.0.tgz
+    - https://threefoldtech.github.io/vdc-solutions-charts/kube-prometheus-3.0.0.tgz
     version: 3.0.0
   kube-prometheus-stack:
   - annotations:
@@ -75,7 +75,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-01T15:09:52.463006302+02:00"
+    created: "2020-12-02T19:02:44.636533849+02:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -118,12 +118,12 @@ entries:
     - https://github.com/prometheus-operator/kube-prometheus
     type: application
     urls:
-    - https://threefoldtech.github.io/marketplace-charts/kube-prometheus-stack-12.0.3.tgz
+    - https://threefoldtech.github.io/vdc-solutions-charts/kube-prometheus-stack-12.0.3.tgz
     version: 12.0.3
   mattermost:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-12-01T15:09:52.465753275+02:00"
+    created: "2020-12-02T19:02:44.639837811+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -139,12 +139,12 @@ entries:
     - team collaboration
     name: mattermost
     urls:
-    - https://threefoldtech.github.io/marketplace-charts/mattermost-3.19.0.tgz
+    - https://threefoldtech.github.io/vdc-solutions-charts/mattermost-3.19.0.tgz
     version: 3.19.0
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-12-01T15:09:52.472666868+02:00"
+    created: "2020-12-02T19:02:44.646310916+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -171,12 +171,12 @@ entries:
     sources:
     - https://github.com/Chocobozzz/PeerTube
     urls:
-    - https://threefoldtech.github.io/marketplace-charts/peertube-0.0.1.tgz
+    - https://threefoldtech.github.io/vdc-solutions-charts/peertube-0.0.1.tgz
     version: 0.0.1
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-01T15:09:52.47602288+02:00"
+    created: "2020-12-02T19:02:44.650601513+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -185,17 +185,17 @@ entries:
     digest: d2f00d37c9617da6224dad322ce4bb8a9d559446d48b691229af1f8501a1118f
     name: taiga
     urls:
-    - https://threefoldtech.github.io/marketplace-charts/taiga-0.1.0.tgz
+    - https://threefoldtech.github.io/vdc-solutions-charts/taiga-0.1.0.tgz
     version: 0.1.0
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-01T15:09:52.476487598+02:00"
+    created: "2020-12-02T19:02:44.651236949+02:00"
     description: zeroci helm chart
     digest: b95fa66515096524446c49bdfcdd4d615998cefbc9a2d3709445e6e5556c9c1c
     name: zeroci
     type: application
     urls:
-    - https://threefoldtech.github.io/marketplace-charts/zeroci-1.0.0.tgz
+    - https://threefoldtech.github.io/vdc-solutions-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2020-12-01T15:09:52.420927865+02:00"
+generated: "2020-12-02T19:02:44.60156858+02:00"
