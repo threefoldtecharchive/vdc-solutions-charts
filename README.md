@@ -10,7 +10,7 @@
 -   install a chart 
 
     ```
-    helm install markteplace/<chart-name>
+    helm install marketplace/<chart-name>
     ```
 
 ## adding/modifying a chart in the repo
