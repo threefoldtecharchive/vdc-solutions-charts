@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-08T16:43:15.053379515Z"
+    created: "2020-12-08T16:55:55.926803966Z"
     description: A Helm chart for Kubernetes
     digest: d3255cd5058be8983e566234244d0d17c3dd549e9f82c0ce8ab98070c7a2e38d
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-08T16:43:15.055837433Z"
+    created: "2020-12-08T16:55:55.92839243Z"
     description: A Helm chart for Cryptpad
     digest: 2ba42175ee329a5fd437ccb9290be9bbc96435642f0937948955a9e391b984d4
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   dash:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-08T16:43:15.059811512Z"
+    created: "2020-12-08T16:55:55.929204092Z"
     description: Dash Helm chart for Kubernetes
     digest: c40dde5e6d56ec31b0521a8f2ed9415766abd50495be4a62e7bc29df09217122
     name: dash
@@ -33,12 +33,23 @@ entries:
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/dash-0.1.0.tgz
     version: 0.1.0
+  digibyte:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-12-08T16:55:55.930202022Z"
+    description: Digibyte Helm chart for Kubernetes
+    digest: a04eb88e87556aac688cb020115e4130ab063061410375c6aefc85a331b2385b
+    name: digibyte
+    type: application
+    urls:
+    - https://threefoldtech.github.io/vdc-solutions-charts/digibyte-0.1.0.tgz
+    version: 0.1.0
   kube-prometheus:
   - annotations:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-08T16:43:15.103032909Z"
+    created: "2020-12-08T16:55:56.122269696Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -86,7 +97,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-08T16:43:15.139550158Z"
+    created: "2020-12-08T16:55:56.329121642Z"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -134,7 +145,7 @@ entries:
   mattermost:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-12-08T16:43:15.144170893Z"
+    created: "2020-12-08T16:55:56.335547878Z"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -155,7 +166,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-12-08T16:43:15.164597259Z"
+    created: "2020-12-08T16:55:56.51478238Z"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -187,7 +198,7 @@ entries:
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-08T16:43:15.174922701Z"
+    created: "2020-12-08T16:55:56.616717273Z"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -201,7 +212,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-08T16:43:15.176040796Z"
+    created: "2020-12-08T16:55:56.618535576Z"
     description: zeroci helm chart
     digest: f59f51f10b2d8e654cc2058e7270e8cbfe1e81917850d8a9e80010dc6164cb33
     name: zeroci
@@ -209,4 +220,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2020-12-08T16:43:15.049769281Z"
+generated: "2020-12-08T16:55:55.925277885Z"
