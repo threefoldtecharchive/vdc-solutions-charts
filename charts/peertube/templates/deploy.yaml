@@ -26,12 +26,7 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
-          requests:
-            memory: "1024Mi"
-            cpu: "1000m"
-          limits:
-            memory: "1024Mi"
-            cpu: "1000m"
+          {{- toYaml .Values.resources | nindent 10 }}
         env:
         - name: PEERTUBE_SIGNUP_ENABLED
           value: "true"

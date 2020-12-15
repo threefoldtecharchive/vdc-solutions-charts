@@ -52,3 +52,10 @@ adminEmail: omar.elawady.alternative@gmail.com
 webserver:
         hostname: peertubek8s.tfgw-testnet-01.gateway.tf
 
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+  requests:
+    cpu: 900m
+    memory: 1024Mi
