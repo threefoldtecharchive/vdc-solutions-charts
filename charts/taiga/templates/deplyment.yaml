@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: taiga-deployment
+  name: {{ include "taiga.fullname" . }}
   labels:
-    app: taiga
+    {{- include "taiga.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: taiga
+      {{- include "taiga.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: taiga
+        {{- include "taiga.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: taiga

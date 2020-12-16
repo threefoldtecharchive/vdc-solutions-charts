@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T13:45:18.863829843+02:00"
+    created: "2020-12-16T13:46:56.51560551+02:00"
     description: A Helm chart for Kubernetes
     digest: d3255cd5058be8983e566234244d0d17c3dd549e9f82c0ce8ab98070c7a2e38d
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-16T13:45:18.864713322+02:00"
+    created: "2020-12-16T13:46:56.516341817+02:00"
     description: A Helm chart for Cryptpad
     digest: 2ba42175ee329a5fd437ccb9290be9bbc96435642f0937948955a9e391b984d4
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   dash:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T13:45:18.865632108+02:00"
+    created: "2020-12-16T13:46:56.517182558+02:00"
     description: Dash Helm chart for Kubernetes
     digest: 3dfe5302914bab771d4ef2fadbd139d71e3b96172b1bb206ca73010c8f7add20
     name: dash
@@ -36,7 +36,7 @@ entries:
   digibyte:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T13:45:18.866495696+02:00"
+    created: "2020-12-16T13:46:56.517929219+02:00"
     description: Digibyte Helm chart for Kubernetes
     digest: 8f14d60fdafca3e1aa6b6544cc6240bc0c3fe1ecbc46661b926143df0100451f
     name: digibyte
@@ -47,7 +47,7 @@ entries:
   harmony:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T13:45:18.86775046+02:00"
+    created: "2020-12-16T13:46:56.518925829+02:00"
     description: Harmony Helm chart for Kubernetes
     digest: fee83b9756b448b8d80b0b5e096bd0808962f7532420726ce37d41da617f598c
     name: harmony
@@ -60,7 +60,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-16T13:45:18.894559823+02:00"
+    created: "2020-12-16T13:46:56.545108999+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -108,7 +108,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-16T13:45:18.9285243+02:00"
+    created: "2020-12-16T13:46:56.580982038+02:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -156,7 +156,7 @@ entries:
   mattermost:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-12-16T13:45:18.932942631+02:00"
+    created: "2020-12-16T13:46:56.585601005+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -177,7 +177,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-12-16T13:45:18.943057252+02:00"
+    created: "2020-12-16T13:46:56.596813875+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -209,13 +209,13 @@ entries:
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-16T13:45:18.951347134+02:00"
+    created: "2020-12-16T13:46:56.603094364+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: 10.0.0
     description: Taiga helm chart
-    digest: d2f00d37c9617da6224dad322ce4bb8a9d559446d48b691229af1f8501a1118f
+    digest: 1bd8ba6b12ce5b842e821f00690f6e54757434e8561b0c0fee5749674e530658
     name: taiga
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/taiga-0.1.0.tgz
@@ -223,7 +223,7 @@ entries:
   tomo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T13:45:18.95267096+02:00"
+    created: "2020-12-16T13:46:56.60407799+02:00"
     description: A Helm chart for Kubernetes
     digest: 1fdd259ee53a48817fe500843957b8a494074180242d2c36d68f3eeaef5b697c
     name: tomo
@@ -234,7 +234,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T13:45:18.95392784+02:00"
+    created: "2020-12-16T13:46:56.604934744+02:00"
     description: zeroci helm chart
     digest: 4e2a60678bb9073db39c3c4ac9cb9965a72e45db9c353726bce9cdb686cf4d59
     name: zeroci
@@ -242,4 +242,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2020-12-16T13:45:18.860012784+02:00"
+generated: "2020-12-16T13:46:56.514512208+02:00"

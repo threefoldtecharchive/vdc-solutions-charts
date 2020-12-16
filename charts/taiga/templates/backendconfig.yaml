@@ -220,7 +220,7 @@ data:
 
     ALLOWED_HOSTS = [
         # Useful for health checks
-        '{{ .Values.domainWithoutPort }}',
+        '{{ .Values.domain }}',
     ]
 
     ADMINS = []

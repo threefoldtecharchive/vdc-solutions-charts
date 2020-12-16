@@ -6,7 +6,6 @@ postgresql:
 
 
 domain: omartaiga.tfgw-testnet-01.gateway.tf
-domainWithoutPort: omartaiga.tfgw-testnet-01.gateway.tf
 protocol: https
 
 resources:
