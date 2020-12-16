@@ -8,8 +8,16 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: ssh
+      targetPort: 22
       protocol: TCP
       name: ssh
+    - port: 12024
+      targetPort: 12024
+      protocol: TCP
+      name: p2p
+    - port: 14022
+      targetPort: 14022
+      protocol: TCP
+      name: rpc
   selector:
     {{- include "digibyte.selectorLabels" . | nindent 4 }}
