@@ -15,15 +15,16 @@
 
 ## adding/modifying a chart in the repo
 
-1.  consider adding your chart under `charts` directory
-2.  do `helm lint charts/<your-chart-name>`
-3.  regenerate the packages `helm package charts/<your-chart-name>`
-4.  re-generate `index.yaml` 
+1.  Consider adding your chart under `charts` directory
+2.  Make sure your chart deployment has **label** `app.kubernetes.io/name: <your-chart-name>`
+3.  Do `helm lint charts/<your-chart-name>`
+4.  Regenerate the packages `helm package charts/<your-chart-name>`
+5.  Re-generate `index.yaml` 
 
 
     `helm repo index --url https://threefoldtech.github.io/vdc-solutions-charts/ --merge index.yaml .`
 
-5.  push your changes
+6.  Push your changes
 
 ## Note
 
