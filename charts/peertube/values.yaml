@@ -33,7 +33,8 @@ deps:
 postgresql:
   fullnameOverride: peertube-postgresql-1531009616
   postgresqlDatabase: peertube
-
+  persistence:
+          enabled: false
 redis:
   fullnameOverride: peertube-redis-1531009616
   usePassword: false
