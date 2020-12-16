@@ -16,7 +16,12 @@
 ## adding/modifying a chart in the repo
 
 1.  Consider adding your chart under `charts` directory
-2.  Make sure your chart deployment has **label** `app.kubernetes.io/name: <your-chart-name>`
+2.  Make sure your chart deployment has **soem labels**
+    ```
+    app.kubernetes.io/name: <your-chart-name>
+    app.kubernetes.io/instance: {{ .Rleease.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+    ```
 3.  Do `helm lint charts/<your-chart-name>`
 4.  Regenerate the packages `helm package charts/<your-chart-name>`
 5.  Re-generate `index.yaml` 
