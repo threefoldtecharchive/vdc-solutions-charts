@@ -11,5 +11,13 @@ spec:
       targetPort: 22
       protocol: TCP
       name: ssh
+    - port: 9999
+      targetPort: 9999
+      protocol: TCP
+      name: p2p
+    - port: 9998
+      targetPort: 9998
+      protocol: TCP
+      name: rpc
   selector:
     {{- include "dash.selectorLabels" . | nindent 4 }}

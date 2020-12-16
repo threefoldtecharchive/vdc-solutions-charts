@@ -44,6 +44,13 @@ spec:
             - name: ssh
               containerPort: 22
               protocol: TCP
+            - name: p2p
+              containerPort: 9999
+              protocol: TCP
+            - name: rpc
+              containerPort: 9998
+              protocol: TCP
+                                                        
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
