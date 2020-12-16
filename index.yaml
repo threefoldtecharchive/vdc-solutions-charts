@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T14:10:10.703231006+02:00"
+    created: "2020-12-16T14:18:43.007345519+02:00"
     description: A Helm chart for Kubernetes
     digest: d3255cd5058be8983e566234244d0d17c3dd549e9f82c0ce8ab98070c7a2e38d
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-16T14:10:10.703886377+02:00"
+    created: "2020-12-16T14:18:43.008031036+02:00"
     description: A Helm chart for Cryptpad
     digest: 2ba42175ee329a5fd437ccb9290be9bbc96435642f0937948955a9e391b984d4
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   dash:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T14:10:10.704781722+02:00"
+    created: "2020-12-16T14:18:43.008768819+02:00"
     description: Dash Helm chart for Kubernetes
     digest: 3dfe5302914bab771d4ef2fadbd139d71e3b96172b1bb206ca73010c8f7add20
     name: dash
@@ -36,7 +36,7 @@ entries:
   digibyte:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T14:10:10.705800366+02:00"
+    created: "2020-12-16T14:18:43.009472416+02:00"
     description: Digibyte Helm chart for Kubernetes
     digest: 8f14d60fdafca3e1aa6b6544cc6240bc0c3fe1ecbc46661b926143df0100451f
     name: digibyte
@@ -47,7 +47,7 @@ entries:
   harmony:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T14:10:10.706937504+02:00"
+    created: "2020-12-16T14:18:43.010227977+02:00"
     description: Harmony Helm chart for Kubernetes
     digest: fee83b9756b448b8d80b0b5e096bd0808962f7532420726ce37d41da617f598c
     name: harmony
@@ -60,7 +60,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-16T14:10:10.739258703+02:00"
+    created: "2020-12-16T14:18:43.041017564+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -108,7 +108,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-16T14:10:10.776301467+02:00"
+    created: "2020-12-16T14:18:43.079135906+02:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -156,7 +156,7 @@ entries:
   mattermost:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-12-16T14:10:10.781947321+02:00"
+    created: "2020-12-16T14:18:43.083030191+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -177,7 +177,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-12-16T14:10:10.792273496+02:00"
+    created: "2020-12-16T14:18:43.094225584+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -189,7 +189,7 @@ entries:
       version: 12.0.1
     description: Federated (ActivityPub) video streaming platform using P2P (BitTorrent)
       directly in the web browser with WebTorrent.
-    digest: 1efe7d0953bb15410072109a7e4e07972c7544a6f67f6851bcb733da46ca011e
+    digest: d592a76046393206d87c09dc72c9ddec673be73d6b718d5713e5391e301f21a5
     home: https://joinpeertube.org/
     icon: https://joinpeertube.org/favicon.png
     keywords:
@@ -209,7 +209,7 @@ entries:
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-16T14:10:10.797310905+02:00"
+    created: "2020-12-16T14:18:43.099888006+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -223,7 +223,7 @@ entries:
   tomo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T14:10:10.798070641+02:00"
+    created: "2020-12-16T14:18:43.100966101+02:00"
     description: A Helm chart for Kubernetes
     digest: 1fdd259ee53a48817fe500843957b8a494074180242d2c36d68f3eeaef5b697c
     name: tomo
@@ -234,7 +234,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-16T14:10:10.798764031+02:00"
+    created: "2020-12-16T14:18:43.101726367+02:00"
     description: zeroci helm chart
     digest: 4e2a60678bb9073db39c3c4ac9cb9965a72e45db9c353726bce9cdb686cf4d59
     name: zeroci
@@ -242,4 +242,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2020-12-16T14:10:10.702261172+02:00"
+generated: "2020-12-16T14:18:43.006341743+02:00"
