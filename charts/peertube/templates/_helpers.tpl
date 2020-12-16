@@ -60,6 +60,6 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "peertube.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "peertube.fullName" . }}
+app.kubernetes.io/name: peertube
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
