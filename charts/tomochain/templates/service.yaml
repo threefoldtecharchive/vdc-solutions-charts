@@ -8,8 +8,21 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: ssh
+      targetPort: 22
       protocol: TCP
       name: ssh
+    - port: 30303
+      targetPort: 30303
+      protocol: TCP
+      name: p2p
+    - port: 8545
+      targetPort: 8545
+      protocol: TCP
+      name: rpc
+    - port: 8546
+      targetPort: 8546
+      protocol: TCP
+      name: wss
+
   selector:
     {{- include "tomo.selectorLabels" . | nindent 4 }}
