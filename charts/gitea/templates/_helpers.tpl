@@ -47,7 +47,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "gitea.selectorLabels" -}}
-app.kubernetes.io/name: {{ .Chart.Name }}
+app.kubernetes.io/name: gitea
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
