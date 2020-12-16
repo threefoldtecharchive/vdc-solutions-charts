@@ -3,17 +3,12 @@ kind: Deployment
 metadata:
   name: {{ template "peertube.fullName" . }}
   labels:
-    app: {{ template "peertube.fullName" . }}
-    chart: {{ template "peertube.chart" . }}
-    app.kubernetes.io/name: peertube
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "peertube.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "peertube.fullName" . }}
-      release: {{ .Release.Name }}
+      {{- include "peertube.selectorLabels" . | nindent 6 }}
   strategy:
     type: Recreate
   template:
