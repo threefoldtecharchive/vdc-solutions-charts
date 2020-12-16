@@ -1,0 +1,17 @@
+annotations:
+  category: Infrastructure
+apiVersion: v1
+appVersion: 1.6.6
+description: Chart for Memcached
+home: http://memcached.org/
+icon: https://bitnami.com/assets/stacks/memcached/img/memcached-stack-110x117.png
+keywords:
+- memcached
+- cache
+maintainers:
+- email: containers@bitnami.com
+  name: Bitnami
+name: memcached
+sources:
+- https://github.com/bitnami/bitnami-docker-memcached
+version: 4.2.20
