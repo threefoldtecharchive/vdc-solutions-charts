@@ -79,9 +79,9 @@ spec:
 {{- end }}
               key: pw
         - name: PEERTUBE_SMTP_PORT
-          value: {{ required "deps.smtp.port required" .Values.deps.smtp.port | quote }}
+          value: {{ .Values.deps.smtp.port | quote }}
         - name: PEERTUBE_SMTP_FROM
-          value: {{ required "deps.smtp.from required" .Values.deps.smtp.from }}
+          value: {{ .Values.deps.smtp.from }}
         - name: PEERTUBE_SMTP_TLS
           value: {{ .Values.deps.smtp.tls.enabled | quote }}
         - name: PEERTUBE_ADMIN_EMAIL
