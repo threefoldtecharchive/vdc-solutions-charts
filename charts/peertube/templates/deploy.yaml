@@ -14,8 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "peertube.fullName" . }}
-        release: {{ .Release.Name }}
+        {{- include "peertube.selectorLabels" . | nindent 6 }}
     spec:
       containers:
       - name: {{ .Chart.Name }}
