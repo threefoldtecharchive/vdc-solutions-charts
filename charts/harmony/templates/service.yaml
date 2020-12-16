@@ -8,8 +8,24 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: ssh
+      targetPort: 22
       protocol: TCP
       name: ssh
+    - port: 9000
+      targetPort: 9000
+      protocol: TCP
+      name: baseport
+    - port: 6000
+      targetPort: 6000
+      protocol: TCP
+      name: syncport
+    - port: 9500
+      targetPort: 9500
+      protocol: TCP
+      name: rpc
+    - port: 9800
+      targetPort: 9800
+      protocol: TCP
+      name: wssport
   selector:
     {{- include "harmony.selectorLabels" . | nindent 4 }}

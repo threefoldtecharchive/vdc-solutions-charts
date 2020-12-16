@@ -44,6 +44,18 @@ spec:
             - name: ssh
               containerPort: 22
               protocol: TCP
+            - name: baseport
+              containerPort: 9000
+              protocol: TCP
+            - name: syncport
+              containerPort: 6000
+              protocol: TCP
+            - name: rpc
+              containerPort: 9500
+              protocol: TCP
+            - name: wssport
+              containerPort: 9800
+              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
