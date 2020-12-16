@@ -59,7 +59,7 @@ spec:
           value: {{ required "deps.redis.hostname required unless deps.redis.managed is true" .Values.deps.redis.hostname }}
 {{- end }}
         - name: PEERTUBE_SMTP_HOSTNAME
-          value: {{ required "deps.smtp.hostname required" .Values.deps.smtp.hostname }}
+          value: {{ .Values.deps.smtp.hostname }}
         - name: PEERTUBE_SMTP_USERNAME
           valueFrom:
             secretKeyRef:
