@@ -3,10 +3,7 @@ kind: Ingress
 metadata:
   name: {{ template "peertube.fullName" . }}
   labels:
-    app: {{ template "peertube.fullName" . }}
-    chart: {{ template "peertube.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "peertube.labels" . | nindent 4 }}
 spec:
   rules:
     - host: {{ .Values.webserver.hostname }}
