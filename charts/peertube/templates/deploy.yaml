@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "peertube.fullName" . }}
     chart: {{ template "peertube.chart" . }}
-    app.kubernetes.io/name: {{ template "peertube.chart" . }}
+    app.kubernetes.io/name: peertube
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
