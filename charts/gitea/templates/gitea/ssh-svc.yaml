@@ -11,8 +11,8 @@ spec:
   {{- if and .Values.service.ssh.loadBalancerIP (eq .Values.service.ssh.type "LoadBalancer") }}
   loadBalancerIP: {{ .Values.service.ssh.loadBalancerIP }}
   {{- end }}
-  {{- if eq .Values.service.ssh.type "ClusterIP" }}
-  clusterIP: None
+  {{- if and .Values.service.ssh.clusterIP (eq .Values.service.ssh.type "ClusterIP") }}
+  clusterIP: {{ .Values.service.ssh.clusterIP }}
   {{- end }}
   {{- if .Values.service.ssh.externalIPs }}
   externalIPs:

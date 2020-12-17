@@ -23,7 +23,7 @@
     app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
     ```
 3.  Do `helm lint charts/<your-chart-name>`
-4.  Regenerate the packages `helm package charts/<your-chart-name>`
+4.  Regenerate the packages `helm package -u charts/<your-chart-name>`
 5.  Re-generate `index.yaml` 
 
 
