@@ -16,7 +16,7 @@
 ## adding/modifying a chart in the repo
 
 1.  Consider adding your chart under `charts` directory
-2.  Make sure your chart deployment has **soem labels**
+2.  Make sure the deployment file or statefulset file in your chart has **some labels**, that will help in listing the solution instances:
     ```
     app.kubernetes.io/name: <your-chart-name>
     app.kubernetes.io/instance: {{ .Rleease.Name }}
