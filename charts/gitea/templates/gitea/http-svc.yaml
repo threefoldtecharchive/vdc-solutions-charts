@@ -11,8 +11,8 @@ spec:
   {{- if and .Values.service.http.loadBalancerIP (eq .Values.service.http.type "LoadBalancer") }}
   loadBalancerIP: {{ .Values.service.http.loadBalancerIP  }}
   {{- end }}
-  {{ if eq .Values.service.http.type "ClusterIP" }}
-  clusterIP: None
+  {{- if and .Values.service.http.clusterIP (eq .Values.service.http.type "ClusterIP") }}
+  clusterIP: {{ .Values.service.http.clusterIP }}
   {{- end }}
   ports:
   - name: http

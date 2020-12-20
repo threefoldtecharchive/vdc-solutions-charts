@@ -47,7 +47,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "gitea.selectorLabels" -}}
-app.kubernetes.io/name: gitea
+app.kubernetes.io/name: {{ include "gitea.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
@@ -95,3 +95,14 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- printf "%s-gitea.%s.svc.%s" (include "gitea.fullname" .) .Release.Namespace .Values.clusterDomain | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
+{{- define "gitea.ldap_settings" -}}
+{{- range $key, $val := .Values.gitea.ldap -}}
+{{- if ne $key "enabled" -}}
+{{- if eq $key "port" -}}
+{{- printf "--%s %s " ($key | kebabcase) $val -}}
+{{- else -}}
+{{- printf "--%s %s " ($key | kebabcase) ($val | quote) -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
