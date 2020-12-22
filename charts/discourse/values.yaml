@@ -57,13 +57,13 @@ discourse:
   ## User of the application
   ## ref: https://github.com/bitnami/bitnami-docker-discourse#environment-variables
   ##
-  username: user
+  username: admin
   ## Application password
   ## WARNING: Minimum length of 10 characters
   ## Defaults to a random 10-character alphanumeric string if not set
   ## ref: https://github.com/bitnami/bitnami-docker-discourse#environment-variables
   ##
-  # password:
+  password: adminadmin
   ## Name of an existing secret containing the password (ignores previous password)
   ##
   # existingSecret: my-secret
@@ -75,6 +75,7 @@ discourse:
   ## Custom command to override image cmd
   ##
   # command: []
+
   ## Custom args for the custom commad:
   # args: []
 
@@ -95,12 +96,12 @@ discourse:
   ##  choice for the user. This also increases chances charts run on environments with little
   ##  resources, such as Minikube. If you do want to specify resources, uncomment the following
   ##  lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  #   limits:
-  #     cpu: 100m
-  #     memory: 128Mi
-  #   requests:
-  #     cpu: 100m
-  #     memory: 128Mi
+    #  limits:
+    #    cpu: 1000m
+    #    memory: 3072Mi
+    #  requests:
+    #    cpu: 1000m
+    #    memory: 3072Mi
 
   ## Discourse extra options for liveness and readiness probes
   ## WARNING: Discourse installation process may take up some time and
@@ -109,17 +110,17 @@ discourse:
   ##
   livenessProbe:
     enabled: true
-    initialDelaySeconds: 500
-    periodSeconds: 10
-    timeoutSeconds: 5
+    initialDelaySeconds: 1500
+    periodSeconds: 20
+    timeoutSeconds: 15
     failureThreshold: 6
     successThreshold: 1
 
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 30
-    periodSeconds: 10
-    timeoutSeconds: 5
+    initialDelaySeconds: 100
+    periodSeconds: 20
+    timeoutSeconds: 15
     failureThreshold: 6
     successThreshold: 1
 
@@ -186,12 +187,12 @@ sidekiq:
   ##  choice for the user. This also increases chances charts run on environments with little
   ##  resources, such as Minikube. If you do want to specify resources, uncomment the following
   ##  lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  #   limits:
-  #     cpu: 100m
-  #     memory: 128Mi
-  #   requests:
-  #     cpu: 100m
-  #     memory: 128Mi
+    #  limits:
+    #    cpu: 100m
+    #    memory: 128Mi
+    #  requests:
+    #    cpu: 100m
+    #    memory: 128Mi
 
   ## Sidekiq extra options for liveness and readiness probes
   ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
@@ -300,7 +301,7 @@ podSecurityContext: {}
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##
 persistence:
-  enabled: true
+  enabled: false
   ## discourse & sidekiq data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -325,7 +326,7 @@ persistence:
 ## For minikube, set this to NodePort, elsewhere use LoadBalancer or ClusterIP
 ##
 service:
-  type: LoadBalancer
+  type: ClusterIP
   ## HTTP Port
   ##
   port: 80
@@ -369,10 +370,9 @@ ingress:
   ##
   ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
   ##
-  annotations: 
+  annotations:
     kubernetes.io/ingress.class: traefik
     ingress.kubernetes.io/ssl-passthrough: "true"
-
   ## Enable TLS configuration for the hostname defined at ingress.hostname parameter
   ## TLS certificates will be retrieved from a TLS secret with name: {{- printf "%s-tls" .Values.ingress.hostname }}
   ## You can use the ingress.secrets parameter to create this TLS secret or relay on cert-manager to create it
@@ -504,11 +504,11 @@ postgresql:
   ## Defaults to a random 10-character alphanumeric string if not set
   ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#setting-the-root-password-on-first-run
   ##
-  # postgresqlPassword:
+  postgresqlPassword: "bnthreefold"
   ## PostgreSQL admin password (used when `postgresqlUsername` is not `postgres`)
   ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#creating-a-database-user-on-first-run (see note!)
   ##
-  postgresqlPostgresPassword: 'bitnami'
+  postgresqlPostgresPassword: 'bitnamipass'
   ## Name of existing secret object
   ## The secret should contain the following keys:
   ## postgresql-postgres-password (for the unprivileged user)
@@ -523,7 +523,7 @@ postgresql:
   ## PostgreSQL data Persistent Volume Storage Class
   ##
   persistence:
-    enabled: true
+    enabled: false
 
 ##
 ## External database configuration
@@ -540,13 +540,13 @@ externalDatabase:
   user: bn_discourse
   ## Database password
   ##
-  password: ''
+  password: 'bn_user_password'
   ## PostgreSQL admin user (used in the installation stage)
   ##
   postgresqlPostgresUser: postgres
   ## PostgreSQL admin password (used in the installation stage)
   ##
-  postgresqlPostgresPassword: ''
+  postgresqlPostgresPassword: 'admin_password'
   ## Name of existing secret object
   ## The secret should contain the following keys:
   ## postgresql-postgres-password (for the unprivileged user)

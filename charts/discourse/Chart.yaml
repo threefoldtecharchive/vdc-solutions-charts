@@ -1,7 +1,7 @@
 annotations:
   category: Forum
 apiVersion: v2
-appVersion: 1.13.0
+appVersion: 2.6.0
 dependencies:
 - name: common
   repository: https://charts.bitnami.com/bitnami

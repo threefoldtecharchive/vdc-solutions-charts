@@ -1,5 +1,10 @@
 {{- if .Values.ingress.enabled -}}
-apiVersion: {{ template "common.capabilities.ingress.apiVersion" . }}
+{{- $svcPort := .Values.service.port -}}
+{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
   name: {{ template "common.names.fullname" . }}
@@ -39,7 +44,7 @@ spec:
           - path: /
             backend:
               serviceName: {{ template "common.names.fullname" . }}
-              servicePort: http
+              servicePort: {{ $svcPort }}
     {{- end }}
     {{- range .Values.ingress.extraHosts }}
     - host: {{ .name }}
@@ -48,6 +53,6 @@ spec:
           - path: {{ default "/" .path }}
             backend:
               serviceName: {{ template "common.names.fullname" $ }}
-              servicePort: http
+              servicePort: {{ $svcPort }}
     {{- end }}
 {{- end }}
