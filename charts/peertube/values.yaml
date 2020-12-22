@@ -46,7 +46,8 @@ redis:
 
 ingress:
         tls:
-                enabled: false
+                enabled: true
+                existingSecret: True
 
 adminEmail: omar.elawady.alternative@gmail.com
 
