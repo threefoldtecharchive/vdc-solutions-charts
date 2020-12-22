@@ -63,7 +63,7 @@ discourse:
   ## Defaults to a random 10-character alphanumeric string if not set
   ## ref: https://github.com/bitnami/bitnami-docker-discourse#environment-variables
   ##
-  password: adminadmin
+  password: '4dminS3curep4ss0rd'
   ## Name of an existing secret containing the password (ignores previous password)
   ##
   # existingSecret: my-secret
@@ -91,17 +91,17 @@ discourse:
   ## Discourse container's resource requests and limits
   ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
   ##
-  resources: {}
+  resources:
   ##  We usually recommend not to specify default resources and to leave this as a conscious
   ##  choice for the user. This also increases chances charts run on environments with little
   ##  resources, such as Minikube. If you do want to specify resources, uncomment the following
   ##  lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    #  limits:
-    #    cpu: 1000m
-    #    memory: 3072Mi
-    #  requests:
-    #    cpu: 1000m
-    #    memory: 3072Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+      requests:
+        cpu: 1000m
+        memory: 1024Mi
 
   ## Discourse extra options for liveness and readiness probes
   ## WARNING: Discourse installation process may take up some time and
