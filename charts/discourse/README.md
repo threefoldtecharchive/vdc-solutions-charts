@@ -5,8 +5,9 @@
 ## TL;DR
 
 ```console
-$ helm repo add bitnami https://charts.bitnami.com/bitnami
-$ helm install my-release bitnami/discourse
+helm repo add marketplace https://threefoldtech.github.io/vdc-solutions-charts/
+
+$ helm install my-release marketplace/discourse
 ```
 
 ## Introduction
@@ -107,7 +108,22 @@ The following table lists the configurable parameters of the Discourse chart and
 | `service.loadBalancerSourceRanges`        | Restricts access for LoadBalancer (only with `service.type: LoadBalancer`)            | `[]`                                                         |
 | `service.extraPorts`                      | Extra ports to expose in the service (normally used with the `sidecar` value)         | `nil`                                                        |
 | `service.nodePorts.http`                  | Kubernetes http node port                                                             | `""`                                                         |
+### SMTP Configuration
+To configure smtp for sending email consider adding those variables to 
+`discourse.extraEnvVars` and `sidekiq.extraEnvVars`
+```
 
+ - name: SMTP_HOST
+   value: "<SMTP RELAY HOST>"
+  - name: SMTP_PORT
+    value: "<SMTP_PORT>"
+  - name: SMTP_USER
+    value: "<USERNAME>"
+  - name: SMTP_PASSWORD
+    value: "PASSWORD"
+  
+```
+for more info check [this](https://github.com/bitnami/bitnami-docker-discourse#smtp-configuration) and [this](https://docs.bitnami.com/general/how-to/troubleshoot-smtp-issues/)
 ### Discourse parameters
 
 | Parameter                                 | Description                                                                           | Default                                                      |

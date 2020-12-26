@@ -22,7 +22,7 @@ Dependencies:
 ## Installing
 
 ```
-  helm repo add marketplace https://github.com/threefoldtech/vdc-solutions-charts/tree/master/charts
+  helm repo add marketplace https://threefoldtech.github.io/vdc-solutions-charts/
   helm install gitea marketplace/gitea
 ```
 
