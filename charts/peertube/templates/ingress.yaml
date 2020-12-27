@@ -4,6 +4,10 @@ metadata:
   name: {{ template "peertube.fullName" . }}
   labels:
     {{- include "peertube.labels" . | nindent 4 }}
+  annotations:
+  {{- if .Values.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+  {{- end }}
 spec:
   rules:
     - host: {{ .Values.webserver.hostname }}

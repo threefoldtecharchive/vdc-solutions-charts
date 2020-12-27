@@ -3,10 +3,6 @@ image:
   tag: production-stretch
   pullPolicy: IfNotPresent
 
-ingress:
-  tls:
-    enabled: true
-
 service:
   type: NodePort
   port: 8084 # PeerTube => P T => 80 84
@@ -45,9 +41,10 @@ redis:
       enabled: false
 
 ingress:
-        tls:
-                enabled: true
-                existingSecret: True
+  certresolver: default
+  tls:
+    enabled: true
+    existingSecret: True
 
 adminEmail: omar.elawady.alternative@gmail.com
 
