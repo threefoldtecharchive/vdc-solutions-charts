@@ -1873,7 +1873,7 @@ prometheus:
 
     ## Number of Prometheus replicas desired
     ##
-    replicas: 3
+    replicas: 1
 
     ## Log level for Prometheus be configured in
     ##
