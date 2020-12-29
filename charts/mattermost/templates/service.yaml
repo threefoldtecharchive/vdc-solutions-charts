@@ -5,9 +5,9 @@ metadata:
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
 {{- end }}
-  name: {{ include "mattermost.fullName" . }}
+  name: {{ include "mattermost.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "mattermost.fullName" . }}
+    app.kubernetes.io/name: {{ include "mattermost.fullname" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     helm.sh/chart: {{ include "mattermost.chart" . }}
