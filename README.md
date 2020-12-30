@@ -31,7 +31,7 @@
 3.  Make sure the deployment file or statefulset file in your chart has **some labels**, that will help in listing the solution instances:
     ```
     app.kubernetes.io/name: <your-chart-name>
-    app.kubernetes.io/instance: {{ .Rleease.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
     ```
 4.  Do `helm lint charts/<your-chart-name>`
