@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-30T12:08:57.265991453+02:00"
+    created: "2020-12-30T14:40:27.661149337+02:00"
     description: A Helm chart for Kubernetes
     digest: d3255cd5058be8983e566234244d0d17c3dd549e9f82c0ce8ab98070c7a2e38d
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-30T12:08:57.267689068+02:00"
+    created: "2020-12-30T14:40:27.661606161+02:00"
     description: A Helm chart for Cryptpad
     digest: f27e05ef692974305128d4b763363207a3b7ca8fc07deac6ca41a1d73e0866b6
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   dash:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-30T12:08:57.268713376+02:00"
+    created: "2020-12-30T14:40:27.66210759+02:00"
     description: Dash Helm chart for Kubernetes
     digest: 3dfe5302914bab771d4ef2fadbd139d71e3b96172b1bb206ca73010c8f7add20
     name: dash
@@ -36,7 +36,7 @@ entries:
   digibyte:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-30T12:08:57.269470946+02:00"
+    created: "2020-12-30T14:40:27.662626473+02:00"
     description: Digibyte Helm chart for Kubernetes
     digest: 8f14d60fdafca3e1aa6b6544cc6240bc0c3fe1ecbc46661b926143df0100451f
     name: digibyte
@@ -49,7 +49,7 @@ entries:
       category: Forum
     apiVersion: v2
     appVersion: 2.6.0
-    created: "2020-12-30T12:08:57.283289142+02:00"
+    created: "2020-12-30T14:40:27.672407896+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -83,10 +83,43 @@ entries:
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/discourse-2.0.3.tgz
     version: 2.0.3
+  etcd:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 3.4.14
+    created: "2020-12-30T14:40:27.675284832+02:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: etcd is a distributed key value store that provides a reliable way
+      to store data across a cluster of machines
+    digest: bb78c47e912a3e063ae816ea7fb767096a1297dc9bc2a825a31e41c161ed9f0d
+    home: https://github.com/bitnami/charts/tree/master/bitnami/etcd
+    icon: https://bitnami.com/assets/stacks/etcd/img/etcd-stack-110x117.png
+    keywords:
+    - etcd
+    - cluster
+    - database
+    - cache
+    - key-value
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: etcd
+    sources:
+    - https://github.com/bitnami/bitnami-docker-etcd
+    - https://coreos.com/etcd/
+    urls:
+    - https://threefoldtech.github.io/vdc-solutions-charts/etcd-5.4.0.tgz
+    version: 5.4.0
   gitea:
   - apiVersion: v2
     appVersion: 1.13.0
-    created: "2020-12-30T12:08:57.295757052+02:00"
+    created: "2020-12-30T14:40:27.687846452+02:00"
     dependencies:
     - condition: gitea.cache.builtIn.enabled
       name: memcached
@@ -183,7 +216,7 @@ entries:
   harmony:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-30T12:08:57.296537448+02:00"
+    created: "2020-12-30T14:40:27.68851602+02:00"
     description: Harmony Helm chart for Kubernetes
     digest: fee83b9756b448b8d80b0b5e096bd0808962f7532420726ce37d41da617f598c
     name: harmony
@@ -196,7 +229,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-30T12:08:57.31937587+02:00"
+    created: "2020-12-30T14:40:27.703360222+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -244,7 +277,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-30T11:14:19.585427636+02:00"
+    created: "2020-12-30T14:22:48.07110882+02:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -294,7 +327,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2.0.1
-    created: "2020-12-30T12:08:57.331928266+02:00"
+    created: "2020-12-30T14:40:27.711180973+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -321,7 +354,7 @@ entries:
   mattermost:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-12-30T12:08:57.335594511+02:00"
+    created: "2020-12-30T14:40:27.713921734+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -342,7 +375,7 @@ entries:
   mattermostonsteroids:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2020-12-30T12:08:57.339446087+02:00"
+    created: "2020-12-30T14:40:27.716517359+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -370,7 +403,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2020-12-30T12:08:57.369915784+02:00"
+    created: "2020-12-30T14:40:27.753249125+02:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -418,7 +451,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2020-12-30T12:08:57.379211391+02:00"
+    created: "2020-12-30T14:40:27.758951489+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -450,7 +483,7 @@ entries:
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2020-12-30T12:08:57.384401122+02:00"
+    created: "2020-12-30T14:40:27.76222773+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -464,7 +497,7 @@ entries:
   tomo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-30T12:08:57.385109638+02:00"
+    created: "2020-12-30T14:40:27.762815424+02:00"
     description: A Helm chart for Kubernetes
     digest: 1fdd259ee53a48817fe500843957b8a494074180242d2c36d68f3eeaef5b697c
     name: tomo
@@ -475,7 +508,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-12-30T12:08:57.385795744+02:00"
+    created: "2020-12-30T14:40:27.763331416+02:00"
     description: zeroci helm chart
     digest: 748b8872f604e2d2248cafd584dec36ca6511a237c202a24791b33866b1d47a1
     name: zeroci
@@ -483,4 +516,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2020-12-30T12:08:57.265183906+02:00"
+generated: "2020-12-30T14:40:27.660373661+02:00"
