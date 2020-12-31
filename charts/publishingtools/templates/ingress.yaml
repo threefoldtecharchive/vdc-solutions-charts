@@ -11,8 +11,17 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "publishingtools.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
   annotations:
+    # change app-root or modify request according to type (blog or website/wiki)
+    {{ if eq .Values.env.type "blog" }}
+    traefik.ingress.kubernetes.io/app-root: /blog/site
+    {{ else }}
+    traefik.ingress.kubernetes.io/request-modifier: "AddPrefix: /site"
+    {{ end }}
+    {{- if .Values.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+    {{- end }}
+  {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:

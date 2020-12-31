@@ -36,6 +36,8 @@ spec:
           env:
               - name: NAME
                 value: site
+              - name: DOMAIN
+                value: {{ .Values.ingress.host | quote }}
             {{- range $key, $val := .Values.env }}
               - name: {{ $key | upper }}
                 value: {{ $val | quote }}

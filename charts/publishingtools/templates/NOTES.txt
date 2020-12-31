@@ -1,4 +1,4 @@
-- Go to your website/wiki via the following URL:
+- Go to your website, wiki or blog via the following URL:
 {{- if .Values.ingress.enabled }}
   {{- range .Values.ingress.paths }}
   http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $.Values.ingress.host }}{{ . }}
