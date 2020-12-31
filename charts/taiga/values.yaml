@@ -3,7 +3,8 @@ postgresql:
   postgresqlDatabase: taiga
   postgresqlPassword: changeme
   postgresqlUsername: taiga
-
+  persistence:
+    enabled: false
 
 domain: omartaiga.tfgw-testnet-01.gateway.tf
 protocol: https
