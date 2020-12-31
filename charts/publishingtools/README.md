@@ -1,15 +1,8 @@
 # publishingtools
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.0.0-alpha.18](https://img.shields.io/badge/AppVersion-v1.0.0--alpha.18-informational?style=flat-square)
-
-A Helm chart for Kubernetes to deploy websites and wikis using publishingtools
-
-# publishingtools
-
 ![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
 
-A Helm chart for Kubernetes to deploy single websites and wikis using publishingtools.
-
+A Helm chart for Kubernetes to deploy single websites and wikis using [publishingtools](https://github.com/crystaluniverse/publishingtools).
 
 ## Prerequisites
 * Kubernetes 1.9+ with Beta APIs enabled
@@ -52,8 +45,10 @@ helm install marketplace/publishingtools --set env.title=mywebsite --set env.url
 | podAnnotations                                                       | object | `{}`                                                    |                                                              |
 | podSecurityContext                                                   | object | `{}`                                                    |                                                              |
 | replicaCount                                                         | int    | `1`                                                     |                                                              |
-| resources                                                            | object | `{}`                                                    |                                                              |
-| securityContext                                                      | object | `{}`                                                    |                                                              |
+| resources.limits.cpu                                                 | string | `"500m"`                                                |                                                              |
+| resources.limits.memory                                              | string | `"512Mi"`                                               |                                                              |
+| resources.requests.cpu                                               | string | `"500m"`                                                |                                                              |
+| resources.requests.memory                                            | string | `"256Mi"`                                               |                                                              |  | securityContext | object | `{}` |  |
 | service.port                                                         | int    | `3000`                                                  |                                                              |
 | service.type                                                         | string | `"ClusterIP"`                                           |                                                              |
 | serviceAccount.annotations                                           | object | `{}`                                                    |                                                              |
