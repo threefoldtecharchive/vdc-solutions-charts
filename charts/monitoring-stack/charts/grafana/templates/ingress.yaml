@@ -19,6 +19,9 @@ metadata:
 {{- end }}
   {{- if .Values.ingress.annotations }}
   annotations:
+    {{- if .Values.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+    {{- end }}
     {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ tpl $value $ | quote }}
     {{- end }}

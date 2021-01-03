@@ -12,6 +12,9 @@ kind: Ingress
 metadata:
 {{- if .Values.prometheus.ingress.annotations }}
   annotations:
+    {{- if .Values.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+    {{- end }}
 {{ toYaml .Values.prometheus.ingress.annotations | indent 4 }}
 {{- end }}
   name: {{ $serviceName }}
