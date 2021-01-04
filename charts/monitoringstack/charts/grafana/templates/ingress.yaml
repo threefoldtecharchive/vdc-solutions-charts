@@ -18,7 +18,7 @@ metadata:
 {{ toYaml .Values.ingress.labels | indent 4 }}
 {{- end }}
   annotations:
-    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
     {{- if .Values.ingress.annotations }}
     {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ tpl $value $ | quote }}

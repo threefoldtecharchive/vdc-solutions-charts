@@ -6,8 +6,6 @@
 ##
 nameOverride: ""
 
-ingress:
-  certresolver: default
 ## Override the deployment namespace
 ##
 namespaceOverride: ""
@@ -91,6 +89,8 @@ additionalPrometheusRulesMap: {}
 
 ##
 global:
+  ingress:
+    certresolver: default
   rbac:
     create: true
     pspEnabled: true

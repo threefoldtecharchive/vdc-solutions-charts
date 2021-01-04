@@ -11,7 +11,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
 {{- if .Values.prometheus.ingress.annotations }}
 {{ toYaml .Values.prometheus.ingress.annotations | indent 4 }}
 {{- end }}
