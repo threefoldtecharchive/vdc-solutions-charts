@@ -2,10 +2,11 @@
 
 * Installs the web dashboarding system [Grafana](http://grafana.org/)
 
+### This chart is used as a sub-chart in `Monitoring Stack` chart
 ## Get Repo Info
 
 ```console
-helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add marketplace https://threefoldtech.github.io/vdc-solutions-charts/
 helm repo update
 ```
 
@@ -16,7 +17,7 @@ _See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation
 To install the chart with the release name `my-release`:
 
 ```console
-helm install --name my-release grafana/grafana
+helm install <release_name> marketplace/grafana
 ```
 
 ## Uninstalling the Chart

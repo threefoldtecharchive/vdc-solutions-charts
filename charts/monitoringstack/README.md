@@ -11,6 +11,16 @@ _Note: This chart was formerly named `prometheus-operator` chart, now renamed to
 - Kubernetes 1.16+
 - Helm 3+
 
+# Make it work 
+## - Market place chat flow 
+- You have to deploy a VDC 
+- Open VDC market place and choose `Monitoring Stack`
+- Add domain to prometheus and we consequently will use the same domain to create subdomain for `Grafana`.
+
+we depend on `Grafana` chart and a sub-chart.
+
+
+## - Deploy manually 
 ## Get Repo Info
 
 ```console
@@ -49,7 +59,9 @@ _See [helm dependency](https://helm.sh/docs/helm/helm_dependency/) for command d
 
 - To monitor kubernentes 
   ```
-  helm --kubeconfig k8s_config.yaml install prometheusstack  prometheus-community/kube-prometheus-stack  --set prometheus.ingress.enabled=true --set prometheus.ingress.hosts[0]=kubeashraf1.tfgw-testnet-01.gateway.tf --set prometheus.service.port=80  --set prometheusSpec.replicas=3 --set grafana.ingress.enabled=true --set grafana.ingress.hosts[0]=grafana.tfgw-testnet-01.gateway.tf --set grafana.ingress.path=/ --set resources.limits.cpu=200m  --set resources.limits.memory=200Mi --set resources.requests.cpu=100m --set resources.requests.memory=100Mi
+  helm repo add marketplace https://threefoldtech.github.io/vdc-solutions-charts/
+
+  helm install <release_name> marketplace/monitoringstack --set prometheus.ingress.hosts[0]=<prometheus_domain> --set grafana.ingress.hosts[0]=<grafana_domain>
   ```
 - To add additional scrap config
 First, you will need to create the additional configuration. Below we are making a simple "prometheus" config. Name this prometheus-additional.yaml or something similar.
@@ -71,7 +83,8 @@ First, you will need to create the additional configuration. Below we are making
   or instead of the previous step you can pull the chart and add the secret file to it under `kube-prometheus/templates/prometheus`
 - then install your chart with the new config like the following
 ```
-helm --kubeconfig k8s_config.yaml install prometheusstack  prometheus-community/kube-prometheus-stack  --set prometheus.ingress.enabled=true --set prometheus.ingress.hosts[0]=kubeashraf1.tfgw-testnet-01.gateway.tf --set prometheus.service.port=80 --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.enabled=true --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.name=additional-scrape-configs --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.key=prometheus-additional.yaml --set prometheusSpec.replicas=3 --set grafana.ingress.enabled=true --set grafana.ingress.hosts[0]=grafana.tfgw-testnet-01.gateway.tf --set grafana.ingress.path=/ --set resources.limits.cpu=200m  --set resources.limits.memory=200Mi --set resources.requests.cpu=100m --set resources.requests.memory=100Mi
+helm install <release_name> marketplace/monitoringstack --set prometheus.ingress.hosts[0]=<prometheus_domain> --set grafana.ingress.hosts[0]=<grafana_domain>
+--set prometheus.prometheusSpec.additionalScrapeConfigsSecret.enabled=true --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.name=additional-scrape-configs --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.key=prometheus-additional.yaml
 ```
   
 ## Uninstall Chart
