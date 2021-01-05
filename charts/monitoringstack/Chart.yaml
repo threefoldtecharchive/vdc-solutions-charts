@@ -18,8 +18,8 @@ dependencies:
   version: 1.12.*
 - condition: grafana.enabled
   name: grafana
-  repository: https://grafana.github.io/helm-charts
   version: 5.8.*
+  repository: "file://charts/grafana"
 description: kube-prometheus-stack collects Kubernetes manifests, Grafana dashboards,
   and Prometheus rules combined with documentation and scripts to provide easy to
   operate end-to-end Kubernetes cluster monitoring with Prometheus using the Prometheus
