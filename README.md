@@ -18,14 +18,16 @@
 1.  Consider adding your chart under `charts` directory
 2.  Make sure to add ingress.certresolver field in your values.yaml
     ```
-    ingress:
-      certresolver: default
+    global:
+      ingress:
+        certresolver: default
     ```
-    and include it in your ingress annotations in your ingress.yaml
+    and include it in your ingress annotations in your ingress.yaml in the parent and subcharts if needed
     ```
     annotations:
+
       {{- if .Values.ingress.certresolver }}
-      traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+      traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
       {{- end }}
     ```
 3.  Make sure the deployment file or statefulset file in your chart has **some labels**, that will help in listing the solution instances:
