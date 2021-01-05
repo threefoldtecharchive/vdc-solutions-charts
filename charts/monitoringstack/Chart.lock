@@ -6,7 +6,7 @@ dependencies:
   repository: https://prometheus-community.github.io/helm-charts
   version: 1.12.0
 - name: grafana
-  repository: https://grafana.github.io/helm-charts
+  repository: https://threefoldtech.github.io/vdc-solutions-charts
   version: 5.8.16
-digest: sha256:75b1d23f315cc1b1d9b1f1d5e139559d680297c731b59641d72c5c38ac4a3a88
-generated: "2020-11-18T12:00:22.644775623Z"
+digest: sha256:a6fa700a537e3c297ed2fd4eeac0e1cac50f9e436cafb2b83cf8dd84538c242b
+generated: "2021-01-05T12:49:36.306883439+02:00"
