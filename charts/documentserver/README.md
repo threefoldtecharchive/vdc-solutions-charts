@@ -1,10 +1,10 @@
-## Documentserver - Helm chart for Kubernetes Deployment
+# Documentserver - Helm chart for Kubernetes Deployment
 
 This is a basic helm chart that allows to run Documentserver full node on a Kubernetes cluster.
 
+## Kubernetes installation
 Documentserver can be deployed using the following steps:  
 helm install documentserver ./  
-We are using the community edition.
 
 [![License](https://img.shields.io/badge/License-GNU%20AGPL%20V3-green.svg?style=flat)](https://www.gnu.org/licenses/agpl-3.0.en.html) ![Release](https://img.shields.io/badge/Release-v6.0-blue.svg?style=flat)
 
@@ -43,79 +43,6 @@ The editors allow you to create, edit, save and export text, spreadsheet and pre
 * Hieroglyph support
 * Reviewing
 * Spell-checking
-
-## ONLYOFFICE Document Server editions
-
-ONLYOFFICE offers different versions of its online document editors that can be deployed on your own servers.
-
-ONLYOFFICE Docs (packaged as Document Server):
-
-* Community Edition (`onlyoffice-documentserver` package)
-* Enterprise Edition (`onlyoffice-documentserver-ee` package)
-* Developer Edition (`onlyoffice-documentserver-de` package)
-
-The table below will help you to make the right choice.
-
-| Pricing and licensing | Community Edition | Enterprise Edition | Developer Edition |
-| ------------- | ------------- | ------------- | ------------- |
-| | [Get it now](https://www.onlyoffice.com/download.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS)  | [Start Free Trial](https://www.onlyoffice.com/enterprise-edition-free.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS)  | [Start Free Trial](https://www.onlyoffice.com/developer-edition-request.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS)  |
-| Cost  | FREE  | [Go to the pricing page](https://www.onlyoffice.com/enterprise-edition.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS)  | [Go to the pricing page](https://www.onlyoffice.com/developer-edition-prices.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS)  |
-| Simultaneous connections | up to 20 maximum  | As in chosen pricing plan | As in chosen pricing plan |
-| Number of users | up to 20 recommended | As in chosen pricing plan | As in chosen pricing plan |
-| Clusterization | - | + | + |
-| License | GNU AGPL v.3 | Proprietary | Proprietary |
-| **Support** | **Community Edition** | **Enterprise Edition** | **Developer Edition** |
-| Documentation | [Help Center](https://helpcenter.onlyoffice.com/server/docker/opensource/index.aspx) | [Help Center](https://helpcenter.onlyoffice.com/server/enterprise.aspx) | [Help Center](https://helpcenter.onlyoffice.com/server/integration-edition/index.aspx) |
-| Standard support | [GitHub](https://github.com/ONLYOFFICE/DocumentServer/issues) or paid | One year support included | One year support included |
-| Premium support | [Buy Now](https://www.onlyoffice.com/support.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS) | [Buy Now](https://www.onlyoffice.com/support.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS) | [Buy Now](https://www.onlyoffice.com/support.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS) |
-| **Services** | **Community Edition** | **Enterprise Edition** | **Developer Edition** |
-| Conversion Service                | + | + | + |
-| Document Builder Service          | + | + | + |
-| **Interface** | **Community Edition** | **Enterprise Edition** | **Developer Edition** |
-| Tabbed interface                       | + | + | + |
-| White Label                            | - | - | + |
-| Integrated test example (node.js)     | + | + | + |
-| Mobile web editors                     | - | + | + |
-| Access to pro features via desktop     | - | + | - |
-| **Plugins & Macros** | **Community Edition** | **Enterprise Edition** | **Developer Edition** |
-| Plugins                           | + | + | + |
-| Macros                            | + | + | + |
-| **Collaborative capabilities** | **Community Edition** | **Enterprise Edition** | **Developer Edition** |
-| Two co-editing modes              | + | + | + |
-| Comments                          | + | + | + |
-| Built-in chat                     | + | + | + |
-| Review and tracking changes       | + | + | + |
-| Display modes of tracking changes | + | + | + |
-| Version history                   | + | + | + |
-| **Document Editor features** | **Community Edition** | **Enterprise Edition** | **Developer Edition** |
-| Font and paragraph formatting   | + | + | + |
-| Object insertion                | + | + | + |
-| Adding Content control          | - | + | + |
-| Editing Content control         | + | + | + |
-| Layout tools                    | + | + | + |
-| Table of contents               | + | + | + |
-| Navigation panel                | + | + | + |
-| Mail Merge                      | + | + | + |
-| Comparing Documents             | - | + | + |
-| **Spreadsheet Editor features** | **Community Edition** | **Enterprise Edition** | **Developer Edition** |
-| Font and paragraph formatting   | + | + | + |
-| Object insertion                | + | + | + |
-| Functions, formulas, equations  | + | + | + |
-| Table templates                 | + | + | + |
-| Pivot tables                    | + | + | + |
-| Conditional formatting  for viewing | +* | +* | +* |
-| Sheet Views                     | - | + | + |
-| **Presentation Editor features** | **Community Edition** | **Enterprise Edition** | **Developer Edition** |
-| Font and paragraph formatting   | + | + | + |
-| Object insertion                | + | + | + |
-| Animations                      | + | + | + |
-| Presenter mode                  | + | + | + |
-| Notes                           | + | + | + |
-| **Security features** | **Community Edition** | **Enterprise Edition** | **Developer Edition** |
-| End-to-end encryption via Private Rooms  | + | + | - |
-| | [Get it now](https://www.onlyoffice.com/download.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS)  | [Start Free Trial](https://www.onlyoffice.com/enterprise-edition-free.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS)  | [Start Free Trial](https://www.onlyoffice.com/developer-edition-request.aspx?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDS)  |
-
-\* Support for all conditions and gradient. Adding/Editing capabilities are coming soon
 
 ## Documentation
 
