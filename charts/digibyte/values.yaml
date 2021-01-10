@@ -24,7 +24,7 @@ securityContext: {}
 ingress:
   enabled: true
   
-  host: "fullnode.dash"
+  host: "fullnode.digibyte"
   paths: 
     - "/"
   tls: []
