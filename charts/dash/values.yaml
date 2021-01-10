@@ -27,13 +27,13 @@ ingress:
     - "/"
   tls: []
 
-resources: {}
-    limits:
-      cpu: 1000m
-      memory: 1024Mi
-    requests:
-      cpu: 900m
-      memory: 1000Mi
+resources: 
+  limits:
+     cpu: 1000m
+     memory: 1024Mi
+  requests:
+     cpu: 900m
+     memory: 1000Mi
 
 autoscaling:
   enabled: false
