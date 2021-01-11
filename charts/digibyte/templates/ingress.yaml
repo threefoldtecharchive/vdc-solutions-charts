@@ -12,9 +12,6 @@ spec:
       services:
         - name: p2p-digibyte-node
           port: 12024
-
-    - match: HostSNI(`{{ $ingressHost }}`)
-      services:
         - name: rpc-digibyte-node
           port: 14022
 {{- end }}

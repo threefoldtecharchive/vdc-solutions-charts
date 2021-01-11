@@ -12,9 +12,6 @@ spec:
       services:
         - name: p2p-dash-node
           port: 9998
-
-    - match: HostSNI(`{{ $ingressHost }}`)
-      services:
         - name: rpc-dash-node
           port: 9998
 {{- end }}
