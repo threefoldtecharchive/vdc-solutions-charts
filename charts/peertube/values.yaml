@@ -4,7 +4,7 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 8084 # PeerTube => P T => 80 84
 
 pvc:
