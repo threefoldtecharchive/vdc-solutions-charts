@@ -11,13 +11,14 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "documentserver.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
+
+    annotations:
     {{- if .Values.ingress.certresolver }}
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
     {{- end }}
-  {{- end }}
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   {{- if .Values.ingress.tls }}
   tls:
