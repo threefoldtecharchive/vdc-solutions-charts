@@ -1,22 +1,23 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "filebrowser.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" }}
 apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
+{{ else }}
 apiVersion: extensions/v1beta1
-{{- end }}
+{{ end -}}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
     {{- include "filebrowser.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+
   annotations:
-    {{- toYaml . | nindent 4 }}
-    {{- if .Values.ingress.certresolver }}
+  {{- if .Values.global.ingress.certresolver }}
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
-    {{- end }}
+  {{- end }}
+  {{- with .Values.ingress.annotations }}
+  {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
   {{- if .Values.ingress.tls }}
@@ -31,14 +32,12 @@ spec:
   {{- end }}
   rules:
     {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ . }}
+    {{- end }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ . }}
+          - path: {{ .Values.ingress.path }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
-          {{- end }}
-    {{- end }}
   {{- end }}

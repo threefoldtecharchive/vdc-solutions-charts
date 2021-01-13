@@ -10,8 +10,10 @@ https://github.com/crystaluniverse/crystal_filebrowser/tree/development_grid
 # Deployment
 Filebrowser can be deployed using the following steps:
 helm install filebrowser ./ \
---set DOCUMENTSERVER_URL="URL to the documentserver filebrowser can use"
---set THREEBOT_APP_ID="Hostname where the application will be exposed" 
+--set extraEnvVars[0].name="DOCUMENTSERVER_URL"
+--set extraEnvVars[0].value="URL to the documentserver filebrowser can use" 
+--set extraEnvVars[1].name="THREEBOT_APP_ID" 
+--set extraEnvVars[1].value="Hostname where the application will be exposed" 
 
 Important note:
 The application does a redirect for authorization. When the app is exposed to another port the redirect won't work as the javascript isn't taking into account the port number.
