@@ -78,9 +78,8 @@ autoscaling:
 
 extraEnvVars:
   - name: DOCUMENTSERVER_URL
-    value: documentserver_url
-  - name: THREEBOT_APP_ID
-    value:  threebot_app_id
+    value: documentserver
+
 nodeSelector: {}
 
 tolerations: []

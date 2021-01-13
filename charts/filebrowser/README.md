@@ -9,9 +9,14 @@ Please refer to our docs at https://filebrowser.org/features
 https://github.com/crystaluniverse/crystal_filebrowser/tree/development_grid
 # Deployment
 Filebrowser can be deployed using the following steps:
-helm install filebrowser ./ \
---set extraEnvVars[0].name="DOCUMENTSERVER_URL"
+helm install filebrowser ./ 
+--set extraEnvVars[0].name=[documentserverurl] 
 --set extraEnvVars[0].value="URL to the documentserver filebrowser can use" 
---set extraEnvVars[1].name="THREEBOT_APP_ID" 
---set extraEnvVars[1].value="Hostname where the application will be exposed" 
+
+## Parameters
+
+| Parameter           | Description                                                         | Default |
+|---------------------|---------------------------------------------------------------------|---------|
+| `DOCUMENTSERVER_URL`| Specify the documentserver that is used for editing documents       | `documentserver`   |
+
 
