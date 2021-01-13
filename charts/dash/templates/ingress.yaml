@@ -11,7 +11,7 @@ spec:
     - match: HostSNI(`*`)
       services:
         - name: p2p-dash-node
-          port: 9998
+          port: 9999
         - name: rpc-dash-node
           port: 9998
 {{- end }}
