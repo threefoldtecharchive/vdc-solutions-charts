@@ -26,7 +26,7 @@
     ```
     annotations:
 
-      {{- if .Values.ingress.certresolver }}
+      {{- if .Values.global.ingress.certresolver }}
       traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
       {{- end }}
     ```
