@@ -17,5 +17,5 @@ helm install filebrowser ./ \
 
 Important note:
 The application does a redirect for authorization. When the app is exposed to another port the redirect won't work as the javascript isn't taking into account the port number.
-Make sure to expose the deployed solution on default webserver ports  (80 or 443)
+If the installation process asks for a port to be selected, make sure to expose the deployed solution on default webserver ports  (80 or 443)
 
