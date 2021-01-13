@@ -8,7 +8,6 @@ spec:
   entryPoints:
     - p2p-rpc
   routes:
-    - match: HostSNI(`{{ $ingressHost }}`)
       services:
         - name: p2p-dash-node
           port: 9998
