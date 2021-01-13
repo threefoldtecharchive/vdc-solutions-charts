@@ -15,7 +15,3 @@ helm install filebrowser ./ \
 --set extraEnvVars[1].name="THREEBOT_APP_ID" 
 --set extraEnvVars[1].value="Hostname where the application will be exposed" 
 
-Important note:
-The application does a redirect for authorization. When the app is exposed to another port the redirect won't work as the javascript isn't taking into account the port number.
-If the installation process asks for a port to be selected, make sure to expose the deployed solution on default webserver ports  (80 or 443)
-
