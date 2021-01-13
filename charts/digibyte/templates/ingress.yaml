@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - p2p-rpc
   routes:
-    - match: HostSNI(`{{ $ingressHost }}`)
+    - match: HostSNI(`*`)
       services:
         - name: p2p-digibyte-node
           port: 12024
