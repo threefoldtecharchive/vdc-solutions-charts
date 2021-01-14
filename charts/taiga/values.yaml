@@ -3,10 +3,10 @@ postgresql:
   postgresqlDatabase: taiga
   postgresqlPassword: changeme
   postgresqlUsername: taiga
-
+  persistence:
+    enabled: false
 
 domain: omartaiga.tfgw-testnet-01.gateway.tf
-domainWithoutPort: omartaiga.tfgw-testnet-01.gateway.tf
 protocol: https
 
 resources:
@@ -17,3 +17,5 @@ resources:
     cpu: 900m
     memory: 1024Mi
 
+ingress:
+  certresolver: default

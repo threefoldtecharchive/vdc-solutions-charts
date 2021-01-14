@@ -1,18 +1,21 @@
 {{ $ingress := .Values.ingress }}
 {{- $ingressHost := .Values.ingress.host -}}
 {{ if $ingress.enabled }}
-{{ $serviceName := include "mattermost.name" . }}
+{{ $serviceName := include "mattermost.fullname" . }}
 {{ $servicePort := .Values.service.externalPort }}
 apiVersion: {{ include "mattermost.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
-  name: {{ include "mattermost.name" . }}
+  name: {{ include "mattermost.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "mattermost.name" . }}
+    app.kubernetes.io/name: {{ include "mattermost.fullname" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     helm.sh/chart: {{ include "mattermost.chart" . }}
   annotations:
+    {{- if .Values.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+    {{- end }}
     {{- if .Values.ingress.tls }}
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/tls-acme: "true"

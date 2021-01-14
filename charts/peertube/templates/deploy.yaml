@@ -3,35 +3,25 @@ kind: Deployment
 metadata:
   name: {{ template "peertube.fullName" . }}
   labels:
-    app: {{ template "peertube.fullName" . }}
-    chart: {{ template "peertube.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "peertube.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "peertube.fullName" . }}
-      release: {{ .Release.Name }}
+      {{- include "peertube.selectorLabels" . | nindent 6 }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: {{ template "peertube.fullName" . }}
-        release: {{ .Release.Name }}
+        {{- include "peertube.selectorLabels" . | nindent 8 }}
     spec:
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
-          requests:
-            memory: "1024Mi"
-            cpu: "1000m"
-          limits:
-            memory: "1024Mi"
-            cpu: "1000m"
+          {{- toYaml .Values.resources | nindent 10 }}
         env:
         - name: PEERTUBE_SIGNUP_ENABLED
           value: "true"
@@ -63,7 +53,7 @@ spec:
           value: {{ required "deps.redis.hostname required unless deps.redis.managed is true" .Values.deps.redis.hostname }}
 {{- end }}
         - name: PEERTUBE_SMTP_HOSTNAME
-          value: {{ required "deps.smtp.hostname required" .Values.deps.smtp.hostname }}
+          value: {{ .Values.deps.smtp.hostname }}
         - name: PEERTUBE_SMTP_USERNAME
           valueFrom:
             secretKeyRef:
@@ -83,9 +73,9 @@ spec:
 {{- end }}
               key: pw
         - name: PEERTUBE_SMTP_PORT
-          value: {{ required "deps.smtp.port required" .Values.deps.smtp.port | quote }}
+          value: {{ .Values.deps.smtp.port | quote }}
         - name: PEERTUBE_SMTP_FROM
-          value: {{ required "deps.smtp.from required" .Values.deps.smtp.from }}
+          value: {{ .Values.deps.smtp.from }}
         - name: PEERTUBE_SMTP_TLS
           value: {{ .Values.deps.smtp.tls.enabled | quote }}
         - name: PEERTUBE_ADMIN_EMAIL

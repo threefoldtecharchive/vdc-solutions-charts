@@ -3,12 +3,8 @@ image:
   tag: production-stretch
   pullPolicy: IfNotPresent
 
-ingress:
-  tls:
-    enabled: true
-
 service:
-  type: NodePort
+  type: ClusterIP
   port: 8084 # PeerTube => P T => 80 84
 
 pvc:
@@ -33,7 +29,8 @@ deps:
 postgresql:
   fullnameOverride: peertube-postgresql-1531009616
   postgresqlDatabase: peertube
-
+  persistence:
+          enabled: false
 redis:
   fullnameOverride: peertube-redis-1531009616
   usePassword: false
@@ -44,11 +41,20 @@ redis:
       enabled: false
 
 ingress:
-        tls:
-                enabled: false
+  certresolver: default
+  tls:
+    enabled: true
+    existingSecret: True
 
 adminEmail: omar.elawady.alternative@gmail.com
 
 webserver:
         hostname: peertubek8s.tfgw-testnet-01.gateway.tf
 
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+  requests:
+    cpu: 900m
+    memory: 1024Mi

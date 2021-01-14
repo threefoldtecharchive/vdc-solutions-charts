@@ -15,9 +15,9 @@ ports:
   redis: 6379
 
 volumes:
-  bin: /zeroci/bin
-  redis: /zeroci/redis
-  persistent: /zeroci/data
+  bin: /zeroci/{{ .Release.Name }}/bin
+  redis: /zeroci/{{ .Release.Name }}/redis
+  persistent: /zeroci/{{ .Release.Name }}/data
 
 volumeMounts:
   bin: /zeroci/bin
@@ -58,6 +58,7 @@ service:
 
 ingress:
   enabled: true
+  certresolver: default
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"

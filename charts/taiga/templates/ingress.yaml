@@ -2,6 +2,12 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: taiga-ingress
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+  annotations:
+  {{- if .Values.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+  {{- end }}
 spec:
   rules:
     - host: {{ .Values.domain }}
