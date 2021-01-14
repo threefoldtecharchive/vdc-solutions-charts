@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: taiga-service
 spec:
-  type: NodePort
   selector:
     {{- include "taiga.selectorLabels" . | nindent 4 }}
   ports:
