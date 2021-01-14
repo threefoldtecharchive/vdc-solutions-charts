@@ -10,7 +10,7 @@ https://github.com/crystaluniverse/crystal_filebrowser/tree/development_grid
 # Deployment
 Filebrowser can be deployed using the following steps:
 helm install filebrowser ./ 
---set extraEnvVars[0].name=[documentserverurl] 
+--set extraEnvVars[0].name="DOCUMENTSERVER_URL"
 --set extraEnvVars[0].value="URL to the documentserver filebrowser can use" 
 
 ## Parameters
