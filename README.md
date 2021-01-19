@@ -2,7 +2,7 @@
 - [Installing Charts](#Installing-Charts)
 - [Development Guide](#Development-Guide)
   - [Important Notes](#Important-Notes)
-  - [Exposing Services](#Exposing-Services)
+  - [Ingress Configuration](#Ingress-Configuration)
   - [Resources Limits](#Resources-Limits)
   - [Adding Labels](#Adding-Labels)
   - [Enable Https](#Adding-Labels)
@@ -31,17 +31,29 @@ This repo is used to maintain helm charts used as solution in `VDC marketplace` 
 ## Important Notes
 Charts in this repo will be used `VDC marketplace` and it will be used behind `Traefik` as a load balancer, so make sure if you are adding a chart to follow the exact steps in this development guide. And also make sure no manual interaction is required to deploy your chart
 
-## Exposing Services
-We are using `Traefik/Ingress` in exposing services on the `VDC`
-### Make sure
-- `Ingress` is enabled on your chart
-- All services that needs to be exposed are of type `ClusterIp`
+## Ingress Configuration
+Traefik is used as the ingress controller. To expose a service outside the cluster, an ingress resource with the appropriate kind should be added. By default, the `ingress` kind is attached to web and websecure entrypoints, which means that it receives the http and https traffic when the request host matches the host in the ingress definition.
 
-If you want to expose a service on ports other than 443 and 80. The steps to follow varies depending on the protocol of the service you want to expose.
-In all cases you have to create a new entrypoint in traefik in the corresponging chatflow with the command `self.vdc.kubernetes.get_deployer().add_traefik_entrypoint("chartname-newname", "8080")`.
-To avoid conflicts, please qualify the entrypoint with the chart name. So use `peertube-newentrypoint` instead of `newentrypoint`.
+_Example_:
+```yaml
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: chartname-new-ingress
+spec:
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: whoami
+              servicePort: 80
+```
 
-### HTTP service
+If you want to expose a service on ports other than 443 and 80. The steps to follow varies depending on the protocol of the service you want to expose. In all cases you have to create a new entrypoint in traefik in the corresponding chatflow with the command `self.vdc.kubernetes.get_deployer().add_traefik_entrypoint("chartname-newname", "8080")`. To avoid conflicts, please qualify the entrypoint with the chart name. So use `peertube-newentrypoint` instead of `newentrypoint`.
+
+### HTTP service (on a port other than 80)
 Create an ingress resource with the annotation `traefik.ingress.kubernetes.io/router.entrypoints: chartname-newname`. Using the ingress resource gives the flexibilty to receive only the requests for a specific host compared to tcp ingress.
 _Example_:
 ```yaml
@@ -62,7 +74,7 @@ spec:
               serviceName: whoami
               servicePort: 80
 ```
-### HTTPS service
+### HTTPS service (on a port other than 443)
 To expose an https service, please use the `IngressRouteTCP` traefik resource with the new entrypoint specified in the resource definition. You can also specify the hosts you want to receive the traffic for. If you want to receive for all requests, use HostSNI(`*`) as the match rule instead.
 _Example_:
 ```yaml
@@ -96,6 +108,11 @@ spec:
         - name: chart-service
           port: 10000
 ```
+
+
+### Make sure
+- `ingress` is enabled on your chart in `values.yaml`
+- All services that needs to be exposed are of type `ClusterIP`
 ## Resources Limits
 
 Make sure that your chart already configures resources limits for `memory` and `cpu` in `values.yaml` in resources section, just in case your chart go beyond deployed cluster resources.
