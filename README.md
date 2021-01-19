@@ -37,11 +37,12 @@ We are using `Traefik/Ingress` in exposing services on the `VDC`
 - `Ingress` is enabled on your chart
 - All services that needs to be exposed are of type `ClusterIp`
 
-If you want to expose a service on ports other than 443vqne 80. The steps to follow varies depending on the protocol of the service you want to expose.
+If you want to expose a service on ports other than 443 and 80. The steps to follow varies depending on the protocol of the service you want to expose.
 In all cases you have to create a new entrypoint in traefik in the corresponging chatflow with the command `self.vdc.kubernetes.get_deployer().add_traefik_entrypoint("chartname-newname", "8080")`.
+To avoid conflicts, please qualify the entrypoint with the chart name. So use `peertube-newentrypoint` instead of `newentrypoint`.
 
 ### HTTP service
-Create an ingress resource with the annotation `traefik.ingress.kubernetes.io/router.entrypoints: chartname-newname`. To avoid conflicts, please qualify the entrypoint with the chart name. So use `peertube-newentrypoint` instead of `newentrypoint`. Using the ingress resource gives the flexibilty to receive only the requests for a specific host compared to tcp ingress.
+Create an ingress resource with the annotation `traefik.ingress.kubernetes.io/router.entrypoints: chartname-newname`. Using the ingress resource gives the flexibilty to receive only the requests for a specific host compared to tcp ingress.
 _Example_:
 ```yaml
 kind: Ingress
