@@ -2,6 +2,7 @@
 - [Installing Charts](#Installing-Charts)
 - [Development Guide](#Development-Guide)
   - [Important Notes](#Important-Notes)
+  - [Configuring chart pods](#Configuring-Charts-Pods)
   - [Ingress Configuration](#Ingress-Configuration)
   - [Resources Limits](#Resources-Limits)
   - [Adding Labels](#Adding-Labels)
@@ -11,9 +12,6 @@
 
 # Introduction
 This repo is used to maintain helm charts used as solution in `VDC marketplace` product.
-
-
-
 ## Installing Charts
 
 -   Adding the repo to your helm 
@@ -30,6 +28,16 @@ This repo is used to maintain helm charts used as solution in `VDC marketplace` 
 # Development Guide
 ## Important Notes
 Charts in this repo will be used `VDC marketplace` and it will be used behind `Traefik` as a load balancer, so make sure if you are adding a chart to follow the exact steps in this development guide. And also make sure no manual interaction is required to deploy your chart
+
+## Configuring Chart Pods
+
+When initializing the chart, values can be set (using --set var=val or additional yaml file) to override `values.yaml` to configure different pods (this is handled by the chart chatflow).
+There're different approaches as to how to use these values for configuration. Here are a few suggestions:
+1. An init container can be used within the pod with shared volume to the to-be-configured container. 
+The configuration can be done using a shared volume between the containers in the places where the values are set.
+use these values.
+2. Extend the image to receive the configuration as environment variable and add an entrypoint to use these variables to configure and start the node.
+3. Secrets and ConfigMaps can be used as templates with values from `values.yaml` and its content can be used to override specific files or dirs in the container or be received as environment variables.
 
 ## Ingress Configuration
 Traefik is used as the ingress controller. To expose a service outside the cluster, an ingress resource with the appropriate kind should be added. By default, the `ingress` kind is attached to web and websecure entrypoints, which means that it receives the http and https traffic when the request host matches the host in the ingress definition.
@@ -55,6 +63,7 @@ If you want to expose a service on ports other than 443 and 80. The steps to fol
 
 ### HTTP service (on a port other than 80)
 Create an ingress resource with the annotation `traefik.ingress.kubernetes.io/router.entrypoints: chartname-newname`. Using the ingress resource gives the flexibilty to receive only the requests for a specific host compared to tcp ingress.
+
 _Example_:
 ```yaml
 kind: Ingress
@@ -76,6 +85,7 @@ spec:
 ```
 ### HTTPS service (on a port other than 443)
 To expose an https service, please use the `IngressRouteTCP` traefik resource with the new entrypoint specified in the resource definition. You can also specify the hosts you want to receive the traffic for. If you want to receive for all requests, use HostSNI(`*`) as the match rule instead.
+
 _Example_:
 ```yaml
 apiVersion: traefik.containo.us/v1alpha1
@@ -84,7 +94,7 @@ metadata:
   name: chats-newhttps-ingress
 spec:
   entryPoints:
-    - charname-newname
+    - chartname-newname
   routes:
     - match: HostSNI(`google.com`)
       services:
@@ -101,7 +111,7 @@ metadata:
   name: chats-tcp-ingress
 spec:
   entryPoints:
-    - charname-newname
+    - chartname-newname
   routes:
     - match: HostSNI(`*`)
       services:
