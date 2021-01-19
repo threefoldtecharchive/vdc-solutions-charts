@@ -2,11 +2,12 @@
 - [Installing Charts](#Installing-Charts)
 - [Development Guide](#Development-Guide)
   - [Important Notes](#Important-Notes)
-  - [Configuring chart pods](#Configuring-Charts-Pods)
+  - [Configuring Chart Pods](#Configuring-Chart-Pods)
   - [Ingress Configuration](#Ingress-Configuration)
   - [Resources Limits](#Resources-Limits)
   - [Adding Labels](#Adding-Labels)
   - [Enable Https](#Adding-Labels)
+  - [Chart README](#Chart-README)
   - [Adding Chart](#Adding-Chart)
   - [Packaging](#Packaging)
 
@@ -37,6 +38,8 @@ The configuration can be done using a shared volume between the containers in th
 use these values.
 2. Extend the image to receive the configuration as environment variable and add an entrypoint to use these variables to configure and start the node.
 3. Secrets and ConfigMaps can be used as templates with values from `values.yaml` and its content can be used to override specific files or dirs in the container or be received as environment variables.
+- for more information refer to this [link](https://helm.sh/docs/chart_template_guide/accessing_files/#configmap-and-secrets-utility-functions)
+
 
 ## Ingress Configuration
 Traefik is used as the ingress controller. To expose a service outside the cluster, an ingress resource with the appropriate kind should be added. By default, the `ingress` kind is attached to web and websecure entrypoints, which means that it receives the http and https traffic when the request host matches the host in the ingress definition.
@@ -165,6 +168,14 @@ Make sure to add `global.ingress.certresolver` field in your values.
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
     {{- end }}
   ```
+## Chart README
+please make sure all your chart has a well written `README.md` file that describes:
+ - Aim
+ - Usage/Installation
+ - Parameters needed.
+
+##### Example
+![Parameters_photos](./photos/parameters.jpg "Parameters_Photos")
 
 ## Adding Chart
 Consider adding your chart under `charts` directory
@@ -180,3 +191,7 @@ Consider adding your chart under `charts` directory
     `helm repo index --url https://threefoldtech.github.io/vdc-solutions-charts/ --merge index.yaml .`
 
 - Push your changes
+
+
+
+For more information please follow this [link](https://helm.sh/docs/)
