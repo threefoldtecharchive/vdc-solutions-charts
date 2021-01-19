@@ -37,8 +37,64 @@ We are using `Traefik/Ingress` in exposing services on the `VDC`
 - `Ingress` is enabled on your chart
 - All services that needs to be exposed are of type `ClusterIp`
 
-If you want to expose a service on port other than 443(https), 80(http), make sure 
+If you want to expose a service on ports other than 443vqne 80. The steps to follow varies depending on the protocol of the service you want to expose.
+In all cases you have to create a new entrypoint in traefik in the corresponging chatflow with the command `self.vdc.kubernetes.get_deployer().add_traefik_entrypoint("chartname-newname", "8080")`.
 
+### HTTP service
+Create an ingress resource with the annotation `traefik.ingress.kubernetes.io/router.entrypoints: chartname-newname`. To avoid conflicts, please qualify the entrypoint with the chart name. So use `peertube-newentrypoint` instead of `newentrypoint`. Using the ingress resource gives the flexibilty to receive only the requests for a specific host compared to tcp ingress.
+_Example_:
+```yaml
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: chartname-new-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: chartname-newname
+
+spec:
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: whoami
+              servicePort: 80
+```
+### HTTPS service
+To expose an https service, please use the `IngressRouteTCP` traefik resource with the new entrypoint specified in the resource definition. You can also specify the hosts you want to receive the traffic for. If you want to receive for all requests, use HostSNI(`*`) as the match rule instead.
+_Example_:
+```yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: chats-newhttps-ingress
+spec:
+  entryPoints:
+    - charname-newname
+  routes:
+    - match: HostSNI(`google.com`)
+      services:
+        - name: chart-service
+          port: 10000
+```
+### TCP service
+Anything other than http and https can be configured to listen on the new entrypoint but it has to receive all the traffic on the entrypoint port (no hostname filtering like the http and https case). The configuration is the same as for https but with the match rule changed.
+_Example_:
+```yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: chats-tcp-ingress
+spec:
+  entryPoints:
+    - charname-newname
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: chart-service
+          port: 10000
+```
 ## Resources Limits
 
 Make sure that your chart already configures resources limits for `memory` and `cpu` in `values.yaml` in resources section, just in case your chart go beyond deployed cluster resources.
