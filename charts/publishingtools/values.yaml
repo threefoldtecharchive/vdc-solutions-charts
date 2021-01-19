@@ -2,6 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+
+global:
+  ingress:
+    certresolver: default
+
+
 replicaCount: 1
 
 image:
@@ -42,7 +48,6 @@ service:
 
 ingress:
   enabled: true
-  certresolver: default
   annotations:
     kubernetes.io/ingress.class: traefik
   host: chart-example.local
