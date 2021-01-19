@@ -30,7 +30,6 @@ This repo is used to maintain helm charts used as solution in `VDC marketplace` 
 Charts in this repo will be used `VDC marketplace` and it will be used behind `Traefik` as a load balancer, so make sure if you are adding a chart to follow the exact steps in this development guide. And also make sure no manual interaction is required to deploy your chart
 
 ## Configuring Chart Pods
-
 When initializing the chart, values can be set (using --set var=val or additional yaml file) to override `values.yaml` to configure different pods (this is handled by the chart chatflow).
 There're different approaches as to how to use these values for configuration. Here are a few suggestions:
 1. An init container can be used within the pod with shared volume to the to-be-configured container. 
