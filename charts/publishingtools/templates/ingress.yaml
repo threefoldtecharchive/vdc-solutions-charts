@@ -1,24 +1,25 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "publishingtools.fullname" . -}}
+{{ if eq .Values.env.type "blog" }}
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: request-modifier
-  namespace: default
-spec:
-  addPrefix:
-    prefix: /site
----
-# Replace path with regex
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: app-root
+  name: {{ $fullName }}-app-root
   namespace: default
 spec:
   redirectRegex:
     regex: ^https://{{ .Values.ingress.host }}/$
     replacement: https://{{ .Values.ingress.host }}/blog/site
+{{ else }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ $fullName }}-request-modifier
+  namespace: default
+spec:
+  addPrefix:
+    prefix: /site
+{{ end }}
 ---
 {{- $svcPort := .Values.service.port -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -34,9 +35,9 @@ metadata:
   annotations:
     # change app-root or modify request according to type (blog or website/wiki)
     {{ if eq .Values.env.type "blog" }}
-    traefik.ingress.kubernetes.io/router.middlewares: default-app-root@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-{{ $fullName }}-app-root@kubernetescrd
     {{ else }}
-    traefik.ingress.kubernetes.io/router.middlewares: default-request-modifier@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-{{ $fullName }}-request-modifier@kubernetescrd
     {{ end }}
     {{- if .Values.global.ingress.certresolver }}
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
