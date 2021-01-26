@@ -31,18 +31,16 @@ ingress:
  
 # These values should be overrided from the chatflow (rpcuser & rpcuser)
 env:          
- - name: "rpcuser"
-   value: "tfnow"
- - name: "rpcpassword"
-   value: "tfdgb2021"
+  "rpcuser": "tfnow" 
+  "rpcpasswd": "tfdgb2020"
 
 resources: 
     limits:
-      cpu: 2000m
-      memory: 4096Mi
+      cpu: 1000m
+      memory: 1024Mi
     requests:
-      cpu: 1800m
-      memory: 4000Mi
+      cpu: 900m
+      memory: 1000Mi
 
 autoscaling:
   enabled: false
