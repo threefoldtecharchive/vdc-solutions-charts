@@ -37,13 +37,15 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:          
+            {{- range .Values.env }}
+            - name: {{ .name }}
+              value: {{ .value }}
+            {{- end }}
           volumeMounts:
             - name: dgb-storage
               mountPath: /dgb
           ports:
-            - name: ssh
-              containerPort: 22
-              protocol: TCP
             - name: p2p
               containerPort: 12024
               protocol: TCP
