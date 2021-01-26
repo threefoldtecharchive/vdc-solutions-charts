@@ -23,8 +23,12 @@ securityContext: {}
 
 ingress:
   enabled: true
-  
+# The host should be overrided with the domain name in the chatflow  
   host: "fullnode.digibyte"
+  certresolver: default
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/ssl-passthrough: "true"
   paths: 
     - "/"
   tls: []

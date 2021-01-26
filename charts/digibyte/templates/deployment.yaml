@@ -52,6 +52,9 @@ spec:
             - name: rpc
               containerPort: 14022
               protocol: TCP
+            - name: web
+              containerPort: 80
+              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
