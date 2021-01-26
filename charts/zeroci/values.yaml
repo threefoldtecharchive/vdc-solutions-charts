@@ -56,9 +56,12 @@ service:
   port: 6010
   redis: 6379
 
+global:
+  ingress:
+    certresolver: default
+
 ingress:
   enabled: true
-  certresolver: default
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"

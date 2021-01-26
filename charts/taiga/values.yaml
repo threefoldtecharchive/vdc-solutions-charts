@@ -17,5 +17,6 @@ resources:
     cpu: 900m
     memory: 1024Mi
 
-ingress:
-  certresolver: default
+global:
+  ingress:
+    certresolver: default

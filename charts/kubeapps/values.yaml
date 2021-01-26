@@ -38,16 +38,16 @@ enableIPv6: false
 clusters:
   - name: default
 
+global:
+  ingress:
+    certresolver: default
+
 ## The frontend service is the main reverse proxy used to access the Kubeapps UI
 ## To expose Kubeapps externally either configure the ingress object below or
 ## set frontend.service.type=LoadBalancer in the frontend configuration.
 ## ref: http://kubernetes.io/docs/user-guide/ingress/
 ##
 ingress:
-  ## Set to true to enable ingress record generation
-  ##
-  certresolver: default
-
   enabled: true
 
 

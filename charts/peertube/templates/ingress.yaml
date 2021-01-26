@@ -5,8 +5,8 @@ metadata:
   labels:
     {{- include "peertube.labels" . | nindent 4 }}
   annotations:
-  {{- if .Values.ingress.certresolver }}
-    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+  {{- if .Values.global.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
   {{- end }}
 spec:
   rules:
