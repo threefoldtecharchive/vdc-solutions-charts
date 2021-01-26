@@ -40,8 +40,11 @@ redis:
     persistence:
       enabled: false
 
+global:
+  ingress:
+    certresolver: default
+
 ingress:
-  certresolver: default
   tls:
     enabled: true
     existingSecret: True

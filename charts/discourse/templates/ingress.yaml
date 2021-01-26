@@ -14,8 +14,8 @@ metadata:
   {{- end }}
   {{- if or .Values.ingress.annotations .Values.ingress.certManager .Values.commonAnnotations }}
   annotations:
-  {{- if .Values.ingress.certresolver }}
-    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.ingress.certresolver }}
+  {{- if .Values.global.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
   {{- end }}
   {{- if .Values.commonAnnotations }}
   {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}

@@ -43,9 +43,12 @@ service:
   port: 8080
   targetPort: 3000
 
+global:
+  ingress:
+    certresolver: default
+
 ingress:
   enabled: true
-  certresolver: default
   annotations:
     kubernetes.io/ingress.class: traefik
     ingress.kubernetes.io/ssl-passthrough: "true"

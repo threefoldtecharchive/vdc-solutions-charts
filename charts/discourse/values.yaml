@@ -352,10 +352,13 @@ service:
   nodePorts:
     http: ''
 
+global:
+  ingress:
+    certresolver: default
+
 ## Ingress paramaters
 ##
 ingress:
-  certresolver: default
   ## Set to true to enable ingress record generation
   ##
   enabled: true
