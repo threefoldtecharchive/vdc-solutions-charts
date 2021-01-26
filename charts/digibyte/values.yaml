@@ -4,7 +4,7 @@ replicaCount: 1
 image:
   repository: arrajput/digibyte
   pullPolicy: Always
-  tag: "latest"
+  tag: "2.5"
 
 imagePullSecrets: []
 nameOverride: ""
