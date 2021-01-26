@@ -28,6 +28,13 @@ ingress:
   paths: 
     - "/"
   tls: []
+ 
+# These values should be overrided from the chatflow (rpcuser & rpcuser)
+env:          
+ - name: "rpcuser"
+   value: "tfnow"
+ - name: "rpcpassword"
+   value: "tfdgb2021"
 
 resources: 
     limits:
