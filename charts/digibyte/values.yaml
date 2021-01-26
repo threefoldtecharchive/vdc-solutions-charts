@@ -21,7 +21,8 @@ podSecurityContext: {}
 
 securityContext: {}
 
-ingress:
+global:
+ ingress:
   enabled: true
 # The host should be overrided with the domain name in the chatflow  
   host: "fullnode.digibyte"
