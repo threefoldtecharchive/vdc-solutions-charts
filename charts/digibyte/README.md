@@ -4,7 +4,7 @@ This helm chart(solution) is going to launch a Digibyte full node on Mainnet. Th
 
 #### Inputs
 
-* Node Name (which will serve as the subdomain or domain name)
+* Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
 * rpcuser (The node RPC credentials user/pass)
 * rpcpasswd
 
@@ -13,7 +13,7 @@ Here is an example,
 ```
 git clone https://github.com/threefoldtech/vdc-solutions-charts.git
 cd vdc-solutions-charts
-helm --install dgb-node charts/digibyte --set global.ingress.host="mynode" --set env.rpcuser="abdulgig" --set env.rpcpasswd="test7654" 
+helm --install dgb-node charts/digibyte --set global.ingress.host="mynodesomething.webgw1.grid.tf" --set env.rpcuser="abdulgig" --set env.rpcpasswd="test7654" 
 ```
 
 ### Services that need to be exposed
@@ -31,5 +31,4 @@ helm --install dgb-node charts/digibyte --set global.ingress.host="mynode" --set
 
 * Successful deployment should give the end user a link based upon the node name that will allow him to see the status page (Example http://mydgbnode.webg1test.grid.tf)
 * Failed deployment should request the end user to start over with the appropriate error message (if any)
-
 
