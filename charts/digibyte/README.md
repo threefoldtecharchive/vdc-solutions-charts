@@ -29,7 +29,7 @@ helm --install dgb-node charts/digibyte --set global.ingress.host="mynode" --set
 
 ### Expected Results
 
-* Successful deployment should give the end user a link based upon the node name that will allow him to see the status page
+* Successful deployment should give the end user a link based upon the node name that will allow him to see the status page (Example http://mydgbnode.webg1test.grid.tf)
 * Failed deployment should request the end user to start over with the appropriate error message (if any)
 
 
