@@ -5,7 +5,7 @@ metadata:
   name: digibyte-node-ingress-rpc-{{ .Release.Name }}
 spec:
   entryPoints:
-    - digibyte-rpc-{{ .Release.Name }}
+    - digibyte-rpc
   routes:
     - match: HostSNI(`*`)
       services:
