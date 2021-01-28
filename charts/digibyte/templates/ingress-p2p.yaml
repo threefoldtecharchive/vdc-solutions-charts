@@ -5,7 +5,7 @@ metadata:
   name: digibyte-node-ingress-p2p-{{ .Release.Name }}
 spec:
   entryPoints:
-    - digibyte-p2p-{{ .Release.Name }}
+    - digibyte-p2p
   routes:
     - match: HostSNI(`*`)
       services:
