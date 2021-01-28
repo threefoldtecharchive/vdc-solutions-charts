@@ -28,27 +28,32 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-        - name: dgb-storage
+        - name: dgb-storage-{{ .Release.Name }}
           persistentVolumeClaim:
-            claimName: dgb-volume-claim
+            claimName: dgb-volume-claim-{{ .Release.Name }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:          
+          {{ range $k, $v := .Values.env }}
+            - name: {{ $k | quote }}
+              value: {{ $v | quote }}
+          {{- end }}
           volumeMounts:
-            - name: dgb-storage
+            - name: dgb-storage-{{ .Release.Name }}
               mountPath: /dgb
           ports:
-            - name: ssh
-              containerPort: 22
-              protocol: TCP
-            - name: p2p
+            - name: p2p-{{ .Release.Name }}
               containerPort: 12024
               protocol: TCP
-            - name: rpc
+            - name: rpc-{{ .Release.Name }}
               containerPort: 14022
+              protocol: TCP
+            - name: web-{{ .Release.Name }}
+              containerPort: 80
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

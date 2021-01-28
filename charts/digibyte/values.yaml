@@ -4,7 +4,7 @@ replicaCount: 1
 image:
   repository: arrajput/digibyte
   pullPolicy: Always
-  tag: "latest"
+  tag: "2.5"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -21,21 +21,31 @@ podSecurityContext: {}
 
 securityContext: {}
 
-ingress:
+global:
+ ingress:
   enabled: true
-  
+# The host should be overrided with the domain name in the chatflow  
   host: "fullnode.digibyte"
+  certresolver: default
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/ssl-passthrough: "true"
   paths: 
     - "/"
   tls: []
+ 
+# These values should be overrided from the chatflow (rpcuser & rpcuser)
+env:          
+  "rpcuser": "tfnow" 
+  "rpcpasswd": "tfdgb2020"
 
 resources: 
     limits:
       cpu: 2000m
-      memory: 4096Mi
+      memory: 2048Mi
     requests:
       cpu: 1800m
-      memory: 4000Mi
+      memory: 2000Mi
 
 autoscaling:
   enabled: false

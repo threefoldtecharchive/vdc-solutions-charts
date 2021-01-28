@@ -1,14 +1,14 @@
-{{- if .Values.ingress.enabled -}}
+{{- if .Values.global.ingress.enabled -}}
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
-  name: digibyte-node-ingress-p2p
+  name: digibyte-node-ingress-p2p-{{ .Release.Name }}
 spec:
   entryPoints:
     - digibyte-p2p
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: p2p-digibyte-node
+        - name: p2p-digibyte-node-{{ .Release.Name }}
           port: 12024
 {{- end }}
