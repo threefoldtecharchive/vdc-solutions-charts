@@ -86,3 +86,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+volumeSize: 10Gi
