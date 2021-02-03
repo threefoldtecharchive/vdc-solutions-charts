@@ -86,3 +86,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+volume:
+  size: 10Gi
+  hostPath: /persistent-data/{{ .Release.Name }}

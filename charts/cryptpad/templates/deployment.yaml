@@ -44,8 +44,15 @@ spec:
           #   httpGet:
           #     path: /
           #     port: http
+          volumeMounts:
+            - name: data
+              mountPath: /persistent-data/
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: "{{ include "cryptpad.fullname" . }}-data-claim"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
