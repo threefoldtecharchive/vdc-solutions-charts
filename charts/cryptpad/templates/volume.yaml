@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: data
+  name: "{{ include "cryptpad.fullname" . }}-data"
 spec:
   capacity:
     storage: {{ .Values.volume.size }}
@@ -17,7 +17,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: data-claim
+  name: "{{ include "cryptpad.fullname" . }}-data-claim"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -26,4 +26,4 @@ spec:
     requests:
       storage: {{ .Values.volume.size }}
   storageClassName: ""
-  volumeName: data
+  volumeName: "{{ include "cryptpad.fullname" . }}-data"

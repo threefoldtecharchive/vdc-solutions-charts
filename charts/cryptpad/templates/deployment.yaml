@@ -52,7 +52,7 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: "data-claim"
+            claimName: "{{ include "cryptpad.fullname" . }}-data-claim"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
