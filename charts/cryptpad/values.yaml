@@ -87,4 +87,10 @@ tolerations: []
 
 affinity: {}
 
-volumeSize: 10Gi
+volume:
+  size: 10Gi
+  hostPath: /persistent-data/{{ .Release.Name }}
+
+volumeMounts:
+  persistent: /root/.config/jumpscale/whoosh_indexes/
+

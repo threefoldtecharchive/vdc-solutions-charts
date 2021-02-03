@@ -4,14 +4,14 @@ metadata:
   name: data
 spec:
   capacity:
-    storage: {{ .Values.volumeSize }}
+    storage: {{ .Values.volume.size }}
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: ""
   hostPath:
-    path: /persistent-data/
+    path: {{ .Values.volume.hostPath }}
 
 ---
 apiVersion: v1
@@ -24,6 +24,6 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      storage: {{ .Values.volumeSize }}
+      storage: {{ .Values.volume.size }}
   storageClassName: ""
   volumeName: data
