@@ -4,7 +4,7 @@ metadata:
   name: "{{ include "cryptpad.fullname" . }}-data"
 spec:
   capacity:
-    storage: {{ .Values.volume.size }}
+    storage: "{{ .Values.volume.size }}Gi"
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
@@ -24,6 +24,6 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      storage: {{ .Values.volume.size }}
+      storage: "{{ .Values.volume.size }}Gi"
   storageClassName: ""
   volumeName: "{{ include "cryptpad.fullname" . }}-data"

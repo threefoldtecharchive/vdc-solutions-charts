@@ -32,6 +32,9 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+          - name: size
+            value: "{{ mul .Values.volume.size 1024 }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - protocol: TCP
