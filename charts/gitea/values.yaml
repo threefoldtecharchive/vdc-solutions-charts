@@ -7,7 +7,7 @@ replicaCount: 1
 clusterDomain: cluster.local
 
 image:
-  repository: dmahmouali/gitea
+  repository: threefolddev/gitea_tfconnect
   version: latest
   pullPolicy: Always
 
