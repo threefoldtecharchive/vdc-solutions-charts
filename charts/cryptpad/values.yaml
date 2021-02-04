@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: 14443/cryptpad-vol
+  repository: 14443/cryptpad
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "test"
+  tag: "latest"
 
 imagePullSecrets:
   - name: "regcred"
