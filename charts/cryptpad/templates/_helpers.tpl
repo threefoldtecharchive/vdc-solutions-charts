@@ -46,6 +46,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "cryptpad.selectorLabels" -}}
+type: vdc
 app.kubernetes.io/name: {{ include "cryptpad.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
