@@ -11,13 +11,13 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "zeroci.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
   annotations:
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
     {{- if .Values.global.ingress.certresolver }}
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
     {{- end }}
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
 spec:
   {{- if .Values.ingress.tls }}
   tls:
