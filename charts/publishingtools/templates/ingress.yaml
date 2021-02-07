@@ -6,6 +6,8 @@ kind: Middleware
 metadata:
   name: {{ $fullName }}-app-root
   namespace: default
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   redirectRegex:
     regex: ^https://{{ .Values.ingress.host }}/$

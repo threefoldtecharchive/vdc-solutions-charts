@@ -5,6 +5,7 @@ metadata:
   name: {{ template "kube-prometheus-stack.fullname" . }}-prometheus
   labels:
     app: {{ template "kube-prometheus-stack.name" . }}-prometheus
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io

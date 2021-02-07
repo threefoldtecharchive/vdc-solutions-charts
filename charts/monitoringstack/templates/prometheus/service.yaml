@@ -5,6 +5,7 @@ metadata:
   name: {{ template "kube-prometheus-stack.fullname" . }}-prometheus
   namespace: {{ template "kube-prometheus-stack.namespace" . }}
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kube-prometheus-stack.name" . }}-prometheus
     self-monitor: {{ .Values.prometheus.serviceMonitor.selfMonitor | quote }}
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
