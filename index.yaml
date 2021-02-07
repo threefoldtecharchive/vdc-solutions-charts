@@ -3,53 +3,53 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.293677969+02:00"
+    created: "2021-02-07T15:13:23.839260668+02:00"
     description: A Helm chart for Kubernetes
     digest: d3255cd5058be8983e566234244d0d17c3dd549e9f82c0ce8ab98070c7a2e38d
     name: 3bot
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/3bot-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/3bot-0.1.0.tgz
     version: 0.1.0
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-02-07T12:00:23.294243936+02:00"
+    created: "2021-02-07T15:13:23.839879834+02:00"
     description: A Helm chart for Cryptpad
     digest: 3c466ef33cbe45479a8491cddfdc6d8a222a4e97de2152184da4014aeb6b5070
     name: cryptpad
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/cryptpad-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/cryptpad-0.1.0.tgz
     version: 0.1.0
   dash:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.294792116+02:00"
+    created: "2021-02-07T15:13:23.840393059+02:00"
     description: Dash Helm chart for Kubernetes
     digest: 99970857f690c2cd7a5fd824876e1f9a7d6a36321a027de4db46e68f00d66ab9
     name: dash
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/dash-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/dash-0.1.0.tgz
     version: 0.1.0
   digibyte:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.295377953+02:00"
+    created: "2021-02-07T15:13:23.840904317+02:00"
     description: Digibyte Helm chart for Kubernetes
     digest: 1a495e04fd562ad701f888456f307a69cadf8a033114b413d5eff63f764b272d
     name: digibyte
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/digibyte-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/digibyte-0.1.0.tgz
     version: 0.1.0
   discourse:
   - annotations:
       category: Forum
     apiVersion: v2
     appVersion: 2.6.0
-    created: "2021-02-07T12:00:23.30642302+02:00"
+    created: "2021-02-07T15:13:23.854575783+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -81,25 +81,25 @@ entries:
     - https://github.com/spinnaker
     - https://www.discourse.org/
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/discourse-2.0.3.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/discourse-2.0.3.tgz
     version: 2.0.3
   documentserver:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.306972742+02:00"
+    created: "2021-02-07T15:13:23.855434933+02:00"
     description: A helm chart for the onlyoffice documentserver solution
     digest: fdd98fd9dab998e7adadbb32aff7bb71453bb1b65d210a4abc4bac2d901283fb
     name: documentserver
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/documentserver-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/documentserver-0.1.0.tgz
     version: 0.1.0
   etcd:
   - annotations:
       category: Database
     apiVersion: v2
     appVersion: 3.4.14
-    created: "2021-02-07T12:00:23.309221588+02:00"
+    created: "2021-02-07T15:13:23.859099623+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -125,23 +125,23 @@ entries:
     - https://github.com/bitnami/bitnami-docker-etcd
     - https://coreos.com/etcd/
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/etcd-5.4.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/etcd-5.4.0.tgz
     version: 5.4.0
   filebrowser:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.30967862+02:00"
+    created: "2021-02-07T15:13:23.859817961+02:00"
     description: A Helm chart for Kubernetes
     digest: 5df6285379015a3008edc9285c3cee59ea14583ff6132a30814e67f0420be819
     name: filebrowser
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/filebrowser-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/filebrowser-0.1.0.tgz
     version: 0.1.0
   gitea:
   - apiVersion: v2
     appVersion: 1.13.0
-    created: "2021-02-07T12:00:23.320926377+02:00"
+    created: "2021-02-07T15:13:23.873006414+02:00"
     dependencies:
     - condition: gitea.cache.builtIn.enabled
       name: memcached
@@ -185,12 +185,12 @@ entries:
     - https://hub.docker.com/r/gitea/gitea/
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/gitea-2.1.3.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/gitea-2.1.3.tgz
     version: 2.1.3
   grafana:
   - apiVersion: v1
     appVersion: 7.2.1
-    created: "2021-02-07T12:00:23.322836721+02:00"
+    created: "2021-02-07T15:13:23.875563744+02:00"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e739172472eb7a43a50f1b493b6c72bc04724a06f32b2415ec3008339404e7e0
     home: https://grafana.net
@@ -209,25 +209,25 @@ entries:
     sources:
     - https://github.com/grafana/grafana
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/grafana-5.8.16.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/grafana-5.8.16.tgz
     version: 5.8.16
   harmony:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.323316894+02:00"
+    created: "2021-02-07T15:13:23.876503979+02:00"
     description: Harmony Helm chart for Kubernetes
     digest: fee83b9756b448b8d80b0b5e096bd0808962f7532420726ce37d41da617f598c
     name: harmony
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/harmony-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/harmony-0.1.0.tgz
     version: 0.1.0
   kube-prometheus:
   - annotations:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2021-02-07T12:00:23.341069421+02:00"
+    created: "2021-02-07T15:13:23.898052832+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -263,14 +263,14 @@ entries:
     - https://github.com/bitnami/bitnami-docker-alertmanager
     - https://github.com/prometheus-operator/kube-prometheus
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/kube-prometheus-3.0.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/kube-prometheus-3.0.0.tgz
     version: 3.0.0
   kubeapps:
   - annotations:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2.0.1
-    created: "2021-02-07T12:00:23.348848234+02:00"
+    created: "2021-02-07T15:13:23.907766625+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -292,12 +292,12 @@ entries:
     sources:
     - https://github.com/kubeapps/kubeapps
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/kubeapps-5.0.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/kubeapps-5.0.0.tgz
     version: 5.0.0
   mattermost:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2021-02-07T12:00:23.351524764+02:00"
+    created: "2021-02-07T15:13:23.910851034+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -313,12 +313,12 @@ entries:
     - team collaboration
     name: mattermost
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/mattermost-3.19.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/mattermost-3.19.0.tgz
     version: 3.19.0
   mattermostonsteroids:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2021-02-07T12:00:23.354122114+02:00"
+    created: "2021-02-07T15:13:23.914367728+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -334,19 +334,19 @@ entries:
     - team collaboration
     name: mattermostonsteroids
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/mattermostonsteroids-3.19.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/mattermostonsteroids-3.19.0.tgz
     version: 3.19.0
   meetings:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.355036397+02:00"
+    created: "2021-02-07T15:13:23.914925562+02:00"
     description: Meetings Helm chart
     digest: 4b1037baf56ff0a2e86c57bacf496841f707e04b107530454ee7f87ffe86317b
     icon: https://now.threefold.io/now/assets/static/connect.42db587.cd56aaeb262f9548a2c2518f76e70ca0.png
     name: meetings
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/meetings-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/meetings-0.1.0.tgz
     version: 0.1.0
   monitoringstack:
   - annotations:
@@ -358,7 +358,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2021-02-07T12:00:23.373590873+02:00"
+    created: "2021-02-07T15:13:23.944375078+02:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -401,12 +401,12 @@ entries:
     - https://github.com/prometheus-operator/kube-prometheus
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/monitoringstack-12.0.5.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/monitoringstack-12.0.5.tgz
     version: 12.0.5
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2021-02-07T12:00:23.380500191+02:00"
+    created: "2021-02-07T15:13:23.952029573+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -433,23 +433,23 @@ entries:
     sources:
     - https://github.com/Chocobozzz/PeerTube
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/peertube-0.0.1.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/peertube-0.0.1.tgz
     version: 0.0.1
   publishingtools:
   - apiVersion: v2
     appVersion: v1.0.0-alpha.18
-    created: "2021-02-07T12:00:23.381009053+02:00"
+    created: "2021-02-07T15:13:23.952559908+02:00"
     description: A Helm chart for Kubernetes to deploy websites and wikis using publishingtools
     digest: 89e53d0cd1c954960c3d4b60141a3ade9ab4e5c0ba8492a80149fbad8a69debf
     name: publishingtools
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/publishingtools-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/publishingtools-0.1.0.tgz
     version: 0.1.0
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-02-07T12:00:23.384362923+02:00"
+    created: "2021-02-07T15:13:23.955985329+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -458,28 +458,28 @@ entries:
     digest: db0c9af0b68619a5e472555cfc804c8ab54c9965e59c7dd45027f3681ce42057
     name: taiga
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/taiga-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/taiga-0.1.0.tgz
     version: 0.1.0
   tomo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.385215477+02:00"
+    created: "2021-02-07T15:13:23.956542447+02:00"
     description: A Helm chart for Kubernetes
     digest: 1fdd259ee53a48817fe500843957b8a494074180242d2c36d68f3eeaef5b697c
     name: tomo
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/tomo-0.1.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/tomo-0.1.0.tgz
     version: 0.1.0
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.386253518+02:00"
+    created: "2021-02-07T15:13:23.957147993+02:00"
     description: zeroci helm chart
     digest: 59d6c7774de7a5726b523de600e3734fd949bec69ad3cc70d1b85995f87dc10e
     name: zeroci
     type: application
     urls:
-    - https://threefoldtech.github.io/vdc-solutions-charts/zeroci-1.0.0.tgz
+    - https://m-motawea.github.io/vdc-solutions-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2021-02-07T12:00:23.292951537+02:00"
+generated: "2021-02-07T15:13:23.838494675+02:00"
