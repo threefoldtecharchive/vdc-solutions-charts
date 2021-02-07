@@ -2,7 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "kubeapps.dashboard.fullname" . }}
-  labels:{{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+  labels:
+    {{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kubeapps.dashboard.fullname" . }}
 spec:
   replicas: {{ .Values.dashboard.replicaCount }}

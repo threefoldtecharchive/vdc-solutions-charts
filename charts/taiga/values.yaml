@@ -20,3 +20,6 @@ resources:
 global:
   ingress:
     certresolver: default
+
+threefoldVdc:
+  backup: ''

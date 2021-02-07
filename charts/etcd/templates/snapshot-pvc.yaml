@@ -3,7 +3,9 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ include "etcd.fullname" . }}-snapshotter
-  labels: {{- include "etcd.labels" . | nindent 4 }}
+  labels: 
+    {{- include "etcd.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   accessModes:
     - ReadWriteMany

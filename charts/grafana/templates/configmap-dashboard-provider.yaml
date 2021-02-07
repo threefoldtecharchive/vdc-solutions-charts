@@ -4,6 +4,7 @@ kind: ConfigMap
 metadata:
   labels:
     {{- include "grafana.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{- with .Values.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}

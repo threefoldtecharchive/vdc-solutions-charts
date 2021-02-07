@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: {{ template "kube-prometheus-stack.fullname" . }}-coredns
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kube-prometheus-stack.name" . }}-coredns
     jobLabel: coredns
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}

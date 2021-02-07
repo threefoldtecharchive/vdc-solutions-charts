@@ -6,6 +6,7 @@ metadata:
   namespace: {{ .Values.kubeControllerManager.namespace }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: kube-controller-manager
+    backupType: {{ .Values.threefoldVdc.backup }}
 subsets:
   - addresses:
       {{- range .Values.kubeControllerManager.endpoints }}

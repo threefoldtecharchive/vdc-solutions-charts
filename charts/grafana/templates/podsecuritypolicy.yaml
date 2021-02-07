@@ -6,6 +6,7 @@ metadata:
   namespace: {{ template "grafana.namespace" . }}
   labels:
     {{- include "grafana.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
   annotations:
     seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default,runtime/default'
     seccomp.security.alpha.kubernetes.io/defaultProfileName:  'docker/default'

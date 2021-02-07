@@ -2,6 +2,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: hmy-volume-claim
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   storageClassName: local-path
   accessModes:

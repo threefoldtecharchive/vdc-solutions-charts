@@ -4,6 +4,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "cryptpad.fullname" . }}
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "cryptpad.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:

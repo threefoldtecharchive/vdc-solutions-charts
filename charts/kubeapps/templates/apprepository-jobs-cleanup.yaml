@@ -6,7 +6,9 @@ metadata:
   annotations:
     helm.sh/hook: post-delete
     helm.sh/hook-delete-policy: hook-succeeded
-  labels:{{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+  labels:
+    {{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kubeapps.apprepository-jobs-cleanup.fullname" . }}
 spec:
   template:

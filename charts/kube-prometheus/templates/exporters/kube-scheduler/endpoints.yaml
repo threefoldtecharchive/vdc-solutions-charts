@@ -6,6 +6,7 @@ metadata:
   namespace: {{ .Values.kubeScheduler.namespace }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: kube-scheduler
+    backupType: {{ .Values.threefoldVdc.backup }}
 subsets:
   - addresses:
       {{- range .Values.kubeScheduler.endpoints }}

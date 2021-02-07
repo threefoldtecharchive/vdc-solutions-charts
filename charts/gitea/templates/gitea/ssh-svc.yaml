@@ -4,6 +4,7 @@ metadata:
   name: {{ include "gitea.fullname" . }}-ssh
   labels:
     {{- include "gitea.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
   annotations:
     {{- toYaml .Values.service.ssh.annotations | nindent 4 }}
 spec:

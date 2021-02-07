@@ -471,3 +471,6 @@ disasterRecovery:
     ## storageClassName, choose a storageClassName with ReadWriteMany support
     ##
     storageClassName: nfs
+
+threefoldVdc:
+  backup: ''

@@ -616,3 +616,6 @@ externalRedis:
   ##
   ## Password key to be retrieved from Redis secret
   existingSecretPasswordKey: 'redis-password'
+
+threefoldVdc:
+  backup: ''

@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: {{ $svcName }}
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "cryptpad.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}

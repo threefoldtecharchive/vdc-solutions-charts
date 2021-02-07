@@ -11,6 +11,7 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "meetings.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 
   annotations:
   {{- if .Values.global.ingress.certresolver }}

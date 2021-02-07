@@ -3,7 +3,9 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: {{ include "etcd.fullname" . }}-snapshotter
-  labels: {{- include "etcd.labels" . | nindent 4 }}
+  labels: 
+    backupType: {{ .Values.threefoldVdc.backup }}
+    {{- include "etcd.labels" . | nindent 4 }}
 spec:
   concurrencyPolicy: Forbid
   schedule: {{ .Values.disasterRecovery.cronjob.schedule | quote }}
