@@ -5,6 +5,7 @@ metadata:
   name: {{ template "kube-prometheus-stack.fullname" . }}-prometheus
   labels:
     app: {{ template "kube-prometheus-stack.name" . }}-prometheus
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
 rules:
 # This permission are not in the kube-prometheus repo

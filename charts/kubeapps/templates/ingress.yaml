@@ -7,7 +7,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ template "kubeapps.fullname" . }}
-  labels: {{ include "kubeapps.labels" . | nindent 4 }}
+  labels: 
+    {{ include "kubeapps.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
   annotations:
     {{- if .Values.ingress.certManager }}
     kubernetes.io/tls-acme: "true"

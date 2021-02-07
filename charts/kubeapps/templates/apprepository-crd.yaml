@@ -7,7 +7,9 @@ metadata:
   name: apprepositories.kubeapps.com
   annotations:
     "helm.sh/hook": crd-install
-  labels:{{ include "kubeapps.extraAppLabels" $ | nindent 4 }}
+  labels:
+    {{ include "kubeapps.extraAppLabels" $ | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kubeapps.apprepository.fullname" $ }}
 spec:
   group: kubeapps.com

@@ -4,6 +4,7 @@ kind: ClusterRoleBinding
 metadata:
   name: {{ template "kube-prometheus-stack.fullname" . }}-prometheus-psp
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kube-prometheus-stack.name" . }}-prometheus
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
 roleRef:

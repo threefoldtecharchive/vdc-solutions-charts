@@ -2,6 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: backend-config
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
 data:
   settings.py: |-
     # For the complete list of possible settings and their documentation, see

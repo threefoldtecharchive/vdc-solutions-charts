@@ -4,6 +4,7 @@ metadata:
   name: {{ include "gitea.fullname" . }}-init
   labels:
     {{- include "gitea.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 type: Opaque
 stringData:
   init_gitea.sh: |-

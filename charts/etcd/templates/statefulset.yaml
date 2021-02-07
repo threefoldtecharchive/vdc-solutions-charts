@@ -6,6 +6,7 @@ metadata:
     {{- if .Values.statefulsetLabels }}
     {{- include "common.tplvalues.render" (dict "value" .Values.statefulsetLabels "context" $) | nindent 4 }}
     {{- end }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   selector:
     matchLabels: {{- include "etcd.matchLabels" . | nindent 6 }}

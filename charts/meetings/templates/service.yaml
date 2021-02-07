@@ -4,6 +4,7 @@ metadata:
   name: {{ include "meetings.fullname" . }}
   labels:
     {{- include "meetings.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   type: {{ .Values.service.type }}
   ports:

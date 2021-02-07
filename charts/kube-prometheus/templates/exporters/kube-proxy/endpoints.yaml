@@ -6,6 +6,7 @@ metadata:
   namespace: {{ .Values.kubeProxy.namespace }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: kube-proxy
+    backupType: {{ .Values.threefoldVdc.backup }}
 subsets:
   - addresses:
       {{- range .Values.kubeProxy.endpoints }}

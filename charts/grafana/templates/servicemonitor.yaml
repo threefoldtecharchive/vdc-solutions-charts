@@ -8,6 +8,7 @@ metadata:
   namespace: {{ .Values.serviceMonitor.namespace }}
   {{- end }}
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "grafana.labels" . | nindent 4 }}
     {{- if .Values.serviceMonitor.labels }}
     {{- toYaml .Values.serviceMonitor.labels | nindent 4 }}

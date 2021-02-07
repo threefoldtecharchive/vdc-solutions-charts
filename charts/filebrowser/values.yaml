@@ -85,3 +85,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+threefoldVdc:
+  backup: ''

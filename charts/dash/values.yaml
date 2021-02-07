@@ -33,7 +33,7 @@ resources:
      memory: 4096Mi
   requests:
      cpu: 1800m
-     memory:4000Mi
+     memory: 4000Mi
 
 autoscaling:
   enabled: false
@@ -47,3 +47,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+threefoldVdc:
+  backup: ''

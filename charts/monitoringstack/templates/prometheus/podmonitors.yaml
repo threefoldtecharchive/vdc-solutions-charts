@@ -9,6 +9,7 @@ items:
       name: {{ .name }}
       namespace: {{ template "kube-prometheus-stack.namespace" $ }}
       labels:
+        backupType: {{ .Values.threefoldVdc.backup }}
         app: {{ template "kube-prometheus-stack.name" $ }}-prometheus
 {{ include "kube-prometheus-stack.labels" $ | indent 8 }}
         {{- if .additionalLabels }}

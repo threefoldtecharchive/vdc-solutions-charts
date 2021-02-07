@@ -8,7 +8,9 @@ items:
     metadata:
       name: {{ template "kube-prometheus.name" $ }}-{{ .name }}
       namespace: {{ $.Release.Namespace }}
-      labels: {{ include "kube-prometheus.prometheus.labels" $ | nindent 8 }}
+      labels: 
+        {{ include "kube-prometheus.prometheus.labels" $ | nindent 8 }}
+        backupType: {{ .Values.threefoldVdc.backup }}
     spec:
       groups:
 {{ toYaml .groups| indent 8 }}

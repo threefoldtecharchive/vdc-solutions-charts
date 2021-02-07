@@ -3,6 +3,7 @@ kind: PersistentVolume
 metadata:
   name: "{{ include "cryptpad.fullname" . }}-data"
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "cryptpad.labels" . | nindent 4 }}
 spec:
   capacity:
@@ -21,6 +22,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: "{{ include "cryptpad.fullname" . }}-data-claim"
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "cryptpad.labels" . | nindent 4 }}
 spec:
   accessModes:
