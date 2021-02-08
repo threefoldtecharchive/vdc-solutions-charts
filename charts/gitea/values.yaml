@@ -7,9 +7,10 @@ replicaCount: 1
 clusterDomain: cluster.local
 
 image:
-  repository: threefolddev/gitea_tfconnect
-  version: latest
+  repository: threefolddev/tf-gitea
+  version: v1.13.2
   pullPolicy: Always
+  
 
 imagePullSecrets: []
 
