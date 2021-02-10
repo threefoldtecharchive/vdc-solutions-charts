@@ -1,31 +1,27 @@
 ## Presearch Full Node
 
-This helm chart(solution) is going to launch a Presearch full node on Mainnet. The chart should have 3 inputs,
+This helm chart(solution) is going to launch a Presearch full node. The chart should have 2 inputs,
 
 #### Inputs
 
 * Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
-* rpcuser (The node RPC credentials user/pass)
-* rpcpasswd
+* REGISTRATION_CODE (This is provided by the user and it is mandatory to launch the node)
 
 Here is an example,
 
 ```
 git clone https://github.com/threefoldtech/vdc-solutions-charts.git
 cd vdc-solutions-charts
-helm --install presearch-node charts/presearch --set global.ingress.host="mynodesomething.webgw1.grid.tf" --set env.rpcuser="abdulgig" --set env.rpcpasswd="test7654" 
-```
+helm --install presearch-node charts/presearch --set global.ingress.host="mynodesomething.webgw1.grid.tf" --set REGISTRATION_CODE="code_given_by_user" 
 
 ### Services that need to be exposed
 
 * WEB - Default traefik config should work with web ports (80/443) TCP
-* RPC - 14022 TCP - from the chatflow
-* P2P - 12024 TCP - from the chatflow
 
 ### Chatflow steps
 
 * Get the node name (At the end of the chatflow, this would be a publicly reachable link where the user would be able to view the status of his node - Status Page)
-* Get the RPC credentials from the user ( rpcuser and rpcpasswd )
+* Get the registration code from the user ( REGISTRATION_CODE )
 
 ### Expected Results
 
