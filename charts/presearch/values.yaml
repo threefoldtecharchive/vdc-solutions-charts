@@ -1,0 +1,59 @@
+# Default values for presearch.
+replicaCount: 1
+
+image:
+  repository: presearch/node
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+global:
+ ingress:
+  enabled: true
+# The host should be overrided with the domain name in the chatflow  
+  host: "fullnode.presearch"
+  certresolver: default
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/ssl-passthrough: "true"
+  paths: 
+    - "/"
+  tls: []
+ 
+# The node registration code - This should be set from the chatflow
+REGISTRATION_CODE: ""          
+
+resources: 
+    limits:
+      cpu: 2000m
+      memory: 2048Mi
+    requests:
+      cpu: 1000m
+      memory: 900Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
