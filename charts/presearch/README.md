@@ -14,6 +14,7 @@ git clone https://github.com/threefoldtech/vdc-solutions-charts.git
 cd vdc-solutions-charts
 helm --install presearch-node charts/presearch --set global.ingress.host="mynodesomething.webgw1.grid.tf" --set REGISTRATION_CODE="code_given_by_user" 
 
+```
 ### Services that need to be exposed
 
 * WEB - Default traefik config should work with web ports (80/443) TCP
