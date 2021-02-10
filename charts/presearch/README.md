@@ -1,6 +1,6 @@
-## Presearch Full Node
+## Presearch Node
 
-This helm chart(solution) is going to launch a Presearch full node. The chart should have 2 inputs,
+This helm chart(solution) is going to launch a Presearch node. The chart should have 2 inputs,
 
 #### Inputs
 
