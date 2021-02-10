@@ -39,11 +39,11 @@ REGISTRATION_CODE: ""
 
 resources: 
     limits:
-      cpu: 2000m
-      memory: 2048Mi
-    requests:
       cpu: 1000m
-      memory: 900Mi
+      memory: 1024Mi
+    requests:
+      cpu: 900m
+      memory: 1000Mi
 
 autoscaling:
   enabled: false
