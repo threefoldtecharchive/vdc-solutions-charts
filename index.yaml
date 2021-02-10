@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.293677969+02:00"
+    created: "2021-02-10T09:54:45.894847067Z"
     description: A Helm chart for Kubernetes
     digest: d3255cd5058be8983e566234244d0d17c3dd549e9f82c0ce8ab98070c7a2e38d
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-02-07T12:00:23.294243936+02:00"
+    created: "2021-02-10T09:54:45.895617195Z"
     description: A Helm chart for Cryptpad
     digest: 3c466ef33cbe45479a8491cddfdc6d8a222a4e97de2152184da4014aeb6b5070
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   dash:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.294792116+02:00"
+    created: "2021-02-10T09:54:45.896273738Z"
     description: Dash Helm chart for Kubernetes
     digest: 99970857f690c2cd7a5fd824876e1f9a7d6a36321a027de4db46e68f00d66ab9
     name: dash
@@ -36,7 +36,7 @@ entries:
   digibyte:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.295377953+02:00"
+    created: "2021-02-10T09:54:45.896943035Z"
     description: Digibyte Helm chart for Kubernetes
     digest: 1a495e04fd562ad701f888456f307a69cadf8a033114b413d5eff63f764b272d
     name: digibyte
@@ -49,7 +49,7 @@ entries:
       category: Forum
     apiVersion: v2
     appVersion: 2.6.0
-    created: "2021-02-07T12:00:23.30642302+02:00"
+    created: "2021-02-10T09:54:45.910619289Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -86,7 +86,7 @@ entries:
   documentserver:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.306972742+02:00"
+    created: "2021-02-10T09:54:45.911348624Z"
     description: A helm chart for the onlyoffice documentserver solution
     digest: fdd98fd9dab998e7adadbb32aff7bb71453bb1b65d210a4abc4bac2d901283fb
     name: documentserver
@@ -99,15 +99,14 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 3.4.14
-    created: "2021-02-07T12:00:23.309221588+02:00"
+    created: "2021-02-10T09:54:45.914303558Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
       tags:
       - bitnami-common
       version: 1.x.x
-    description: etcd is a distributed key value store that provides a reliable way
-      to store data across a cluster of machines
+    description: etcd is a distributed key value store that provides a reliable way to store data across a cluster of machines
     digest: 24a81ca246a01b8e0af804536f976b414abccaccfdd0e5e8d206cb5cc8e29d04
     home: https://github.com/bitnami/charts/tree/master/bitnami/etcd
     icon: https://bitnami.com/assets/stacks/etcd/img/etcd-stack-110x117.png
@@ -130,7 +129,7 @@ entries:
   filebrowser:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.30967862+02:00"
+    created: "2021-02-10T09:54:45.914954868Z"
     description: A Helm chart for Kubernetes
     digest: 5df6285379015a3008edc9285c3cee59ea14583ff6132a30814e67f0420be819
     name: filebrowser
@@ -141,7 +140,7 @@ entries:
   gitea:
   - apiVersion: v2
     appVersion: 1.13.0
-    created: "2021-02-07T12:00:23.320926377+02:00"
+    created: "2021-02-10T09:54:45.929101491Z"
     dependencies:
     - condition: gitea.cache.builtIn.enabled
       name: memcached
@@ -190,7 +189,7 @@ entries:
   grafana:
   - apiVersion: v1
     appVersion: 7.2.1
-    created: "2021-02-07T12:00:23.322836721+02:00"
+    created: "2021-02-10T09:54:45.931909616Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e739172472eb7a43a50f1b493b6c72bc04724a06f32b2415ec3008339404e7e0
     home: https://grafana.net
@@ -214,7 +213,7 @@ entries:
   harmony:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.323316894+02:00"
+    created: "2021-02-10T09:54:45.932617538Z"
     description: Harmony Helm chart for Kubernetes
     digest: fee83b9756b448b8d80b0b5e096bd0808962f7532420726ce37d41da617f598c
     name: harmony
@@ -227,7 +226,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2021-02-07T12:00:23.341069421+02:00"
+    created: "2021-02-10T09:54:45.952527067Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -242,9 +241,7 @@ entries:
       name: kube-state-metrics
       repository: https://charts.bitnami.com/bitnami
       version: 1.x.x
-    description: kube-prometheus collects Kubernetes manifests to provide easy to
-      operate end-to-end Kubernetes cluster monitoring with Prometheus using the Prometheus
-      Operator.
+    description: kube-prometheus collects Kubernetes manifests to provide easy to operate end-to-end Kubernetes cluster monitoring with Prometheus using the Prometheus Operator.
     digest: b678451cc7abdef6ba971e420bf4c25c7681946778557ff92451bce1d5a9c6bd
     home: https://github.com/bitnami/charts/tree/master/bitnami/kube-prometheus
     icon: https://bitnami.com/assets/stacks/prometheus-operator/img/prometheus-operator-stack-220x234.png
@@ -270,13 +267,12 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2.0.1
-    created: "2021-02-07T12:00:23.348848234+02:00"
+    created: "2021-02-10T09:54:45.965911714Z"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: 10.X.X
-    description: Kubeapps is a dashboard for your Kubernetes cluster that makes it
-      easy to deploy and manage applications in your cluster using Helm
+    description: Kubeapps is a dashboard for your Kubernetes cluster that makes it easy to deploy and manage applications in your cluster using Helm
     digest: 76e6c9ddf39aed89fb6fdcf8d60c6cd80b7e0fa76ba908622144ff5c48e50649
     home: https://kubeapps.com
     icon: https://raw.githubusercontent.com/kubeapps/kubeapps/master/docs/img/logo.png
@@ -297,7 +293,7 @@ entries:
   mattermost:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2021-02-07T12:00:23.351524764+02:00"
+    created: "2021-02-10T09:54:45.969647939Z"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -318,7 +314,7 @@ entries:
   mattermostonsteroids:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2021-02-07T12:00:23.354122114+02:00"
+    created: "2021-02-10T09:54:45.973228664Z"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -339,7 +335,7 @@ entries:
   meetings:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.355036397+02:00"
+    created: "2021-02-10T09:54:45.973885686Z"
     description: Meetings Helm chart
     digest: 4b1037baf56ff0a2e86c57bacf496841f707e04b107530454ee7f87ffe86317b
     icon: https://now.threefold.io/now/assets/static/connect.42db587.cd56aaeb262f9548a2c2518f76e70ca0.png
@@ -358,7 +354,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2021-02-07T12:00:23.373590873+02:00"
+    created: "2021-02-10T09:54:46.000079325Z"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -372,10 +368,7 @@ entries:
       name: grafana
       repository: https://threefoldtech.github.io/vdc-solutions-charts
       version: 5.8.*
-    description: kube-prometheus-stack collects Kubernetes manifests, Grafana dashboards,
-      and Prometheus rules combined with documentation and scripts to provide easy
-      to operate end-to-end Kubernetes cluster monitoring with Prometheus using the
-      Prometheus Operator.
+    description: kube-prometheus-stack collects Kubernetes manifests, Grafana dashboards, and Prometheus rules combined with documentation and scripts to provide easy to operate end-to-end Kubernetes cluster monitoring with Prometheus using the Prometheus Operator.
     digest: 49be0961692a57f2cf91e2d3da6e3dd86ed4a2a4b6bdbcdb9535a74b22c95af2
     home: https://github.com/prometheus-operator/kube-prometheus
     icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
@@ -406,7 +399,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2021-02-07T12:00:23.380500191+02:00"
+    created: "2021-02-10T09:54:46.009826899Z"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -416,8 +409,7 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: 12.0.1
-    description: Federated (ActivityPub) video streaming platform using P2P (BitTorrent)
-      directly in the web browser with WebTorrent.
+    description: Federated (ActivityPub) video streaming platform using P2P (BitTorrent) directly in the web browser with WebTorrent.
     digest: 64b0d50abe58c09bd30a4361e8008dbfb9ad3075fb666c04f023153293c7d561
     home: https://joinpeertube.org/
     icon: https://joinpeertube.org/favicon.png
@@ -435,10 +427,21 @@ entries:
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/peertube-0.0.1.tgz
     version: 0.0.1
+  presearch:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-02-10T09:54:46.010479902Z"
+    description: Presearch Helm chart for Kubernetes
+    digest: 58ce62cbaf9341c53c68c18c54cae274bdd16704dc70bff975ad8a8082b577bf
+    name: presearch
+    type: application
+    urls:
+    - https://threefoldtech.github.io/vdc-solutions-charts/presearch-0.1.0.tgz
+    version: 0.1.0
   publishingtools:
   - apiVersion: v2
     appVersion: v1.0.0-alpha.18
-    created: "2021-02-07T12:00:23.381009053+02:00"
+    created: "2021-02-10T09:54:46.011215254Z"
     description: A Helm chart for Kubernetes to deploy websites and wikis using publishingtools
     digest: 89e53d0cd1c954960c3d4b60141a3ade9ab4e5c0ba8492a80149fbad8a69debf
     name: publishingtools
@@ -449,7 +452,7 @@ entries:
   taiga:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-02-07T12:00:23.384362923+02:00"
+    created: "2021-02-10T09:54:46.01630123Z"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -463,7 +466,7 @@ entries:
   tomo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.385215477+02:00"
+    created: "2021-02-10T09:54:46.017035145Z"
     description: A Helm chart for Kubernetes
     digest: 1fdd259ee53a48817fe500843957b8a494074180242d2c36d68f3eeaef5b697c
     name: tomo
@@ -474,7 +477,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-07T12:00:23.386253518+02:00"
+    created: "2021-02-10T09:54:46.017803222Z"
     description: zeroci helm chart
     digest: 59d6c7774de7a5726b523de600e3734fd949bec69ad3cc70d1b85995f87dc10e
     name: zeroci
@@ -482,4 +485,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2021-02-07T12:00:23.292951537+02:00"
+generated: "2021-02-10T09:54:45.893863539Z"
