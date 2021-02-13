@@ -2,7 +2,7 @@
 replicaCount: 1
 
 image:
-  repository: presearch/node
+  repository: arrajput/presearch
   pullPolicy: Always
   tag: "latest"
 
