@@ -4,7 +4,7 @@ This helm chart (solution) is going to launch a Presearch node. The chart should
 
 #### Inputs
 
-* Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
+* Node Name (This would be hostname which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
 * REGISTRATION_CODE (This is provided by the user and it is mandatory to launch the node)
 
 Here is an example,
