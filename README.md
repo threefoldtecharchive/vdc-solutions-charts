@@ -122,9 +122,20 @@ spec:
 ```
 
 
+### Backup
+
+marketplace charts are backed up using velero by adding a specific label to all of the chart resources `backupType: vdc`. so to be able to enable/disable backup on a chart during deployment you need to define in chart values:
+```yaml
+threefoldVdc:
+  backup: ''
+```
+
+and use it as a value for the backup label as `backupType: {{ .Values.threefoldVdc.backup }}`
+
 ### Make sure
 - `ingress` is enabled on your chart in `values.yaml`
 - All services that needs to be exposed are of type `ClusterIP`
+- Backup is configured on your chart resources as described in the backup section
 ## Resources Limits
 
 Make sure that your chart already configures resources limits for `memory` and `cpu` in `values.yaml` in resources section, just in case your chart go beyond deployed cluster resources.
