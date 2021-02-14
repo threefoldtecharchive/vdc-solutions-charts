@@ -4,6 +4,7 @@ metadata:
   name: p2p-dash-node
   labels:
     {{- include "dash.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   type: ClusterIP
   ports:

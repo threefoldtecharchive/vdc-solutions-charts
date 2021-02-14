@@ -14,6 +14,7 @@ metadata:
   namespace: {{ template "grafana.namespace" . }}
   labels:
     {{- include "grafana.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{- if .Values.ingress.labels }}
 {{ toYaml .Values.ingress.labels | indent 4 }}
 {{- end }}

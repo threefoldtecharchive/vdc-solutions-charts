@@ -90,3 +90,6 @@ affinity: {}
 volume:
   size: 10 # GB
   hostPath: /persistent-data/
+
+threefoldVdc:
+  backup: ''

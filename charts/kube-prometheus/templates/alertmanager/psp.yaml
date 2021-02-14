@@ -3,7 +3,9 @@ apiVersion: {{ template "podSecurityPolicy.apiVersion" . }}
 kind: PodSecurityPolicy
 metadata:
   name: {{ template "kube-prometheus.alertmanager.fullname" . }}
-  labels: {{- include "kube-prometheus.alertmanager.labels" . | nindent 4 }}
+  labels: 
+    {{- include "kube-prometheus.alertmanager.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   privileged: false
   allowPrivilegeEscalation: false

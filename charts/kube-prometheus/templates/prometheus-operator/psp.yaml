@@ -3,7 +3,9 @@ apiVersion: {{ template "podSecurityPolicy.apiVersion" . }}
 kind: PodSecurityPolicy
 metadata:
   name: {{ template "kube-prometheus.operator.fullname" . }}
-  labels: {{- include "kube-prometheus.operator.labels" . | nindent 4 }}
+  labels: 
+    {{- include "kube-prometheus.operator.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   privileged: false
   allowPrivilegeEscalation: false

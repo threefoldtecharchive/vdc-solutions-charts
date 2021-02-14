@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "3bot.fullname" . }}
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "3bot.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}

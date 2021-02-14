@@ -2,7 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "etcd.fullname" . }}
-  labels: {{- include "etcd.labels" . | nindent 4 }}
+  labels: 
+    {{- include "etcd.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
   {{- if .Values.service.annotations }}
   annotations: {{- include "etcd.tplValue" ( dict "value" .Values.service.annotations "context" $) | nindent 4 }}
   {{- end }}

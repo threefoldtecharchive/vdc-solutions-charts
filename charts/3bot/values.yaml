@@ -89,3 +89,6 @@ env:
     value: "threebot_name"
   - name: "INSTANCE_NAME"
     value: "instance_name"
+
+threefoldVdc:
+  backup: ''

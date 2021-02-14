@@ -8,7 +8,9 @@ metadata:
     helm.sh/hook: post-upgrade
     helm.sh/hook-weight: "0"
     helm.sh/hook-delete-policy: hook-succeeded
-  labels:{{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+  labels:
+    {{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kubeapps.apprepository-job-postupgrade.fullname" . }}
 spec:
   template:

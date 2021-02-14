@@ -7,6 +7,8 @@ kind: List
 metadata:
   name: {{ include "kube-prometheus-stack.fullname" $ }}-alertmanager-ingressperreplica
   namespace: {{ template "kube-prometheus-stack.namespace" . }}
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
 items:
 {{ range $i, $e := until $count }}
   - kind: Ingress

@@ -10,6 +10,7 @@ metadata:
     app.kubernetes.io/name: {{ .Chart.Name }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
 spec:
   replicas: 1

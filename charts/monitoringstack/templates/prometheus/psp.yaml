@@ -4,6 +4,7 @@ kind: PodSecurityPolicy
 metadata:
   name: {{ template "kube-prometheus-stack.fullname" . }}-prometheus
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kube-prometheus-stack.name" . }}-prometheus
 {{- if .Values.global.rbac.pspAnnotations }}
   annotations:

@@ -5,6 +5,7 @@ metadata:
   name: {{ include "zeroci.fullname" . }}
   labels:
     {{- include "zeroci.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

@@ -4,7 +4,9 @@ kind: Service
 metadata:
   name: {{ template "kube-prometheus.operator.fullname" . }}
   namespace: {{ .Release.Namespace }}
-  labels: {{- include "kube-prometheus.operator.labels" . | nindent 4 }}
+  labels: 
+    {{- include "kube-prometheus.operator.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
   {{- with .Values.operator.service.annotations }}
   annotations: {{- toYaml . | nindent 4 }}
   {{- end }}

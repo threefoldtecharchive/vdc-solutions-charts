@@ -5,6 +5,7 @@ metadata:
   name: {{ include "publishingtools.fullname" . }}
   labels:
     {{- include "publishingtools.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

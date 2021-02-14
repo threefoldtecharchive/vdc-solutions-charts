@@ -4,6 +4,7 @@ metadata:
   name: {{ include "filebrowser.fullname" . }}
   labels:
     {{- include "filebrowser.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   type: {{ .Values.service.type }}
   ports:

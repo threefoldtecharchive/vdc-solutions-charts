@@ -18,7 +18,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "etcd.fullname" . }}-scripts
-  labels: {{- include "etcd.labels" . | nindent 4 }}
+  labels: 
+    {{- include "etcd.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 data:
   setup.sh: |-
     #!/bin/bash

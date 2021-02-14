@@ -4,6 +4,7 @@ metadata:
   name: {{ include "gitea.fullname" . }}
   labels:
     {{- include "gitea.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:

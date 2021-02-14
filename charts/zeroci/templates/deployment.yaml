@@ -4,6 +4,7 @@ metadata:
   name: {{ include "zeroci.fullname" . }}
   labels:
     {{- include "zeroci.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}

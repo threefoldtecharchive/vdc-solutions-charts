@@ -4,6 +4,7 @@ metadata:
   name: rpc-digibyte-node-{{ .Release.Name }}
   labels:
     {{- include "digibyte.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   type: ClusterIP
   ports:

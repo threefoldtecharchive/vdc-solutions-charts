@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "kubeapps.kubeops.fullname" . }}
-  labels:{{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+  labels:
+    {{ include "kubeapps.extraAppLabels" . | nindent 4 }}
     app: {{ template "kubeapps.kubeops.fullname" . }}
 spec:
   replicas: {{ .Values.kubeops.replicaCount }}

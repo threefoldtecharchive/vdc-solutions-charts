@@ -6,6 +6,7 @@ metadata:
   labels:
     app: {{ template "kube-prometheus-stack.name" . }}-kube-etcd
     jobLabel: kube-etcd
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
   namespace: kube-system
 spec:

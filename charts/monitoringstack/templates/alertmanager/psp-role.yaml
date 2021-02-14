@@ -6,6 +6,7 @@ metadata:
   namespace: {{ template "kube-prometheus-stack.namespace" . }}
   labels:
     app: {{ template "kube-prometheus-stack.name" . }}-alertmanager
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
 rules:
 {{- $kubeTargetVersion := default .Capabilities.KubeVersion.GitVersion .Values.kubeTargetVersionOverride }}

@@ -8,6 +8,7 @@ metadata:
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 data:
   clusters.conf: |-
 {{ .Values.clusters | toPrettyJson | indent 4 }}

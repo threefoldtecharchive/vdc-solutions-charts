@@ -5,6 +5,7 @@ metadata:
   name: {{ template "kube-prometheus-stack.fullname" . }}-operator-psp
   labels:
     app: {{ template "kube-prometheus-stack.name" . }}-operator
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
 rules:
 {{- $kubeTargetVersion := default .Capabilities.KubeVersion.GitVersion .Values.kubeTargetVersionOverride }}

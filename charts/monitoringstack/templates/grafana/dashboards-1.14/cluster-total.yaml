@@ -17,6 +17,7 @@ metadata:
     {{ $.Values.grafana.sidecar.dashboards.label }}: "1"
     {{- end }}
     app: {{ template "kube-prometheus-stack.name" $ }}-grafana
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{ include "kube-prometheus-stack.labels" $ | indent 4 }}
 data:
   cluster-total.json: |-

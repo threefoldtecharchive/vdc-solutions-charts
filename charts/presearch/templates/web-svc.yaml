@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: web-presearch-node-{{ .Release.Name }}
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "presearch.labels" . | nindent 4 }}
 spec:
   type: ClusterIP

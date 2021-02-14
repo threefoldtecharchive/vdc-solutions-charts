@@ -4,6 +4,7 @@ metadata:
   name: digibyte-node-ingress-web-{{ .Release.Name }}
   labels:
     {{- include "digibyte.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
   annotations:
   {{- if .Values.global.ingress.certresolver }}
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
