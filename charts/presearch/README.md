@@ -1,6 +1,6 @@
 ## Presearch Node
 
-This helm chart(solution) is going to launch a Presearch node. The chart should have 2 inputs,
+This helm chart (solution) is going to launch a Presearch node. The chart should have 2 inputs,
 
 #### Inputs
 
@@ -22,7 +22,7 @@ helm --install presearch-node charts/presearch --set global.ingress.host="mynode
 ### Chatflow steps
 
 * Get the node name (At the end of the chatflow, this would be a publicly reachable link where the user would be able to view the status of his node - Status Page)
-* Get the registration code from the user ( REGISTRATION_CODE )
+* Get the registration code from the user ( REGISTRATION_CODE ), this is mandatory
 
 ### Expected Results
 
