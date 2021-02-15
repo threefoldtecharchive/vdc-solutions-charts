@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  backupType: {{ .Values.threefoldVdc.backup }}
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
   name: presearch-volume-claim-{{ .Release.Name }}
 spec:
   storageClassName: local-path
