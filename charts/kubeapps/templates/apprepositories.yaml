@@ -11,7 +11,7 @@ metadata:
   labels:
     {{ include "kubeapps.extraAppLabels" $ | nindent 4 }}
     app: {{ template "kubeapps.apprepository.fullname" $ }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: vdc
 spec:
   type: helm
   url: {{ .url }}

@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   name: apprepositories.kubeapps.com
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: vdc
 spec:
   group: kubeapps.com
   scope: Namespaced
