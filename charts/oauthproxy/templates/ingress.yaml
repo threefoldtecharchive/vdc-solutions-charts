@@ -1,0 +1,39 @@
+{{- if .Values.ingress.enabled -}}
+{{- $svcName := printf "%s-%s" .Values.service.name .Release.Name -}}
+{{- $svcPort := .Values.service.port -}}
+{{- $ingressHost := .Values.ingress.host -}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $svcName }}
+  labels:
+    {{- include "oauthproxy.labels" . | nindent 4 }}
+  annotations:
+  {{- if .Values.global.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
+  {{- end }}
+  {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.ingress.tls }}
+  tls:
+    {{- range .Values.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  rules:
+    - host: {{ $ingressHost }}
+      http:
+        paths:
+          {{- range .Values.ingress.paths }}
+          - path: {{ . }}
+            backend:
+              serviceName: {{ $svcName }}
+              servicePort: {{ $svcPort }}
+          {{- end }}
+  {{- end }}
