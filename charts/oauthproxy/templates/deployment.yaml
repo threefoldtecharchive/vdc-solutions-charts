@@ -37,14 +37,20 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
+          livenessProbe:
+            httpGet:
+              path: /checks/liveness
+              port: {{ .Values.oauthproxyServerPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 120
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /checks/readiness
+              port: {{ .Values.oauthproxyServerPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 120
+            timeoutSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
