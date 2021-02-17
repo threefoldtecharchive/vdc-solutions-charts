@@ -42,7 +42,7 @@ spec:
             - name: "REGISTRATION_CODE"
               valueFrom:
                 secretKeyRef:
-                  key:  REGISTRATION_CODE
+                  key:  registration_code
                   name: {{ .Release.Name }}-auth          
           volumeMounts:
             - name: presearch-storage-{{ .Release.Name }}
