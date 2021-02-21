@@ -7,9 +7,10 @@ replicaCount: 1
 clusterDomain: cluster.local
 
 image:
-  repository: gitea/gitea
-  version: 1.13.0
+  repository: threefolddev/tf-gitea
+  version: v1.13.2
   pullPolicy: Always
+  
 
 imagePullSecrets: []
 
@@ -51,11 +52,11 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 200m
+    memory: 1024Mi
   requests:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 200m
+    memory: 1024Mi
 
 nodeSelector: {}
 
