@@ -4,6 +4,7 @@ metadata:
   name: dgb-volume-{{ .Release.Name }}
   labels:
     type: local
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   storageClassName: local-path
   capacity:

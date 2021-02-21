@@ -159,3 +159,6 @@ mariadb:
       port: 3306
     persistence:
       size: 10Gi
+
+threefoldVdc:
+  backup: ''

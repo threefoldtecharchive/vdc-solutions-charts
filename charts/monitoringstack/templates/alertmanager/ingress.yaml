@@ -17,6 +17,7 @@ metadata:
 {{ toYaml .Values.alertmanager.ingress.annotations | indent 4 }}
 {{- end }}
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kube-prometheus-stack.name" . }}-alertmanager
 {{- if .Values.alertmanager.ingress.labels }}
 {{ toYaml .Values.alertmanager.ingress.labels | indent 4 }}

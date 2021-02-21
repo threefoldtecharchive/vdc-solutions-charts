@@ -6,6 +6,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels: {{- include "kube-prometheus.prometheus.labels" . | nindent 4 }}
     app.kubernetes.io/subcomponent: thanos
+    backupType: {{ .Values.threefoldVdc.backup }}
   {{- if .Values.prometheus.thanos.service.annotations }}
   annotations: {{- include "common.tplvalues.render" (dict "value" .Values.prometheus.thanos.service.annotations "context" $) | nindent 4 }}
   {{- end }}

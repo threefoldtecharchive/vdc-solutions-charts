@@ -7,6 +7,8 @@ metadata:
   namespace: {{ template "grafana.namespace" . }}
   annotations:
     comment: Limit image-renderer ingress traffic from grafana
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   podSelector:
     matchLabels:

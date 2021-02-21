@@ -2,7 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ template "kubeapps.assetsvc.fullname" . }}
-  labels:{{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+  labels:
+    {{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kubeapps.name" . }}
 spec:
   type: ClusterIP

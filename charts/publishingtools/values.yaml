@@ -88,3 +88,6 @@ env:
   branch: ""
   domain: ""
   srcdir: ""
+
+threefoldVdc:
+  backup: ''

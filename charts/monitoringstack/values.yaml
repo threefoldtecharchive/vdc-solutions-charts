@@ -2217,3 +2217,7 @@ prometheus:
     ## https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#podmetricsendpoint
     ##
     # podMetricsEndpoints: []
+
+
+threefoldVdc:
+  backup: ''

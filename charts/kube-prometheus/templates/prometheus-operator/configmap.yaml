@@ -4,7 +4,9 @@ kind: ConfigMap
 metadata:
   name: {{ template "kube-prometheus.operator.fullname" . }}
   namespace: {{ .Release.Namespace }}
-  labels: {{- include "kube-prometheus.operator.labels" . | nindent 4 }}
+  labels: 
+    {{- include "kube-prometheus.operator.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 data:
   config-reloader-image: {{ template "kube-prometheus.configmapReload.image" . }}
   prometheus-config-reloader: {{ template "kube-prometheus.prometheusConfigReloader.image" . }}

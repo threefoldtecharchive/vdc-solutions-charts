@@ -5,3 +5,5 @@ kind: Secret
 metadata:
   creationTimestamp: null
   name: additional-scrape-configs
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: presearch-node-ingress-web-{{ .Release.Name }}
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
+    {{- include "presearch.labels" . | nindent 4 }}
+  annotations:
+  {{- if .Values.global.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
+  {{- end }}
+  {{- with .Values.global.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  rules:
+    - host: {{ .Values.global.ingress.host }}
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: web-presearch-node-{{ .Release.Name }}
+            servicePort: 80

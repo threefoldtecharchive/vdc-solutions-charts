@@ -6,6 +6,7 @@ metadata:
   labels:
     app: {{ template "kube-prometheus-stack.name" . }}-kube-controller-manager
     k8s-app: kube-controller-manager
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
   namespace: kube-system 
 subsets:

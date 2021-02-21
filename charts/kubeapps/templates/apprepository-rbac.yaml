@@ -3,7 +3,9 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: {{ template "kubeapps.apprepository.fullname" . }}
-  labels:{{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+  labels:
+    {{ include "kubeapps.extraAppLabels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
     app: {{ template "kubeapps.apprepository.fullname" . }}
 rules:
   - apiGroups:

@@ -6,6 +6,8 @@ kind: List
 metadata:
   name: {{ include "kube-prometheus-stack.fullname" $ }}-alertmanager-serviceperreplica
   namespace: {{ template "kube-prometheus-stack.namespace" . }}
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
 items:
 {{- range $i, $e := until $count }}
   - apiVersion: v1

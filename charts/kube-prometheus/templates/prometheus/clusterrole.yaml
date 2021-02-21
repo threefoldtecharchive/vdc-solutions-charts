@@ -3,7 +3,9 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: {{ template "kube-prometheus.prometheus.fullname" . }}
-  labels: {{- include "kube-prometheus.prometheus.labels" . | nindent 4 }}
+  labels: 
+    {{- include "kube-prometheus.prometheus.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 rules:
   - apiGroups:
       - ""

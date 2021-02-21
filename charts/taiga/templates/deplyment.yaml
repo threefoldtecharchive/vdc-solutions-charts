@@ -4,6 +4,7 @@ metadata:
   name: {{ include "taiga.fullname" . }}
   labels:
     {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 spec:
   replicas: 1
   selector:

@@ -10,6 +10,7 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "3bot.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:

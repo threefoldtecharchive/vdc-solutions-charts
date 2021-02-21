@@ -3,7 +3,9 @@ apiVersion: {{ template "common.capabilities.deployment.apiVersion" . }}
 kind: Deployment
 metadata:
   name: {{ template "common.names.fullname" . }}
-  labels: {{- include "common.labels.standard" . | nindent 4 }}
+  labels: 
+    backupType: {{ .Values.threefoldVdc.backup }}
+    {{- include "common.labels.standard" . | nindent 4 }}
     component: discourse
     {{- if .Values.commonLabels }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}

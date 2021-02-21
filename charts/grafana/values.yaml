@@ -646,3 +646,7 @@ imageRenderer:
 #   requests:
 #     cpu: 50m
 #     memory: 50Mi
+
+
+threefoldVdc:
+  backup: vdc

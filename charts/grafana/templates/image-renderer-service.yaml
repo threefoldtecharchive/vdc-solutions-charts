@@ -6,6 +6,7 @@ metadata:
   namespace: {{ template "grafana.namespace" . }}
   labels:
     {{- include "grafana.imageRenderer.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{- if .Values.imageRenderer.service.labels }}
 {{ toYaml .Values.imageRenderer.service.labels | indent 4 }}
 {{- end }}

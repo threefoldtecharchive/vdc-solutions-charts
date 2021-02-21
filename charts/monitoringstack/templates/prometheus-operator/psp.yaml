@@ -5,6 +5,7 @@ metadata:
   name: {{ template "kube-prometheus-stack.fullname" . }}-operator
   labels:
     app: {{ template "kube-prometheus-stack.name" . }}-operator
+    backupType: {{ .Values.threefoldVdc.backup }}
 {{- if .Values.global.rbac.pspAnnotations }}
   annotations:
 {{ toYaml .Values.global.rbac.pspAnnotations | indent 4 }}
