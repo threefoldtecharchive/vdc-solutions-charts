@@ -8,6 +8,8 @@ This helm chart has taken some inspiration from https://github.com/jfelten/gitea
 But takes a completly different approach in providing database and cache with dependencies.
 Also this chart provides ldap and admin user configuration with values as well as it is deployed as statefulset to retain stored repositories.
 
+*NOTE:* Gitea image is built from [tf-gitea](https://github.com/threefoldtech/tf-gitea) repo.
+
 ## Dependencies
 
 Gitea can be run with external database and cache. This chart provides those dependencies, which can be
