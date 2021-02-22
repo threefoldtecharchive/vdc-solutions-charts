@@ -5,14 +5,14 @@ This helm chart (solution) is going to launch a Presearch node. The chart should
 #### Inputs
 
 * Node Name (This would be hostname which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
-* REGISTRATION_CODE (This is provided by the user and it is mandatory to launch the node)
+* registration_code (This is provided by the user and it is mandatory to launch the node)
 
 Here is an example,
 
 ```
 git clone https://github.com/threefoldtech/vdc-solutions-charts.git
 cd vdc-solutions-charts
-helm --install presearch-node charts/presearch --set global.ingress.host="mynodesomething.webgw1.grid.tf" --set REGISTRATION_CODE="code_given_by_user" 
+helm --install presearch-node charts/presearch --set global.ingress.host="mynodesomething.webgw1.grid.tf" --set registration_code="code_given_by_user" 
 
 ```
 ### Services that need to be exposed

@@ -1,0 +1,29 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "etcd.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+{{- $release_name := .Release.Name -}}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata: 
+  name: {{ $fullName }}
+  namespace: "etcd-{{ $release_name }}"
+  labels: {{- include "etcd.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup }}
+  annotations:
+  {{- if .Values.global.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
+  {{- end }}
+spec:
+  entryPoints:
+    - etcd
+  routes:
+    - match:  HostSNI(`{{ .Values.ingress.host }}`)
+      services:
+        - name: "{{ $fullName }}"
+          port: {{ $svcPort }}
+  tls:
+      certResolver: {{ .Values.global.ingress.certresolver }}
+      domains:
+      - main: {{ .Values.ingress.host }}
+      passthrough: false
+{{- end }}
