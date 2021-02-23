@@ -5,7 +5,7 @@ metadata:
   name: {{ template "grafana.fullname" . }}
   namespace: {{ template "grafana.namespace" . }}
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
     {{- include "grafana.labels" . | nindent 4 }}
 {{- with .Values.annotations }}
   annotations:

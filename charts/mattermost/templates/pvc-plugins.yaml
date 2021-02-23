@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     helm.sh/chart: {{ include "mattermost.chart" . }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
   annotations:
   {{- range $key, $value := .Values.persistence.plugins.annotations }}
     {{ $key }}: {{ $value | quote }}

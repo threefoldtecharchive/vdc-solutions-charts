@@ -5,7 +5,7 @@ metadata:
   labels:
     {{ include "kubeapps.extraAppLabels" . | nindent 4 }}
     app: {{ template "kubeapps.frontend-config.fullname" . }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 data:
   k8s-api-proxy.conf: |-
     # Disable buffering for log streaming

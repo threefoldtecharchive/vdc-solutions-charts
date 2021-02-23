@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: presearch-volume-{{ .Release.Name }}
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
     type: local
 spec:
   storageClassName: local-path

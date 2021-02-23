@@ -5,7 +5,7 @@ metadata:
   name: {{ template "etcd.fullname" . }}
   labels: 
     {{- include "etcd.labels" . | nindent 4 }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   {{- if .Values.pdb.minAvailable }}
   minAvailable: {{ .Values.pdb.minAvailable }}

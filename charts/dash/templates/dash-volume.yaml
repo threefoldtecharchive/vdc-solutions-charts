@@ -4,7 +4,7 @@ metadata:
   name: dash-volume
   labels:
     type: local
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   storageClassName: local-path
   capacity:

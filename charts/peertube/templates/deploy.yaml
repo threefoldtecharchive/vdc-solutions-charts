@@ -4,7 +4,7 @@ metadata:
   name: {{ template "peertube.fullName" . }}
   labels:
     {{- include "peertube.labels" . | nindent 4 }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   replicas: 1
   selector:

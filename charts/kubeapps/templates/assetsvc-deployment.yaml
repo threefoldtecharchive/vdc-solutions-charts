@@ -4,7 +4,7 @@ metadata:
   name: {{ template "kubeapps.assetsvc.fullname" . }}
   labels:
     {{ include "kubeapps.extraAppLabels" . | nindent 4 }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
     app: {{ template "kubeapps.assetsvc.fullname" . }}
 spec:
   replicas: {{ .Values.assetsvc.replicaCount }}
