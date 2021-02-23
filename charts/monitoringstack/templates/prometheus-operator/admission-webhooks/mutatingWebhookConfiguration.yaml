@@ -5,7 +5,7 @@ metadata:
   name:  {{ template "kube-prometheus-stack.fullname" . }}-admission
   labels:
     app: {{ template "kube-prometheus-stack.name" $ }}-admission
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 {{- include "kube-prometheus-stack.labels" $ | indent 4 }}
 webhooks:
   - name: prometheusrulemutate.monitoring.coreos.com

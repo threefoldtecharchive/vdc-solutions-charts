@@ -10,7 +10,7 @@ metadata:
     {{- range $key, $value := .Values.metrics.serviceMonitor.selector }}
     {{ $key }}: {{ $value | quote }}
     {{- end }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   selector:
     matchLabels: {{- include "etcd.matchLabels" . | nindent 6 }}

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "digibyte.fullname" . }}
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
     {{- include "digibyte.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}

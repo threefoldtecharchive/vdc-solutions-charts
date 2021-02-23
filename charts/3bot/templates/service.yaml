@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "3bot.fullname" . }}
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
     {{- include "3bot.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}

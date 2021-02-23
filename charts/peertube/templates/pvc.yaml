@@ -8,7 +8,7 @@ metadata:
     chart: {{ template "peertube.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   accessModes:
     - {{ .Values.pvc.accessMode | quote }}

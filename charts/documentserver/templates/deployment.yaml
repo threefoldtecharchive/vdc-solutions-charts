@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "documentserver.fullname" . }}
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
     {{- include "documentserver.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}

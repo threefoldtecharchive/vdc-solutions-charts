@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: "{{ include "zeroci.fullname" . }}-redis"
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote | quote }}
 spec:
   capacity:
     storage: 10Gi
@@ -21,7 +21,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: "{{ include "zeroci.fullname" . }}-redis"
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote | quote }}
 spec:
   accessModes:
     - ReadWriteOnce

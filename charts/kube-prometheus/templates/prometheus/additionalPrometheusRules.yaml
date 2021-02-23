@@ -10,7 +10,7 @@ items:
       namespace: {{ $.Release.Namespace }}
       labels: 
         {{ include "kube-prometheus.prometheus.labels" $ | nindent 8 }}
-        backupType: {{ .Values.threefoldVdc.backup }}
+        backupType: {{ .Values.threefoldVdc.backup | quote }}
     spec:
       groups:
 {{ toYaml .groups| indent 8 }}
