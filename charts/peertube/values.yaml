@@ -1,6 +1,6 @@
 image:
-  repository: chocobozzz/peertube
-  tag: production-stretch
+  repository: threefolddev/tf-peertube 
+  tag: tfconnect
   pullPolicy: IfNotPresent
 
 service:
@@ -49,7 +49,7 @@ ingress:
     enabled: true
     existingSecret: True
 
-adminEmail: omar.elawady.alternative@gmail.com
+adminEmail: adminemail@gmail.com
 
 webserver:
         hostname: peertubek8s.tfgw-testnet-01.gateway.tf
