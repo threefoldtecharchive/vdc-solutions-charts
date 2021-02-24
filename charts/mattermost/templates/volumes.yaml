@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: "{{ include "mattermost.fullname" . }}-data"
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
+    app.kubernetes.io/name: {{ include "mattermost.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ include "mattermost.chart" . }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.data.size | quote}}
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: ""
+  hostPath:
+    path: /persistent-data/mattermost
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ include "mattermost.fullname" . }}-data-claim"
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup }}
+    app.kubernetes.io/name: {{ include "mattermost.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ include "mattermost.chart" . }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: {{ .Values.persistence.data.size | quote}}
+  storageClassName: ""
+  volumeName: "{{ include "mattermost.fullname" . }}-data"

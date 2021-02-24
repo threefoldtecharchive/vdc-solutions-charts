@@ -2,8 +2,8 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  repository: mattermost/mattermost-team-edition
-  tag: 5.29.0
+  repository: threefoldtech/mattermost
+  tag: 5.31.1
   imagePullPolicy: IfNotPresent
 
 initContainerImage:
@@ -29,7 +29,7 @@ persistence:
     ##
     # storageClass:
     accessMode: ReadWriteOnce
-  # existingClaim: ""
+    # existingClaim: ""
   plugins:
     enabled: true
     size: 1Gi
@@ -48,12 +48,9 @@ service:
   # loadBalancerIP:
   loadBalancerSourceRanges: []
 
-global:
-  ingress:
-    certresolver: default
-
 ingress:
   enabled: true
+  certresolver: default
   annotations:
     kubernetes.io/ingress.class: traefik
     ingress.kubernetes.io/ssl-passthrough: "true"
@@ -135,7 +132,9 @@ mysql:
 extraPodAnnotations: {}
 
 ## Additional env vars
-extraEnvVars: []
+extraEnvVars:
+  - name: MM_CONFIG
+    value: "/mattermost/data/config.json"
   # This is an example of extra env vars when using with the deployment with GitLab Helm Charts
   # - name: POSTGRES_PASSWORD_GITLAB
   #   valueFrom:
@@ -156,7 +155,8 @@ extraEnvVars: []
   #   value: "postgres"
   # - name: MM_SQLSETTINGS_DATASOURCE
   #   value: postgres://$(POSTGRES_USER_GITLAB):$(POSTGRES_PASSWORD_GITLAB)@$(POSTGRES_HOST_GITLAB):$(POSTGRES_PORT_GITLAB)/$(POSTGRES_DB_NAME_MATTERMOST)?sslmode=disable&connect_timeout=10
-
+threefoldVdc:
+  backup: ''
 ## Additional init containers
 extraInitContainers: []
   # This is an example of extra Init Container when using with the deployment with GitLab Helm Charts
@@ -341,7 +341,7 @@ configJSON: {
     "FeedbackOrganization": "",
     "SMTPUsername": "",
     "SMTPPassword": "",
-    "EnableSMTPAuth": "",
+    "EnableSMTPAuth": false,
     "SMTPServer": "",
     "SMTPPort": "",
     "ConnectionSecurity": "",
@@ -429,7 +429,3 @@ configJSON: {
     "PluginStates": {}
   }
 }
-
-
-threefoldVdc:
-  backup: ''
