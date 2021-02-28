@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 14443/cryptpad
+  repository: threefolddev/tf-cryptpad
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -89,7 +89,7 @@ affinity: {}
 
 volume:
   size: 10 # GB
-  hostPath: /persistent-data/
+  hostPath: /cryptpad/
 
 threefoldVdc:
   backup: ''
