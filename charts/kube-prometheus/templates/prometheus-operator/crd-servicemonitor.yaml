@@ -10,7 +10,7 @@ metadata:
     "helm.sh/hook-delete-policy": {{ .Values.operator.customResourceDeletePolicy }}
     {{- end }}
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   group: monitoring.coreos.com
   names:

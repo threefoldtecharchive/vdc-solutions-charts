@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "kube-prometheus-stack.name" . }}-kube-proxy
     k8s-app: kube-proxy
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
   namespace: kube-system
 subsets:

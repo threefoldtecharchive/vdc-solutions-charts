@@ -10,7 +10,6 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     helm.sh/chart: {{ include "mattermost.chart" . }}
-    backupType: {{ .Values.threefoldVdc.backup }}
   name: {{ include "mattermost.name" . }}
 spec:
   port:

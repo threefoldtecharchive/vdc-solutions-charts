@@ -11,7 +11,7 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "zeroci.labels" . | nindent 4 }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
   annotations:
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}

@@ -4,7 +4,7 @@ metadata:
   name: {{ include "gitea.fullname" . }}-http
   labels:
     {{- include "gitea.labels" . | nindent 4 }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
   annotations:
     {{- toYaml .Values.service.http.annotations | nindent 4 }}
 spec:

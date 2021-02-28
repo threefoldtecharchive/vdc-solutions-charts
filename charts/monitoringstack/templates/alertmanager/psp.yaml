@@ -5,7 +5,7 @@ metadata:
   name: {{ template "kube-prometheus-stack.fullname" . }}-alertmanager
   labels:
     app: {{ template "kube-prometheus-stack.name" . }}-alertmanager
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 {{- if .Values.global.rbac.pspAnnotations }}
   annotations:
 {{ toYaml .Values.global.rbac.pspAnnotations | indent 4 }}

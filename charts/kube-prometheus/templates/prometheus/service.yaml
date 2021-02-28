@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels: 
     {{- include "kube-prometheus.prometheus.labels" . | nindent 4 }}
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
   {{- if .Values.prometheus.service.annotations }}
   annotations: {{- include "common.tplvalues.render" (dict "value" .Values.prometheus.service.annotations "context" $) | nindent 4 }}
   {{- end }}

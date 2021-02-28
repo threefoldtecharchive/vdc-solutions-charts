@@ -7,7 +7,7 @@ kind: List
 metadata:
   name: {{ include "kube-prometheus-stack.fullname" $ }}-prometheus-ingressperreplica
   labels:
-    backupType: {{ .Values.threefoldVdc.backup }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
   namespace: {{ template "kube-prometheus-stack.namespace" $ }}
 items:
 {{ range $i, $e := until $count }}

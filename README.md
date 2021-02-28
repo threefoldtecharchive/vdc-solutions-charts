@@ -61,7 +61,7 @@ spec:
               servicePort: 80
 ```
 
-If you want to expose a service on ports other than 443 and 80. The steps to follow varies depending on the protocol of the service you want to expose. In all cases you have to create a new entrypoint in traefik in the corresponding chatflow with the command `self.vdc.kubernetes.get_deployer().add_traefik_entrypoint("chartname-newname", "8080")`. To avoid conflicts, please qualify the entrypoint with the chart name. So use `peertube-newentrypoint` instead of `newentrypoint`.
+If you want to expose a service on ports other than 443 and 80. The steps to follow varies depending on the protocol of the service you want to expose. In all cases you have to create a new entrypoint in traefik in the corresponding chatflow with the command `self.vdc.get_deployer().kubernetes.add_traefik_entrypoint("chartname-newname", "8080")`. To avoid conflicts, please qualify the entrypoint with the chart name. So use `peertube-newentrypoint` instead of `newentrypoint`.
 
 ### HTTP service (on a port other than 80)
 Create an ingress resource with the annotation `traefik.ingress.kubernetes.io/router.entrypoints: chartname-newname`. Using the ingress resource gives the flexibilty to receive only the requests for a specific host compared to tcp ingress.

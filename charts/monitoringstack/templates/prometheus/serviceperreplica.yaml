@@ -14,7 +14,7 @@ items:
       name: {{ include "kube-prometheus-stack.fullname" $ }}-prometheus-{{ $i }}
       namespace: {{ template "kube-prometheus-stack.namespace" $ }}
       labels:
-        backupType: {{ .Values.threefoldVdc.backup }}
+        backupType: {{ .Values.threefoldVdc.backup | quote }}
         app: {{ include "kube-prometheus-stack.name" $ }}-prometheus
 {{ include "kube-prometheus-stack.labels" $ | indent 8 }}
       {{- if $serviceValues.annotations }}
