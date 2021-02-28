@@ -81,6 +81,8 @@ spec:
           value: {{ .Values.deps.smtp.tls.enabled | quote }}
         - name: PEERTUBE_ADMIN_EMAIL
           value: {{ required "adminEmail required" .Values.adminEmail }}
+        - name: PT_INITIAL_ROOT_PASSWORD
+          value: {{ required "adminPass required" .Values.adminPass }}
         - name: PEERTUBE_WEBSERVER_HOSTNAME
           value: {{ required "webserver.hostname required" .Values.webserver.hostname }}
         - name: PEERTUBE_WEBSERVER_PORT

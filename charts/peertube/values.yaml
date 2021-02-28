@@ -50,6 +50,7 @@ ingress:
     existingSecret: True
 
 adminEmail: adminemail@gmail.com
+adminPass: adminPassword
 
 webserver:
         hostname: peertubek8s.tfgw-testnet-01.gateway.tf
