@@ -49,14 +49,27 @@ spec:
           #     path: /
           #     port: http
           volumeMounts:
-            - name: data
-              mountPath: /persistent-data/
+            - name: cryptpad
+              mountPath: /cryptpad/blob
+              subPath: blob
+            - name: cryptpad
+              mountPath: /cryptpad/block
+              subPath: block
+            - name: cryptpad
+              mountPath: /cryptpad/customize
+              subPath: customize
+            - name: cryptpad
+              mountPath: /cryptpad/data
+              subPath: data
+            - name: cryptpad
+              mountPath: /cryptpad/datastore
+              subPath: datastore
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: data
+        - name: cryptpad
           persistentVolumeClaim:
-            claimName: "{{ include "cryptpad.fullname" . }}-data-claim"
+            claimName: "{{ include "cryptpad.fullname" . }}-cryptpad-claim"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

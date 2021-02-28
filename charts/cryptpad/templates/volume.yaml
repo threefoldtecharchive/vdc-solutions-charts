@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: "{{ include "cryptpad.fullname" . }}-data"
+  name: "{{ include "cryptpad.fullname" . }}-cryptpad"
   labels:
     backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "cryptpad.labels" . | nindent 4 }}
@@ -20,7 +20,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: "{{ include "cryptpad.fullname" . }}-data-claim"
+  name: "{{ include "cryptpad.fullname" . }}-cryptpad-claim"
   labels:
     backupType: {{ .Values.threefoldVdc.backup }}
     {{- include "cryptpad.labels" . | nindent 4 }}
@@ -32,4 +32,4 @@ spec:
     requests:
       storage: "{{ .Values.volume.size }}Gi"
   storageClassName: ""
-  volumeName: "{{ include "cryptpad.fullname" . }}-data"
+  volumeName: "{{ include "cryptpad.fullname" . }}-cryptpad"
