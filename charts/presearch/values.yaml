@@ -49,9 +49,14 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
+nodeSelector: 
+  node-role.kubernetes.io/master: "true"
 
-tolerations: []
+tolerations: 
+ - key: node-role.kubernetes.io/master
+   operator: Equal
+   value: "true"
+   effect: NoSchedule
 
 affinity: {}
 
