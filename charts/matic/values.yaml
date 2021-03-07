@@ -1,0 +1,51 @@
+# Default values for matic.
+replicaCount: 1
+
+image:
+  repository: arrajput/matic
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+global:
+ ingress:
+  enabled: true
+# The host should be overrided with the domain name in the chatflow  
+  host: "fullnode.matic"
+  certresolver: default
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/ssl-passthrough: "true"
+  paths: 
+    - "/"
+  tls: []
+ 
+# The node access code - This should be set from the chatflow
+access_code: ""  
+
+# These values should be overrided from the chatflow
+env:
+    "eth_rpc_url": ""
+
+resources: 
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+threefoldVdc:
+  backup: ''
