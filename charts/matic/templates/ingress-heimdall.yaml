@@ -1,0 +1,16 @@
+{{- if .Values.global.ingress.enabled -}}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: matic-ingress-heimdall-{{ .Release.Name }}
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+spec:
+  entryPoints:
+    - matic-heimdall
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: heimdall-matic-{{ .Release.Name }}
+          port: 26656
+{{- end }}
