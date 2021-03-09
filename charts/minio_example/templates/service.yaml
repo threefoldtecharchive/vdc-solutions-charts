@@ -1,3 +1,4 @@
+{{- $svcName := printf "%s-%s" .Values.service.name .Release.Name -}}
 {{ $scheme := "http" }}
 {{- if .Values.tls.enabled }}
 {{ $scheme = "https" }}
@@ -5,7 +6,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "minio.fullname" . }}
+  name: {{ $svcName }}
   labels:
     app: {{ template "minio.name" . }}
     chart: {{ template "minio.chart" . }}
