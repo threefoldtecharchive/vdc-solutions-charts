@@ -171,6 +171,18 @@ Formats volume for Minio tls keys and trusted certs
 {{- end -}}
 
 {{/*
+Common labels
+*/}}
+{{- define "minio.labels" -}}
+helm.sh/chart: {{ include "minio.chart" . }}
+{{ include "minio.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
 Selector labels
 */}}
 {{- define "minio.selectorLabels" -}}
