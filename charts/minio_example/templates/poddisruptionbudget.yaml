@@ -5,9 +5,11 @@ metadata:
   name: minio
   labels:
     app: {{ template "minio.name" . }}
+    {{- include "minio.labels" . | nindent 4 }}
 spec:
   maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
   selector:
     matchLabels:
       app: {{ template "minio.name" . }}
+      {{- include "minio.selectorLabels" . | nindent 6 }}
 {{- end }}

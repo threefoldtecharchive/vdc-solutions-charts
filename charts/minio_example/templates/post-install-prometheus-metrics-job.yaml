@@ -13,6 +13,7 @@ metadata:
     chart: {{ template "minio.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    {{- include "minio.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "-5"
@@ -24,6 +25,7 @@ spec:
       labels:
         app: {{ template "minio.name" . }}-update-prometheus-secret
         release: {{ .Release.Name }}
+        {{- include "minio.labels" . | nindent 8 }}
 {{- if .Values.podLabels }}
 {{ toYaml .Values.podLabels | indent 8 }}
 {{- end }}
