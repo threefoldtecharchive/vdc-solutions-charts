@@ -12,6 +12,7 @@ metadata:
     chart: {{ template "minio.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    {{- include "minio.labels" . | nindent 4 }}
 {{- if .Values.service.annotations }}
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
@@ -46,3 +47,4 @@ spec:
   selector:
     app: {{ template "minio.name" . }}
     release: {{ .Release.Name }}
+    {{- include "minio.selectorLabels" . | nindent 4 }}

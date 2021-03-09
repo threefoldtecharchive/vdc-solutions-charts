@@ -8,6 +8,7 @@ metadata:
     chart: {{ template "minio.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    {{- include "minio.labels" . | nindent 4 }}
 spec:
   podSelector:
     matchLabels:
@@ -21,5 +22,6 @@ spec:
         - podSelector:
             matchLabels:
               {{ template "minio.name" . }}-client: "true"
+              {{- include "minio.selectorLabels" . | nindent 14 }}
       {{- end }}
 {{- end }}
