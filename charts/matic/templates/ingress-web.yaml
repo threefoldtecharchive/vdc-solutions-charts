@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: matic-node-ingress-web-{{ .Release.Name }}
+  name: matic-ingress-web-{{ .Release.Name }}
   labels:
     backupType: {{ .Values.threefoldVdc.backup | quote }}
     {{- include "matic.labels" . | nindent 4 }}
@@ -19,5 +19,5 @@ spec:
         paths:
         - path: /
           backend:
-            serviceName: web-matic-node-{{ .Release.Name }}
+            serviceName: web-matic-{{ .Release.Name }}
             servicePort: 80
