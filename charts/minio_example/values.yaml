@@ -143,9 +143,8 @@ volume:
 service:
   name: minio
   type: ClusterIP
-  clusterIP: ~
   port: 9000
-  nodePort: 32000
+  targetPort: 9000
 
 imagePullSecrets: []
 # - name: "image-pull-secret"
