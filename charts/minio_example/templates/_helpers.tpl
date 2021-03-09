@@ -169,3 +169,11 @@ Formats volume for Minio tls keys and trusted certs
     {{- end }}
 {{- end }}
 {{- end -}}
+
+{{/*
+Selector labels
+*/}}
+{{- define "minio.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "minio.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
