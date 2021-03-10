@@ -17,7 +17,7 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: ""
   hostPath:
-    path: /persistent-data/mattermost
+    path: /persistent-data/mattermost/{{ .Release.Name }}
 
 ---
 apiVersion: v1
