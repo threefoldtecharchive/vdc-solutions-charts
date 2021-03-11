@@ -1,4 +1,4 @@
-name: Taiga6
+name: taiga
 description: A Taiga Helm Chart generated for docker-compose from Skippbox Kompose
 version: 0.0.1
 appVersion: 6.0.6
