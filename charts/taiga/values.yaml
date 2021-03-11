@@ -7,11 +7,11 @@ replicaCount: 1
 # TFLogin customized images
 images:
   backend:
-    repository: 14443/taiga-back-tflogin
+    repository: threefolddev/tf-taiga-back
     tag: latest
     pullPolicy: Always
   frontend:
-    repository: 14443/taiga-front-tflogin
+    repository: threefolddev/tf-taiga-front
     tag: latest
     pullPolicy: Always
 
