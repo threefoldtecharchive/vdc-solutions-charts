@@ -1,13 +1,17 @@
+{{- $backup := .Values.threefoldVdc.backup -}}
+{{- range $key, $value := .Values.services }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: taiga-service
+  name: {{ $value.name }}
   labels:
-    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    backupType: {{ $backup | quote }}
+    io.kompose.service: {{ $value.name }}
 spec:
-  selector:
-    {{- include "taiga.selectorLabels" . | nindent 4 }}
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+    - port: {{ $value.port }}
+      targetPort: {{ $value.targetPort }}
+  selector:
+    io.kompose.service: {{ $value.name }}
+---
+{{- end }}
