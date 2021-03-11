@@ -1,25 +1,134 @@
+# Default values for test.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+# TFLogin customized images
+images:
+  backend:
+    repository: 14443/taiga-back-tflogin
+    tag: latest
+    pullPolicy: Always
+  frontend:
+    repository: 14443/taiga-front-tflogin
+    tag: latest
+    pullPolicy: Always
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
 postgresql:
-  fullnameOverride: omar
   postgresqlDatabase: taiga
-  postgresqlPassword: changeme
   postgresqlUsername: taiga
-  persistence:
-    enabled: false
+  postgresqlPassword: taiga
 
-domain: omartaiga.tfgw-testnet-01.gateway.tf
-protocol: https
+rabbitmq:
+  rabbitmqHost: taiga
+  rabbitmqUsername: taiga
+  rabbitmqPassword: taiga
+  rabbitmqErlangCookie: secret-erlang-cookie
 
-resources:
-  limits:
-    cpu: 1000m
-    memory: 1024Mi
-  requests:
-    cpu: 900m
-    memory: 1024Mi
+telemetry:
+  enabled: "True"
+
+backendSecretKey: taiga-back-secret-key
+
+services:
+  taiga-db:
+    name: taiga-db
+    port: 5432
+    targetPort: 5432
+  taiga-back:
+    name: taiga-back
+    port: 8000
+    targetPort: 8000
+  taiga-front:
+    name: taiga-front
+    port: 80
+    targetPort: 80
+  taiga-events:
+    name: taiga-events
+    port: 8888
+    targetPort: 8888 
+  taiga-events-rabbitmq:
+    name: taiga-events-rabbitmq
+    port: 5672
+    targetPort: 5672
+  taiga-async-rabbitmq:
+    name: taiga-async-rabbitmq
+    port: 5672
+    targetPort: 5672
+  taiga-protected:
+    name: taiga-protected
+    port: 8003
+    targetPort: 8003
+  taiga-gateway:
+    name: taiga-gateway
+    port: 8000
+    targetPort: 80 
 
 global:
   ingress:
     certresolver: default
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/ssl-passthrough: "true"
+  host: "domain" # replaced when installing chart by --set ingress.host=<domain>
+  paths:
+    - "/"
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    cpu: 3000
+    memory: 3072
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
 
 threefoldVdc:
   backup: ''

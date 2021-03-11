@@ -10,11 +10,11 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
   {{- end }}
 spec:
-   rules:
-   - host: {{ .Values.ingress.host }}
-     http:
-       paths:
-       - path: /
-         backend:
-           serviceName: {{ index .Values "services" "taiga-gateway" "name" }}
-           servicePort: {{ index .Values "services" "taiga-gateway" "port" }}
+  rules:
+    - host: {{ .Values.domain }}
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: taiga-service
+            servicePort: 80

@@ -1,0 +1,424 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-db
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    io.kompose.service: {{ index .Values "services" "taiga-db" "name" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      io.kompose.service: {{ index .Values "services" "taiga-db" "name" }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/taiga: "true"
+        io.kompose.service: {{ index .Values "services" "taiga-db" "name" }}
+    spec:
+      containers:
+        - name: taiga-db
+          image: postgres:12.3
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.postgresql.postgresqlDatabase }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgresql.postgresqlPassword }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgresql.postgresqlUsername }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: taiga-db-data
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+      volumes:
+        - hostPath:
+            path: {{ printf "/data/%s/postgresql" .Release.Name }}
+            type: DirectoryOrCreate
+          name: taiga-db-data
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-back
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    io.kompose.service: {{ index .Values "services" "taiga-back" "name" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      io.kompose.service: {{ index .Values "services" "taiga-back" "name" }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/taiga: "true"
+        io.kompose.service: {{ index .Values "services" "taiga-back" "name" }}
+    spec:
+      containers:
+        - name: taiga-back
+          image: "{{ .Values.images.backend.repository }}:{{ .Values.images.backend.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.images.backend.pullPolicy }}
+          env:
+            - name: ENABLE_TELEMETRY
+              value: "{{ .Values.telemetry.enabled }}"
+            - name: POSTGRES_DB
+              value: {{ .Values.postgresql.postgresqlDatabase }}
+            - name: POSTGRES_HOST
+              value: taiga-db
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgresql.postgresqlPassword }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgresql.postgresqlUsername }}
+            - name: RABBITMQ_PASS
+              value: {{ .Values.rabbitmq.rabbitmqPassword }}
+            - name: RABBITMQ_USER
+              value: {{ .Values.rabbitmq.rabbitmqUsername }}
+            - name: TAIGA_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: taiga-back-secret-key
+                  key: secret
+            - name: TAIGA_SITES_DOMAIN
+              value: {{ .Values.ingress.host }}
+            - name: TAIGA_SITES_SCHEME
+              value: https
+          volumeMounts:
+            - mountPath: /taiga-back/static
+              name: taiga-static-data
+            - mountPath: /taiga-back/media
+              name: taiga-media-data
+      volumes:
+        - hostPath:
+            path: {{ printf "/data/%s/static" .Release.Name }}
+          name: taiga-static-data
+        - hostPath:
+            path: {{ printf "/data/%s/media" .Release.Name }}
+          name: taiga-media-data
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-async
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    io.kompose.service: taiga-async
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      io.kompose.service: taiga-async
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/taiga: "true"
+        io.kompose.service: taiga-async
+    spec:
+      containers:
+        - name: taiga-async
+          image: "{{ .Values.images.backend.repository }}:{{ .Values.images.backend.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.images.backend.pullPolicy }}
+          command:
+            - /taiga-back/docker/async_entrypoint.sh
+          env:
+            - name: ENABLE_TELEMETRY
+              value: "{{ .Values.telemetry.enabled }}"
+            - name: POSTGRES_DB
+              value: {{ .Values.postgresql.postgresqlDatabase }}
+            - name: POSTGRES_HOST
+              value: taiga-db
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgresql.postgresqlPassword }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgresql.postgresqlUsername }}
+            - name: RABBITMQ_PASS
+              value: {{ .Values.rabbitmq.rabbitmqPassword }}
+            - name: RABBITMQ_USER
+              value: {{ .Values.rabbitmq.rabbitmqUsername }}
+            - name: TAIGA_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: taiga-back-secret-key
+                  key: secret
+            - name: TAIGA_SITES_DOMAIN
+              value: {{ .Values.ingress.host }}
+            - name: TAIGA_SITES_SCHEME
+              value: https
+          volumeMounts:
+            - mountPath: /taiga-back/static
+              name: taiga-static-data
+            - mountPath: /taiga-back/media
+              name: taiga-media-data
+      volumes:
+        - hostPath:
+            path: {{ printf "/data/%s/static" .Release.Name }}
+            type: DirectoryOrCreate
+          name: taiga-static-data
+        - hostPath:
+            path: {{ printf "/data/%s/media" .Release.Name }}
+            type: DirectoryOrCreate
+          name: taiga-media-data
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-async-rabbitmq
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    io.kompose.service: {{ index .Values "services" "taiga-async-rabbitmq" "name" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      io.kompose.service: {{ index .Values "services" "taiga-async-rabbitmq" "name" }}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/taiga: "true"
+        io.kompose.service: {{ index .Values "services" "taiga-async-rabbitmq" "name" }}
+    spec:
+      containers:
+        - name: taiga-async-rabbitmq
+          image: rabbitmq:3-management-alpine
+          env:
+            - name: RABBITMQ_DEFAULT_PASS
+              value: {{ .Values.rabbitmq.rabbitmqPassword }}
+            - name: RABBITMQ_DEFAULT_USER
+              value: {{ .Values.rabbitmq.rabbitmqUsername }}
+            - name: RABBITMQ_DEFAULT_VHOST
+              value: {{ .Values.rabbitmq.rabbitmqHost }}
+            - name: RABBITMQ_ERLANG_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-erlang-cookie
+                  key: secret
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-front
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    io.kompose.service: {{ index .Values "services" "taiga-front" "name" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      io.kompose.service: {{ index .Values "services" "taiga-front" "name" }}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/taiga: "true"
+        io.kompose.service: {{ index .Values "services" "taiga-front" "name" }}
+    spec:
+      containers:
+        - name: taiga-front
+          image: "{{ .Values.images.frontend.repository }}:{{ .Values.images.frontend.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.images.frontend.pullPolicy }}
+          env:
+            - name: TAIGA_URL
+              value: {{ printf "https://%s" .Values.ingress.host }}
+            - name: TAIGA_WEBSOCKETS_URL
+              value: {{ printf "wss://%s" .Values.ingress.host }}
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-events
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    io.kompose.service: {{ index .Values "services" "taiga-events" "name" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      io.kompose.service: {{ index .Values "services" "taiga-events" "name" }}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/taiga: "true"
+        io.kompose.service: {{ index .Values "services" "taiga-events" "name" }}
+    spec:
+      containers:
+        - name: taiga-events
+          image: taigaio/taiga-events:latest
+          env:
+            - name: RABBITMQ_PASS
+              value: {{ .Values.rabbitmq.rabbitmqPassword }}
+            - name: RABBITMQ_USER
+              value: {{ .Values.rabbitmq.rabbitmqUsername }}
+            - name: TAIGA_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: taiga-back-secret-key
+                  key: secret
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-events-rabbitmq
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    io.kompose.service: {{ index .Values "services" "taiga-events-rabbitmq" "name" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      io.kompose.service: {{ index .Values "services" "taiga-events-rabbitmq" "name" }}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/taiga: "true"
+        io.kompose.service: {{ index .Values "services" "taiga-events-rabbitmq" "name" }}
+    spec:
+      containers:
+        - name: taiga-events-rabbitmq
+          image: rabbitmq:3-management-alpine
+          env:
+            - name: RABBITMQ_DEFAULT_PASS
+              value: {{ .Values.rabbitmq.rabbitmqPassword }}
+            - name: RABBITMQ_DEFAULT_USER
+              value: {{ .Values.rabbitmq.rabbitmqUsername }}
+            - name: RABBITMQ_DEFAULT_VHOST
+              value: {{ .Values.rabbitmq.rabbitmqHost }}
+            - name: RABBITMQ_ERLANG_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-erlang-cookie
+                  key: secret
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-protected
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    io.kompose.service: {{ index .Values "services" "taiga-protected" "name" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      io.kompose.service: {{ index .Values "services" "taiga-protected" "name" }}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/taiga: "true"
+        io.kompose.service: {{ index .Values "services" "taiga-protected" "name" }}
+    spec:
+      containers:
+        - name: taiga-protected
+          image: taigaio/taiga-protected:latest
+          env:
+            - name: MAX_AGE
+              value: "360"
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: taiga-back-secret-key
+                  key: secret
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+      restartPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taiga-gateway
+  labels:
+    {{- include "taiga.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+    io.kompose.service: {{ index .Values "services" "taiga-gateway" "name" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      io.kompose.service: {{ index .Values "services" "taiga-gateway" "name" }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/taiga: "true"
+        io.kompose.service: {{ index .Values "services" "taiga-gateway" "name" }}
+    spec:
+      containers:
+        - name: taiga-gateway
+          image: nginx:1.19-alpine
+          ports:
+            - containerPort: {{ index .Values "services" "taiga-gateway" "targetPort" }}
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d/
+              name: taiga-nginx-conf
+            - mountPath: /taiga/static
+              name: taiga-static-data
+            - mountPath: /taiga/media
+              name: taiga-media-data
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+      volumes:
+        - name: taiga-nginx-conf
+          configMap:
+            name: taiga-nginx-conf
+            items:
+              - key: default.conf
+                path: default.conf
+        - hostPath:
+            path: {{ printf "/data/%s/static" .Release.Name }}
+            type: DirectoryOrCreate
+          name: taiga-static-data
+        - hostPath:
+            path: {{ printf "/data/%s/media" .Release.Name }}
+            type: DirectoryOrCreate
+          name: taiga-media-data
+      restartPolicy: Always

@@ -1,0 +1,9 @@
+apiVersion: "v2"
+name: "taiga"
+version: 0.1.0
+description: "Taiga helm chart"
+appVersion: 1.0.0
+dependencies:
+- name: postgresql
+  version: 10.0.0
+  repository: https://charts.bitnami.com/bitnami

@@ -1,0 +1,25 @@
+postgresql:
+  fullnameOverride: omar
+  postgresqlDatabase: taiga
+  postgresqlPassword: changeme
+  postgresqlUsername: taiga
+  persistence:
+    enabled: false
+
+domain: omartaiga.tfgw-testnet-01.gateway.tf
+protocol: https
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+  requests:
+    cpu: 900m
+    memory: 1024Mi
+
+global:
+  ingress:
+    certresolver: default
+
+threefoldVdc:
+  backup: ''
