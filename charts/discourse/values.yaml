@@ -8,6 +8,10 @@
 #     - myRegistryKeySecretName
 #   storageClass: myStorageClass
 
+## Force target Kubernetes version (using Helm capabilites if not set)
+##
+kubeVersion:
+
 ## Number of Discourse & Sidekiq replicas
 ## (Note that you will need ReadWriteMany PVCs for this to work properly)
 ##
@@ -18,13 +22,13 @@ replicaCount: 1
 ##
 image:
   registry: docker.io
-  repository: bitnami/discourse
-  tag: 2.6.0-debian-10-r0
+  repository: threefoldtech/discourse
+  tag: 2.6.3
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   ## Optionally specify an array of imagePullSecrets.
   ## Secrets must be manually created in the namespace.
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
@@ -44,6 +48,11 @@ imagePullSecrets: []
 ## String to fully override discourse.fullname template
 ##
 # fullnameOverride:
+
+## Deployment pod host aliases
+## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+##
+hostAliases: []
 
 discourse:
   ## Discourse host to create application URLs. The port will be automatilly included.
@@ -76,7 +85,7 @@ discourse:
   ##
   # command: []
 
-  ## Custom args for the custom commad:
+  ## Custom args for the custom command:
   # args: []
 
   containerSecurityContext: {}
@@ -97,8 +106,8 @@ discourse:
   ##  resources, such as Minikube. If you do want to specify resources, uncomment the following
   ##  lines, adjust them as necessary, and remove the curly braces after 'resources:'.
       limits:
-        cpu: 1000m
-        memory: 1024Mi
+        cpu: 3000m
+        memory: 3000Mi
       requests:
         cpu: 1000m
         memory: 1024Mi
@@ -136,7 +145,9 @@ discourse:
   ##   - name: DISCOURSE_ELASTICSEARCH_URL
   ##     value: test
   ##
-  extraEnvVars: []
+  extraEnvVars:
+    - name: THREEBOT_KEY
+      value: ""    
 
   ## Array to add extra configmaps:
   ##
@@ -175,7 +186,7 @@ sidekiq:
   ##
   command: ['/app-entrypoint.sh']
 
-  ## Custom args for the custom commad:
+  ## Custom args for the custom command:
   ##
   args: ['nami', 'start', '--foreground', 'discourse-sidekiq']
 
@@ -187,12 +198,12 @@ sidekiq:
   ##  choice for the user. This also increases chances charts run on environments with little
   ##  resources, such as Minikube. If you do want to specify resources, uncomment the following
   ##  lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    #  limits:
-    #    cpu: 100m
-    #    memory: 128Mi
-    #  requests:
-    #    cpu: 100m
-    #    memory: 128Mi
+  #   limits:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
 
   ## Sidekiq extra options for liveness and readiness probes
   ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
@@ -314,13 +325,13 @@ persistence:
   ## If you want to reuse an existing claim, you can pass the name of the PVC using
   ## the existingClaim variable
   # existingClaim: your-claim
-  ## To use the portal and to ensure you can scale Discourse you need to provide a
-  ## ReadWriteMany PVC, if you don't have a provisioner for this type of storage
-  ## we recommend that you install the NFS provisioner and map it to a RWO volume
-  ## helm install nfs-server stable/nfs-server-provisioner --set persistence.enabled=true,persistence.size=10Gi
-  ##
   accessMode: ReadWriteOnce
   size: 10Gi
+  ## selector can be used to match an existing PersistentVolume
+  ## selector:
+  ##   matchLabels:
+  ##     app: my-app
+  selector: {}
 
 ## Kubernetes configuration
 ## For minikube, set this to NodePort, elsewhere use LoadBalancer or ClusterIP
@@ -368,6 +379,18 @@ ingress:
   ## When the ingress is enabled, a host pointing to this will be created
   ##
   hostname: discourse.local
+  ## Override API Version (automatically detected if not set)
+  ##
+  apiVersion:
+
+  ## Ingress Path
+  ##
+  path: /
+
+  ## Ingress Path type
+  ##
+  pathType: ImplementationSpecific
+
   ## Ingress annotations done as key:value pairs
   ## For a full list of possible ingress annotations, please see
   ## ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/annotations.md
@@ -379,7 +402,7 @@ ingress:
     ingress.kubernetes.io/ssl-passthrough: "true"
   ## Enable TLS configuration for the hostname defined at ingress.hostname parameter
   ## TLS certificates will be retrieved from a TLS secret with name: {{- printf "%s-tls" .Values.ingress.hostname }}
-  ## You can use Ingressthe ingress.secrets parameter to create this TLS secret or relay on cert-manager to create it
+  ## You can use the ingress.secrets parameter to create this TLS secret or relay on cert-manager to create it
   ##
   tls: false
   ## The list of additional hostnames to be covered with this ingress record.
@@ -461,6 +484,7 @@ podAntiAffinityPreset: soft
 nodeAffinityPreset:
   ## Node affinity type
   ## Allowed values: soft, hard
+  ##
   type: ""
   ## Node label key to match
   ## E.g.
@@ -523,11 +547,10 @@ postgresql:
   ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#creating-a-database-on-first-run
   ##
   postgresqlDatabase: bitnami_application
-
   ## PostgreSQL data Persistent Volume Storage Class
   ##
   persistence:
-    enabled: false
+    enabled: true
 
 ##
 ## External database configuration
@@ -561,7 +584,7 @@ externalDatabase:
   ##
   database: bitnami_application
 
-## Redis chart configuration
+## Redis(TM) chart configuration
 ##
 ## https://github.com/bitnami/charts/blob/master/bitnami/redis/values.yaml
 ##
@@ -571,8 +594,8 @@ redis:
   enabled: true
   ## Use password authentication
   ##
-  usePassword: true
-  ## Redis password (both master and slave)
+  usePassword: false
+  ## Redis(TM) password (both master and slave)
   ## Defaults to a random 10-character alphanumeric string if not set and usePassword is true.
   ## It should always be set using the password value or in the existingSecret to avoid issues
   ## with Discourse.
@@ -580,42 +603,47 @@ redis:
   # password:
   ##
   ## Name of existing secret object containing the password
+  ##
   existingSecret:
   ##
-  ## Password key to be retrieved from Redis secret
+  ## Password key to be retrieved from Redis(TM) secret
+  ##
   existingSecretPasswordKey: 'redis-password'
   ##
   ## Cluster settings
   ##
   cluster:
     enabled: false
+
   ##
-  ## Redis Master parameters
+  ## Redis(TM) Master parameters
   ##
   master:
     persistence:
       enabled: true
 
 ##
-## External Redis
+## External Redis(TM)
 ##
 externalRedis:
-  ## Redis host
+  ## Redis(TM) host
   ##
   host: ''
-  ## Redis port
+  ## Redis(TM) port
   ##
   port: 6379
-  ## Redis password for authentication
+  ## Redis(TM) password for authentication
   ## Ignored if existingSecret is set
   ##
   password: ''
   ##
   ## Name of existing secret object containing the password
+  ##
   existingSecret:
   ##
-  ## Password key to be retrieved from Redis secret
+  ## Password key to be retrieved from Redis(TM) secret
+  ##
   existingSecretPasswordKey: 'redis-password'
 
-threefoldVdc:
-  backup: ''
+threefoldVdc:	
+  backup: ''	

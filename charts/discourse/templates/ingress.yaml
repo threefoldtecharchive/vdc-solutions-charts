@@ -1,10 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $svcPort := .Values.service.port -}}
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
+apiVersion: {{ template "common.capabilities.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
   name: {{ template "common.names.fullname" . }}
@@ -46,18 +41,20 @@ spec:
     - host: {{ .Values.ingress.hostname }}
       http:
         paths:
-          - path: /
-            backend:
-              serviceName: {{ template "common.names.fullname" . }}
-              servicePort: {{ $svcPort }}
+          - path: {{ .Values.ingress.path }}
+            {{- if eq "true" (include "common.ingress.supportsPathType" .) }}
+            pathType: {{ .Values.ingress.pathType }}
+            {{- end }}
+            backend: {{- include "common.ingress.backend" (dict "serviceName" (include "common.names.fullname" .) "servicePort" "http" "context" $)  | nindent 14 }}
     {{- end }}
     {{- range .Values.ingress.extraHosts }}
     - host: {{ .name }}
       http:
         paths:
           - path: {{ default "/" .path }}
-            backend:
-              serviceName: {{ template "common.names.fullname" $ }}
-              servicePort: {{ $svcPort }}
+            {{- if eq "true" (include "common.ingress.supportsPathType" $) }}
+            pathType: {{ default "ImplementationSpecific" .pathType }}
+            {{- end }}
+            backend: {{- include "common.ingress.backend" (dict "serviceName" (include "common.names.fullname" $) "servicePort" "http" "context" $) | nindent 14 }}
     {{- end }}
 {{- end }}
