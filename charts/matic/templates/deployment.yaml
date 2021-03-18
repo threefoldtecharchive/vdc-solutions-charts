@@ -52,13 +52,13 @@ spec:
             - name: matic-storage-{{ .Release.Name }}
               mountPath: /matic-data
           ports:
-            - name: web-{{ .Release.Name }}
+            - name: web{{ .Release.Name }}
               containerPort: 80
               protocol: TCP
-            - name: bor-{{ .Release.Name }}
+            - name: bor{{ .Release.Name }}
               containerPort: 30303
               protocol: TCP
-            - name: heimdall-{{ .Release.Name }}
+            - name: heim{{ .Release.Name }}
               containerPort: 26656
               protocol: TCP
           resources:
