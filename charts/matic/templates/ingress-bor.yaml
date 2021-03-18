@@ -2,7 +2,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
-  name: matic-ingress-bor-{{ .Release.Name }}
+  name: ingress-bor-{{ .Release.Name }}
   labels:
     backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
@@ -11,6 +11,6 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: bor-matic-{{ .Release.Name }}
+        - name: bor-{{ .Release.Name }}
           port: 30303
 {{- end }}
