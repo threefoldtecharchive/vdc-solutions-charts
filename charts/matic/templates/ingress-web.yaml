@@ -19,5 +19,5 @@ spec:
         paths:
         - path: /
           backend:
-            serviceName: web-{{ .Release.Name }}
+            serviceName: web{{ .Release.Name }}
             servicePort: 80
