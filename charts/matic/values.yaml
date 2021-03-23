@@ -39,6 +39,7 @@ env:
     "eth_walletaddr": ""
     "sentry_nodeid": ""
     "sentry_enodeid": ""
+    "node_type": ""
 
 resources: 
     limits:
