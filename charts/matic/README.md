@@ -27,6 +27,7 @@ Specify each parameter using the --set key=value[,key=value] argument to helm in
 * access_code (web access token for the node)
 * env.eth_rpc_url (ethereum rpc url)
 * eth_privkey (ethereum wallet's *private* key)
+* env.eth_walletaddr (ethereum wallet address)
 * eth_key_passphrase (passphrase for your ethereum wallet's *private* key)
 * env.sentry_nodeid (sentry nodeid for heimdall)
 * env.sentry_enodeid (sentry nodeid for bor)
@@ -43,6 +44,7 @@ helm install matic-node \
 --set env.eth_rpc_url="https://my_eth_api" \
 --set eth_privkey=myethprivkey \
 --set eth_key_passphrase=mykeypass \
+--set env.eth_walletaddr=0xcvas67ga1WEGas
 --set env.sentry_nodeid=6yytaZcbghaspitre \
 --set env.sentry_enodeid=oPnbVzxasq3412 \
 --set threefoldVdc.backup=vdc . 
@@ -52,8 +54,8 @@ helm install matic-node \
 ### Services that need to be exposed
 
 * WEB - Default traefik config should work with web ports (80/443) TCP
-* BOR - 30303 TCP - from the chatflow
-* HEIMDALL - 26656 TCP - from the chatflow
+* BOR - 30303 TCP 
+* HEIMDALL - 26656 TCP 
 
 
 ### Expected Results
