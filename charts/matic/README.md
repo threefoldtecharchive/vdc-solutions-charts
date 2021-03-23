@@ -1,19 +1,49 @@
-## Matic Full / Sentry Node
+## Polygon (Matic) Nodes
 
-This helm chart(solution) is going to launch a Matic full node or a Sentry on Mainnet. The chart should have 3 inputs,
+This helm chart(solution) is capable of launching 3 types of nodes,
 
-#### Inputs
+* Sentry Node
+* Full Node
+* Validator
+
+### Inputs
+
+#### Input for sentry node
+
+* Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
+* access_code (web access token for the node)
+
+#### Input for full node
 
 * Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
 * access_code (web access token for the node)
 * eth_rpc_url (optional input to run as a full node)
 
-Here is an example,
+#### Input for validator node
+
+* Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
+* access_code (web access token for the node)
+* eth_rpc_url (optional input to run as a full node)
+* eth_privkey (ethereum wallet's *private* key)
+* eth_key_passphrase (passphrase for your ethereum wallet's *private* key)
+* sentry_nodeid (sentry nodeid for heimdall)
+* sentry_enodeid (sentry nodeid for bor)
+
+Here is an example for a validator,
 
 ```
 git clone https://github.com/threefoldtech/vdc-solutions-charts.git
 cd vdc-solutions-charts
-helm --install matic-node charts/matic --set global.ingress.host="mynodesomething.webgw1.grid.tf" --set access_code="mywebpasscode" --set env.eth_rpc_url="https://my_eth_api" 
+helm --install matic-node charts/matic \
+--set global.ingress.host="mynodesomething.webgw1.grid.tf" \
+--set access_code="mywebpasscode" \
+--set env.eth_rpc_url="https://my_eth_api" \
+--set eth_privkey=myethprivkey \
+--set eth_key_passphrase="mykeypass \
+--set sentry_nodeid=6yytaZcbghaspitre \
+--set sentry_enodeid=oPnbVzxasq3412 \
+--set threefoldVdc.backup=vdc \
+
 ```
 
 ### Services that need to be exposed
@@ -22,11 +52,6 @@ helm --install matic-node charts/matic --set global.ingress.host="mynodesomethin
 * BOR - 30303 TCP - from the chatflow
 * HEIMDALL - 26656 TCP - from the chatflow
 
-### Chatflow steps
-
-* Get the node name (At the end of the chatflow, this would be a publicly reachable link where the user would be able to view the status of his node - Status Page)
-* Enter your access code 
-* Enter your eth_rpc_url for full node. If you don't, this would serve as the sentry node that you can use for the Validator
 
 ### Expected Results
 
