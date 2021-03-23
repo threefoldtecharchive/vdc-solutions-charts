@@ -17,24 +17,25 @@ This helm chart(solution) is capable of launching 3 types of nodes,
 
 * Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
 * access_code (web access token for the node)
-* eth_rpc_url (optional input to run as a full node)
+* env.eth_rpc_url (optional input to run as a full node)
 
 #### Input for validator node
 
 * Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
 * access_code (web access token for the node)
-* eth_rpc_url (optional input to run as a full node)
+* env.eth_rpc_url (ethereum rpc url)
 * eth_privkey (ethereum wallet's *private* key)
 * eth_key_passphrase (passphrase for your ethereum wallet's *private* key)
-* sentry_nodeid (sentry nodeid for heimdall)
-* sentry_enodeid (sentry nodeid for bor)
+* env.sentry_nodeid (sentry nodeid for heimdall)
+* env.sentry_enodeid (sentry nodeid for bor)
 
 Here is an example for a validator,
 
 ```
 git clone https://github.com/threefoldtech/vdc-solutions-charts.git
-cd vdc-solutions-charts
-helm --install matic-node charts/matic \
+cd vdc-solutions-charts/charts/matic
+
+helm --install matic-node \
 --set global.ingress.host="mynodesomething.webgw1.grid.tf" \
 --set access_code="mywebpasscode" \
 --set env.eth_rpc_url="https://my_eth_api" \
@@ -42,7 +43,7 @@ helm --install matic-node charts/matic \
 --set eth_key_passphrase="mykeypass \
 --set sentry_nodeid=6yytaZcbghaspitre \
 --set sentry_enodeid=oPnbVzxasq3412 \
---set threefoldVdc.backup=vdc \
+--set threefoldVdc.backup=vdc . 
 
 ```
 
