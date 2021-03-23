@@ -44,7 +44,7 @@ helm install matic-node \
 --set env.eth_rpc_url="https://my_eth_api" \
 --set eth_privkey=myethprivkey \
 --set eth_key_passphrase=mykeypass \
---set env.eth_walletaddr=0xcvas67ga1WEGas
+--set env.eth_walletaddr=0xcvas67ga1WEGas \
 --set env.sentry_nodeid=6yytaZcbghaspitre \
 --set env.sentry_enodeid=oPnbVzxasq3412 \
 --set threefoldVdc.backup=vdc . 
