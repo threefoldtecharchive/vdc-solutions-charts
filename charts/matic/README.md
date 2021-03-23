@@ -8,6 +8,8 @@ This helm chart(solution) is capable of launching 3 types of nodes,
 
 ### Inputs
 
+Specify each parameter using the --set key=value[,key=value] argument to helm install. For example,
+
 #### Input for sentry node
 
 * Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
@@ -35,12 +37,12 @@ Here is an example for a validator,
 git clone https://github.com/threefoldtech/vdc-solutions-charts.git
 cd vdc-solutions-charts/charts/matic
 
-helm --install matic-node \
+helm install matic-node \
 --set global.ingress.host="mynodesomething.webgw1.grid.tf" \
 --set access_code="mywebpasscode" \
 --set env.eth_rpc_url="https://my_eth_api" \
 --set eth_privkey=myethprivkey \
---set eth_key_passphrase="mykeypass \
+--set eth_key_passphrase=mykeypass \
 --set env.sentry_nodeid=6yytaZcbghaspitre \
 --set env.sentry_enodeid=oPnbVzxasq3412 \
 --set threefoldVdc.backup=vdc . 
