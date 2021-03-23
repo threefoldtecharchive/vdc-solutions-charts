@@ -28,12 +28,17 @@ global:
     - "/"
   tls: []
  
-# The node access code - This should be set from the chatflow
+# Node secrets - These should be set from the chatflow
 access_code: ""  
+eth_privkey: ""
+eth_key_passphrase: ""
 
 # These values should be overrided from the chatflow
 env:
     "eth_rpc_url": ""
+    "eth_walletaddr": ""
+    "sentry_nodeid": ""
+    "sentry_enodeid": ""
 
 resources: 
     limits:
