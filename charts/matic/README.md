@@ -10,10 +10,10 @@ This helm chart(solution) is capable of launching 3 types of nodes,
 
 Specify each parameter using the --set key=value[,key=value] argument to helm install. For example,
 
-#### General Input
+#### General Inputs for all Node types
 
-* node_type (This can be "Sentry Node", "Full Node" and "Validator")
-* node_ingress_ip ( This is the public IP of the master node)
+* env.node_type (This can be "Sentry Node", "Full Node" and "Validator")
+* env.node_ingress_ip ( This is the public IP of the master node)
 
 #### Input for sentry node
 
