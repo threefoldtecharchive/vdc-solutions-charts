@@ -48,6 +48,16 @@ spec:
                 secretKeyRef:
                   key:  access_code
                   name: {{ .Release.Name }}-auth         
+            - name: "ETH_PRIV_KEY"
+              valueFrom:
+                secretKeyRef:
+                  key:  eth_privkey
+                  name: {{ .Release.Name }}-auth
+            - name: "ETH_PRIV_KEYPASS"
+              valueFrom:
+                secretKeyRef:
+                  key:  eth_key_passphrase
+                  name: {{ .Release.Name }}-auth
           volumeMounts:
             - name: matic-storage-{{ .Release.Name }}
               mountPath: /matic-data
