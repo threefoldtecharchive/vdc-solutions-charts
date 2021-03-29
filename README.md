@@ -175,7 +175,7 @@ Make sure to add `global.ingress.certresolver` field in your values.
   and include it in your ingress annotations in your ingress.yaml in the parent and subcharts if needed
   ```yaml
   annotations:
-    {{- if .Values.ingress.certresolver }}
+    {{- if .Values.global.ingress.certresolver }}
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
     {{- end }}
   ```
