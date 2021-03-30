@@ -14,6 +14,7 @@ Specify each parameter using the --set key=value[,key=value] argument to helm in
 
 * env.node_type (This can be "Sentry Node", "Full Node" and "Validator")
 * env.node_ingress_ip ( This is the public IP of the master node)
+* env.moniker ( This is the user based provided identity for the node )
 
 #### Input for sentry node
 
