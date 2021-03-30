@@ -41,6 +41,7 @@ env:
     "sentry_enodeid": ""
     "node_type": ""
     "node_ingress_ip": ""
+    "moniker": ""
 
 resources: 
     limits:
