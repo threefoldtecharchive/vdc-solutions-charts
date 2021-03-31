@@ -1,6 +1,65 @@
 # ownCloud
 
 [ownCloud](https://owncloud.org/) is a file sharing server that puts the control and security of your own data back into your hands.
+# how to build our image
+### Image guide lines
+- we depend on `bitnami/owncloud` image 
+`bitnami/owncloud:10-debian-10`
+
+- Install some dependencies 
+ex. git
+```
+apt-get install -y git
+```
+
+- Clone the repo which contains the forked owncloud code 
+```
+RUN git clone -b tf-owncloud https://github.com/crystaluniverse/tf-owncloud.git
+
+```
+- Do your changes and copy the changed files in the correct path under `/opt/bitnami/owncloud`
+```
+RUN cp -rf tf-owncloud/core /opt/bitnami/owncloud/
+
+```
+
+- change the user to be root user
+```
+USER root
+
+```
+
+
+- Run again the image entry point
+```
+ENTRYPOINT [ "/opt/bitnami/scripts/owncloud/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/owncloud/run.sh" ]
+```
+
+Image example
+``` 
+FROM bitnami/owncloud:10-debian-10
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+RUN git clone -b tf-owncloud https://github.com/crystaluniverse/tf-owncloud.git
+RUN cp -rf tf-owncloud/core /opt/bitnami/owncloud/
+RUN cp -rf tf-owncloud/lib  /opt/bitnami/owncloud/
+USER root
+ENTRYPOINT [ "/opt/bitnami/scripts/owncloud/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/owncloud/run.sh" ]
+
+```
+
+### Build image
+```
+docker build -t repo_name/image_name:tag . 
+```
+
+### Push image
+```
+docker push repo_name/image_name:tag
+```
 
 ## TL;DR
 
