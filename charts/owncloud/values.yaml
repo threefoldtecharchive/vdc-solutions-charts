@@ -17,7 +17,7 @@ global:
 image:
   registry: docker.io
   repository: threefolddev/tf-owncloud
-  tag: 10.6.0
+  tag: 10.6.0.tf
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
