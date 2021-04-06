@@ -18,6 +18,8 @@ spec:
       labels:
         io.kompose.network/taiga: "true"
         io.kompose.service: {{ index .Values "services" "taiga-db" "name" }}
+        {{- include "taiga.labels" . | nindent 8 }}
+
     spec:
       containers:
         - name: taiga-db
@@ -67,11 +69,29 @@ spec:
       labels:
         io.kompose.network/taiga: "true"
         io.kompose.service: {{ index .Values "services" "taiga-back" "name" }}
+        {{- include "taiga.labels" . | nindent 8 }}
     spec:
       containers:
         - name: taiga-back
           image: "{{ .Values.images.backend.repository }}:{{ .Values.images.backend.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.images.backend.pullPolicy }}
+                  
+          ports:
+          - name: liveness-port
+            containerPort: {{ index .Values.services "taiga-back" "targetPort" }}
+            hostPort: {{ index .Values.services "taiga-back" "port" }}
+          
+          livenessProbe:
+            tcpSocket:
+              port: liveness-port
+            failureThreshold: 1
+            periodSeconds: 10
+          
+          startupProbe:
+            tcpSocket:
+              port: liveness-port
+            failureThreshold: 30
+            periodSeconds: 10
           env:
             - name: ENABLE_TELEMETRY
               value: "{{ .Values.telemetry.enabled }}"
@@ -131,6 +151,8 @@ spec:
       labels:
         io.kompose.network/taiga: "true"
         io.kompose.service: taiga-async
+        {{- include "taiga.labels" . | nindent 8 }}
+
     spec:
       containers:
         - name: taiga-async
@@ -197,6 +219,8 @@ spec:
       labels:
         io.kompose.network/taiga: "true"
         io.kompose.service: {{ index .Values "services" "taiga-async-rabbitmq" "name" }}
+        {{- include "taiga.labels" . | nindent 8 }}
+
     spec:
       containers:
         - name: taiga-async-rabbitmq
@@ -234,6 +258,7 @@ spec:
       labels:
         io.kompose.network/taiga: "true"
         io.kompose.service: {{ index .Values "services" "taiga-front" "name" }}
+        {{- include "taiga.labels" . | nindent 8 }}
     spec:
       containers:
         - name: taiga-front
@@ -272,6 +297,8 @@ spec:
       labels:
         io.kompose.network/taiga: "true"
         io.kompose.service: {{ index .Values "services" "taiga-events" "name" }}
+        {{- include "taiga.labels" . | nindent 8 }}
+
     spec:
       containers:
         - name: taiga-events
@@ -307,6 +334,7 @@ spec:
       labels:
         io.kompose.network/taiga: "true"
         io.kompose.service: {{ index .Values "services" "taiga-events-rabbitmq" "name" }}
+        {{- include "taiga.labels" . | nindent 8 }}
     spec:
       containers:
         - name: taiga-events-rabbitmq
@@ -344,6 +372,8 @@ spec:
       labels:
         io.kompose.network/taiga: "true"
         io.kompose.service: {{ index .Values "services" "taiga-protected" "name" }}
+        {{- include "taiga.labels" . | nindent 8 }}
+
     spec:
       containers:
         - name: taiga-protected
@@ -386,6 +416,7 @@ spec:
       labels:
         io.kompose.network/taiga: "true"
         io.kompose.service: {{ index .Values "services" "taiga-gateway" "name" }}
+        {{- include "taiga.labels" . | nindent 8 }}
     spec:
       containers:
         - name: taiga-gateway
