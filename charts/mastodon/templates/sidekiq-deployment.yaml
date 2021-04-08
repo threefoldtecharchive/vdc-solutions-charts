@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "sidekiq.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.sidekiq.name }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- include "common.labels.standard" . | nindent 4 }}
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        component: "{{ .Values.sidekiq.name }}"
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ template "name" . }}-{{ .Values.sidekiq.name }}
+        image: "{{ .Values.sidekiq.image }}:{{ .Values.sidekiq.imageTag }}"
+        imagePullPolicy: {{ .Values.sidekiq.imagePullPolicy | quote }}
+        command:
+          - bundle
+          - exec
+          - sidekiq
+          - -c
+          - "{{ .Values.sidekiq.defaultQparallelism }}"
+          - -q
+          - default
+          - -q
+          - mailers
+          - -q
+          - pull
+          - -q
+          - push
+          - -q
+          - scheduler
+        env:
+{{ include "productonEnvironment" . | indent 8 }}
+
+        volumeMounts:
+        - name: assets
+          mountPath: /opt/mastodon/public/assets
+        - name: system
+          mountPath: /opt/mastodon/public/system
+      volumes:
+      - name: assets
+        persistentVolumeClaim:
+          claimName: {{ template "web.fullname" . }}-assets
+      - name: system
+        persistentVolumeClaim:
+          claimName: {{ template "web.fullname" . }}-system

@@ -1,0 +1,167 @@
+env:
+  singleUserMode: "true"
+  registration: {}
+  # emailDomainBlacklist: "example1.com|example2.com"
+  # emailDomainWhitelist: "example1.com|example2.com"
+  defaultLanguage: "en"
+  smtp:
+    server: "smtp.gmail.com"
+    port: 587
+    login: "testmail@gmail.com"
+    address: "smtp.gmail.com"
+    opensslVerifyMode: "none"
+    domain: "mastodon.test"
+  assets: {}
+  # paperclipRootPath: "/var/lib/opt/mastodon/public-system"
+  # paperclipRootUrl: "system"
+  # cdnHost: "assets.example.com"
+  s3: {}
+  # enabled: "true"
+  # bucket: "dummy"
+  # awsAccessKeyId: "dummy"
+  # awsSecretAccessKey: "dummy"
+  # region: "dummy"
+  # protocol: "http"
+  # hostname: "192.168.1.123:9000"
+  # cloudfrontHost: "dummy"
+  # streamingApiBaseUrl: "dummy"
+  extraEnvVars:
+    - name: THREEBOT_KEY
+      value: ""
+
+httpd:
+  name: assets
+  servicePort: 80
+  containerPort: 80
+  resources:
+    requests:
+      memory: 32Mi
+      cpu: 50m
+
+web:
+  name: web
+  image: abom/mastodon
+  imageTag: v3.3.0
+  imagePullPolicy: IfNotPresent
+  servicePort: 3000
+  containerPort: 3000
+  concurrency: 5
+  maxThreads: 5
+  logLevel: info
+  keepMediaDays: 7
+  maintenanceHour: 3
+  ingress:
+    host: mastodon.test
+  persistentVolume:
+    system:
+      accessMode: ReadWriteOnce
+      size: 8Gi
+      hostPath: "/web-system"
+    assets:
+      accessMode: ReadWriteOnce
+      size: 8Gi
+      hostPath: "/web-assets"
+  resources:
+    limits:
+      memory: 1024Mi
+      cpu: 1000m
+    requests:
+      memory: 256Mi
+      cpu: 100m
+streaming:
+  name: streaming
+  image: tootsuite/mastodon
+  imageTag: v3.3.0
+  imagePullPolicy: IfNotPresent
+  servicePort: 4000
+  containerPort: 4000
+  clusterSize: 5
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+sidekiq:
+  name: sidekiq
+  image: tootsuite/mastodon
+  imageTag: v3.3.0
+  imagePullPolicy: IfNotPresent
+  defaultQparallelism: 2
+  pullQparallelism: 5
+  pushQparallelism: 2
+  mailersQparallelism: 2
+  defaultQreplicas: 1
+  pullQreplicas: 1
+  pushQreplicas: 1
+  mailersQreplicas: 1
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+redis:
+  name: redis
+  image: redis
+  imageTag: 6-alpine
+  imagePullPolicy: IfNotPresent
+  servicePort: 6379
+  containerPort: 6379
+  # You need to create PV beforehead.
+  persistentVolume:
+    accessMode: ReadWriteOnce
+    size: 8Gi
+    hostPath: "/redis"
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+postgres:
+  name: postgres
+  image: postgres
+  imageTag: "9.6.2"
+  imagePullPolicy: IfNotPresent
+  containerPort: 5432
+  servicePort: 5432
+  env:
+    postgres_user: "postgres"
+    pguser: "postgres"
+    postgres_db: ""
+    pgdata: "/var/lib/postgresql/data/pgdata"
+  # You need to create PV beforehead.
+  persistentVolume:
+    accessMode: ReadWriteOnce
+    size: 8Gi
+    hostPath: "/postgres/"
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+  metrics:
+    enabled: true
+    image: "wrouesnel/postgres_exporter"
+    imageTag: "v0.1.1"
+    imagePullPolicy: IfNotPresent
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 100m
+
+
+threefoldVdc:
+  backup: ""
+
+postgresPassword: dummy
+redisPassword: dummy
+paperclipSecret: dummy
+secretKeyBase: dummy
+otpSecret: dummy
+smtpPassword: dummy
+
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 2000
+    memory: 2048
+

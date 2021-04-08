@@ -1,0 +1,135 @@
+env:
+  singleUserMode: "true"
+  registration: {}
+  # emailDomainBlacklist: "example1.com|example2.com"
+  # emailDomainWhitelist: "example1.com|example2.com"
+  defaultLanguage: "ja"
+  smtp:
+    server: "YOUR_SMTP_SERVER"
+    port: "587"
+    login: "YOUR_LOGIN_ACCOUNT"
+    address: "YOUR_MAIL_ADDRESS"
+    opensslVerifyMode: "none"
+    domain: "YOUR_SERVER_DOMAIN"
+  assets: {}
+  # paperclipRootPath: "/var/lib/opt/mastodon/public-system"
+  # paperclipRootUrl: "system"
+  # cdnHost: "assets.example.com"
+  s3: {}
+  # enabled: "true"
+  # bucket: "dummy"
+  # awsAccessKeyId: "dummy"
+  # awsSecretAccessKey: "dummy"
+  # region: "dummy"
+  # protocol: "http"
+  # hostname: "192.168.1.123:9000"
+  # cloudfrontHost: "dummy"
+  # streamingApiBaseUrl: "dummy"
+
+httpd:
+  name: assets
+  servicePort: 80
+  containerPort: 80
+  resources:
+    requests:
+      memory: 32Mi
+      cpu: 50m
+
+web:
+  name: web
+  image: tootsuite/mastodon
+  imageTag: v3.3.0
+  imagePullPolicy: IfNotPresent
+  servicePort: 80
+  containerPort: 3000
+  concurrency: 5
+  maxThreads: 5
+  logLevel: info
+  keepMediaDays: 7
+  maintenanceHour: 3
+  ingress:
+    host: SET_YOUR_DOMAIN
+  persistentVolume:
+    system:
+      accessMode: ReadWriteMany
+      size: 8Gi
+    assets:
+      accessMode: ReadWriteMany
+      size: 8Gi
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+streaming:
+  name: streaming
+  image: tootsuite/mastodon
+  imageTag: v3.3.0
+  imagePullPolicy: IfNotPresent
+  servicePort: 4000
+  containerPort: 4000
+  clusterSize: 5
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+sidekiq:
+  name: sidekiq
+  image: tootsuite/mastodon
+  imageTag: v3.3.0
+  imagePullPolicy: IfNotPresent
+  defaultQparallelism: 2
+  pullQparallelism: 5
+  pushQparallelism: 2
+  mailersQparallelism: 2
+  defaultQreplicas: 1
+  pullQreplicas: 1
+  pushQreplicas: 1
+  mailersQreplicas: 1
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+redis:
+  name: redis
+  image: redis
+  imageTag: 6-alpine
+  imagePullPolicy: IfNotPresent
+  servicePort: 6379
+  containerPort: 6379
+  # You need to create PV beforehead.
+  persistentVolume:
+    accessMode: ReadWriteMany
+    size: 8Gi
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+postgres:
+  name: postgres
+  image: postgres
+  imageTag: "9.6.2"
+  imagePullPolicy: IfNotPresent
+  containerPort: 5432
+  servicePort: 5432
+  env:
+    postgres_user: "postgres"
+    pguser: "postgres"
+    postgres_db: ""
+    pgdata: "/var/lib/postgresql/data/pgdata"
+  # You need to create PV beforehead.
+  persistentVolume:
+    accessMode: ReadWriteMany
+    size: 8Gi
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+  metrics:
+    enabled: true
+    image: "wrouesnel/postgres_exporter"
+    imageTag: "v0.1.1"
+    imagePullPolicy: IfNotPresent
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 100m
