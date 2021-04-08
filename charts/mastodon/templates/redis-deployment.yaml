@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "redis.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.redis.name }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- include "common.labels.standard" . | nindent 4 }}
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        component: "{{ .Values.redis.name }}"
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ template "name" . }}-{{ .Values.redis.name }}
+        image: "{{ .Values.redis.image }}:{{ .Values.redis.imageTag }}"
+        imagePullPolicy: {{ .Values.redis.imagePullPolicy | quote }}
+        ports:
+        - name: redis
+          containerPort: {{ .Values.redis.containerPort }}
+        livenessProbe:
+          exec:
+            command:
+            - redis-cli
+            - ping
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+
+        volumeMounts:
+        - name: redis-data
+          mountPath: /bitnami/redisg
+      volumes:
+      - name: redis-data
+        persistentVolumeClaim:
+          claimName: {{ template "redis.fullname" . }}

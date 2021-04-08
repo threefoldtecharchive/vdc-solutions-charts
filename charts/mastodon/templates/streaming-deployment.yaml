@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "streaming.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.streaming.name }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- include "common.labels.standard" . | nindent 4 }}
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        component: "{{ .Values.streaming.name }}"
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ template "name" . }}-{{ .Values.streaming.name }}
+        image: "{{ .Values.streaming.image }}:{{ .Values.streaming.imageTag }}"
+        imagePullPolicy: {{ .Values.streaming.imagePullPolicy | quote }}
+        command:
+          - npm
+          - run
+          - start
+        env:
+{{ include "productonEnvironment" . | indent 8 }}
+        ports:
+        - name: streaming
+          containerPort: {{ .Values.streaming.containerPort }}
+

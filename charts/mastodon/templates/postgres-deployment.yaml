@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "postgres.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.postgres.name }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      {{- if .Values.postgres.metrics.enabled }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9187"
+      {{- end }}
+      labels:
+        app: {{ template "name" . }}
+        component: "{{ .Values.postgres.name }}"
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ template "name" . }}-{{ .Values.postgres.name }}
+        image: "{{ .Values.postgres.image }}:{{ .Values.postgres.imageTag }}"
+        imagePullPolicy: {{ .Values.postgres.imagePullPolicy | quote }}
+        env:
+        {{- range $key, $val := .Values.postgres.env }}
+        - name: {{ $key | upper }}
+          value: {{ $val | quote }}
+        {{- end}}
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "postgres.fullname" . }}
+              key: postgres-password
+        - name: POD_IP
+          valueFrom: { fieldRef: { fieldPath: status.podIP } }
+        ports:
+        - name: postgresql
+          containerPort: {{ .Values.postgres.containerPort }}
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - exec pg_isready --host $POD_IP
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+          failureThreshold: 6
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - exec pg_isready --host $POD_IP
+          initialDelaySeconds: 5
+          timeoutSeconds: 3
+          periodSeconds: 5
+        resources:
+{{ toYaml .Values.postgres.resources | indent 10 }}
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data/pgdata
+{{- if .Values.postgres.metrics.enabled }}
+      - name: metrics
+        image: "{{ .Values.postgres.metrics.image }}:{{ .Values.postgres.metrics.imageTag }}"
+        imagePullPolicy: "{{ .Values.postgres.metrics.imagePullPolicy }}"
+        env:
+        - name: DATA_SOURCE_NAME
+          value: postgresql://postgres@127.0.0.1:5432?sslmode=disable
+        ports:
+        - name: metrics
+          containerPort: 9187
+        resources:
+{{ toYaml .Values.postgres.metrics.resources | indent 10 }}
+{{- end }}
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ template "postgres.fullname" . }}

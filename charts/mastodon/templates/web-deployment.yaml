@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "web.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.web.name }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- include "common.labels.standard" . | nindent 4 }}
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        component: "{{ .Values.web.name }}"
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ template "name" . }}-{{ .Values.web.name }}
+        image: "{{ .Values.web.image }}:{{ .Values.web.imageTag }}"
+        imagePullPolicy: {{ .Values.web.imagePullPolicy | quote }}
+        command:
+          - bundle
+          - exec
+          - rails
+          - s
+          - -p
+          - {{ .Values.web.containerPort | quote }}
+          - -b
+          - 0.0.0.0
+        env:
+{{ include "productonEnvironment" . | indent 8 }}
+        ports:
+        - name: web
+          containerPort: {{ .Values.web.containerPort }}
+        resources:
+{{ toYaml .Values.web.resources | indent 10 }}
+        volumeMounts:
+        - name: assets
+          mountPath: /opt/mastodon/public/assets
+        - name: system
+          mountPath: /opt/mastodon/public/system
+      volumes:
+      - name: system
+        persistentVolumeClaim:
+          claimName: {{ template "web.fullname" . }}-system
+      - name: assets
+        persistentVolumeClaim:
+          claimName: {{ template "web.fullname" . }}-assets

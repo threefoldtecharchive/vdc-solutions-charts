@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: mastodon-limit-range
+  labels:
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+spec:
+  limits:
+  - default:
+      cpu: "{{ div  (sub .Values.resources.limits.cpu 1000)   6 }}m"
+      memory: "{{ div (sub .Values.resources.limits.memory 1024) 6 }}Mi"
+    defaultRequest:
+      cpu: "265m"
+      memory: "100Mi"
+    type: Container
+
+# PODS RESOURCES:
+
+# Const Resources:
+#                     cpu mem
+# taiga-gateway:      50 50
+# taiga-front:        50 50
+# taiga-db:           100 100
+# taiga-protected:    100 100
+# ----------------------------
+#                     300 300
+
+# the rest is divided equally on these 5 pods
+# taiga-async,
+# taiga-async-rabbitmq,
+# taiga-events,
+# taiga-events-rabbitmq,
+# taiga-back

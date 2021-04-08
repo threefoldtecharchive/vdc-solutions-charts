@@ -1,0 +1,12 @@
+apiVersion: v2
+description: A Helm chart for Mastodon
+name: mastodon
+sources:
+- https://github.com/timwalls/mastodon-chart
+- https://github.com/tootsuite/mastodon
+maintainers:
+- email: tim.walls@snowgoons.com
+  name: timwalls
+version: 3.3.0
+appVersion: 3.3.0
+engine: gotpl
