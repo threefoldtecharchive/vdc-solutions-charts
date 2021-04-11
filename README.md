@@ -121,17 +121,6 @@ spec:
           port: 10000
 ```
 
-
-### Backup
-
-marketplace charts are backed up using velero by adding a specific label to all of the chart resources `backupType: vdc`. so to be able to enable/disable backup on a chart during deployment you need to define in chart values:
-```yaml
-threefoldVdc:
-  backup: ''
-```
-
-and use it as a value for the backup label as `backupType: {{ .Values.threefoldVdc.backup }}`
-
 ### Make sure
 - `ingress` is enabled on your chart in `values.yaml`
 - All services that needs to be exposed are of type `ClusterIP`
@@ -179,6 +168,117 @@ Make sure to add `global.ingress.certresolver` field in your values.
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
     {{- end }}
   ```
+
+# Resource Limits
+to add resources limits, you have two options
+
+### First 
+to define the resources limits for the container/pod, it can be either a static value or dynamic value which is calculated from the whole chart resource limit
+
+`static`
+```yaml
+resources:
+  limits:
+    cpu: 3000
+    memory: 3072
+
+```
+
+`dynamic`
+```yaml
+resources:
+  limits: 
+    memory: "{{ div .Values.resources.limits.memory 3 }}Mi"
+    cpu: "{{ div .Values.resources.limits.cpu  3 }}m"
+```
+
+### Second
+Define `LimitRange` object, in which you can specify the memory and cpu that you want to be divided equally on all pods/containers
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: solution-limit-range
+spec:
+  limits:
+  - default:
+      cpu: "300m"
+      memory: "300Mi"
+    defaultRequest:
+      cpu: "265m"
+      memory: "100Mi"
+    type: Container
+
+```
+
+you can mix the two approaches by giving a container/pod specific limits, then divide the reset of the resources on all the other containers/pods equally, in this case you have to be sure of your calculations to prevent any errors.
+
+you have to be sure that the total limits don't exceed the chart resources and enough for containers/pods to start
+
+#### Example
+we have 3 containers, we want to distribute  the resources like this
+we have over all resources for cpu and memory `2000`
+```
+web container         1000 
+postgres              500
+backend               500
+```
+ `web` container take half of the chart resources so now web will take `1000`
+ 
+`Dynamic`
+```yaml
+resources:
+  limits: 
+    memory: "{{ div .Values.resources.limits.memory 2 }}Mi"
+    cpu: "{{ div .Values.resources.limits.cpu  2 }}m"
+```
+or `Static`
+```yaml
+resources:
+  limits: 
+    memory: "1000Mi"
+    cpu: "1000m"
+```
+In the `LimitRange` object, we will subtract the half (1000) that was used by the previous container/pod, then divide the rest of resources on all the other containers/pods, in this example I have 2 other containers/pods, so each will take `500`
+
+`Dynamic`
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: solution-limit-range
+spec:
+  limits:
+  - default:
+      cpu: "{{ div  (sub .Values.resources.limits.cpu (div .Values.resources.limits.cpu 2))  2 }}m"
+      memory: "{{ div (sub .Values.resources.limits.memory (div .Values.resources.limits.memory 2)) 2 }}Mi"
+    defaultRequest:
+      cpu: "265m"
+      memory: "100Mi"
+    type: Container
+
+```
+or `Static`
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: solution-limit-range
+spec:
+  limits:
+  - default:
+      cpu: "500m"
+      memory: "500Mi"
+    defaultRequest:
+      cpu: "265m"
+      memory: "100Mi"
+    type: Container
+
+```
+
+for more information about managing resources please check the [documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+
+
 ## Chart README
 please make sure all your chart has a well written `README.md` file that describes:
  - Aim

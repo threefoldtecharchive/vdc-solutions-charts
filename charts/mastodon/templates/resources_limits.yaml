@@ -7,8 +7,8 @@ metadata:
 spec:
   limits:
   - default:
-      cpu: "{{ div  (sub .Values.resources.limits.cpu 1000)   6 }}m"
-      memory: "{{ div (sub .Values.resources.limits.memory 1024) 6 }}Mi"
+      cpu: "{{ div  (sub .Values.resources.limits.cpu (div .Values.resources.limits.cpu 3))  6 }}m"
+      memory: "{{ div (sub .Values.resources.limits.memory (div .Values.resources.limits.memory 3)) 6 }}Mi"
     defaultRequest:
       cpu: "265m"
       memory: "100Mi"
@@ -17,17 +17,12 @@ spec:
 # PODS RESOURCES:
 
 # Const Resources:
-#                     cpu mem
-# taiga-gateway:      50 50
-# taiga-front:        50 50
-# taiga-db:           100 100
-# taiga-protected:    100 100
-# ----------------------------
-#                     300 300
+#                     cpu       mem
+# web:                cpu/3     mem/3
 
-# the rest is divided equally on these 5 pods
-# taiga-async,
-# taiga-async-rabbitmq,
-# taiga-events,
-# taiga-events-rabbitmq,
-# taiga-back
+# the rest is divided equally on these 6 pods
+# streaming,
+# sidekiq,
+# redis,
+# postgres,
+# metrics
