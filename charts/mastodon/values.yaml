@@ -40,8 +40,8 @@ httpd:
 
 web:
   name: web
-  image: abom/mastodon
-  imageTag: v3.3.0
+  image: threefolddev/tf-mastodon
+  imageTag: v3.3.0.tf
   imagePullPolicy: IfNotPresent
   servicePort: 3000
   containerPort: 3000
