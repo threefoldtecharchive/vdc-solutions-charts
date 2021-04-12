@@ -5,6 +5,7 @@
   - [Configuring Chart Pods](#Configuring-Chart-Pods)
   - [Ingress Configuration](#Ingress-Configuration)
   - [Resources Limits](#Resources-Limits)
+  - [Set Resource Quotas and Limits](#Set-Resource-Quotas-and-Limits)
   - [Adding Labels](#Adding-Labels)
   - [Enable Https](#Adding-Labels)
   - [Chart README](#Chart-README)
@@ -121,17 +122,6 @@ spec:
           port: 10000
 ```
 
-
-### Backup
-
-marketplace charts are backed up using velero by adding a specific label to all of the chart resources `backupType: vdc`. so to be able to enable/disable backup on a chart during deployment you need to define in chart values:
-```yaml
-threefoldVdc:
-  backup: ''
-```
-
-and use it as a value for the backup label as `backupType: {{ .Values.threefoldVdc.backup }}`
-
 ### Make sure
 - `ingress` is enabled on your chart in `values.yaml`
 - All services that needs to be exposed are of type `ClusterIP`
@@ -140,7 +130,7 @@ and use it as a value for the backup label as `backupType: {{ .Values.threefoldV
 
 Make sure that your chart already configures resources limits for `memory` and `cpu` in `values.yaml` in resources section, just in case your chart go beyond deployed cluster resources.
 
-###### example
+#### example
 
 ```yaml
 resources:
@@ -155,6 +145,156 @@ resources:
     cpu: 900m
     memory: 1000Mi
 ```
+## Set Resource Quotas and Limits
+You should set resource quotas and limits for your solution and its namespace, because By default, a pod running on a cluster can use unbounded computing resources, including CPU and memory resources of nodes. In this case, pods in a namespace may monopolize all available resources of the cluster.
+you can set the limits per workload by specifying the resources limits in the workload deployments or/and have a default values for all using a `LimitRange` 
+### Limit Range
+to add resources limits, you have two options
+
+#### First 
+to define the resources limits for the container/pod, it can be either a static value or dynamic value which is calculated from the whole chart resource limit
+
+`static`
+```yaml
+resources:
+  limits:
+    cpu: 3000
+    memory: 3072
+
+```
+
+`dynamic`
+```yaml
+resources:
+  limits: 
+    memory: "{{ div .Values.resources.limits.memory 3 }}Mi"
+    cpu: "{{ div .Values.resources.limits.cpu  3 }}m"
+```
+
+#### Second
+Define `LimitRange` object, in which you can specify the memory and cpu that you want to be divided equally on all pods/containers
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: solution-limit-range
+spec:
+  limits:
+  - default:
+      cpu: "300m"
+      memory: "300Mi"
+    defaultRequest:
+      cpu: "265m"
+      memory: "100Mi"
+    type: Container
+
+```
+
+you can mix the two approaches by giving a container/pod specific limits, then divide the reset of the resources on all the other containers/pods equally, in this case you have to be sure of your calculations to prevent any errors.
+
+you have to be sure that the total limits don't exceed the chart resources and enough for containers/pods to start
+
+##### Example
+we have 3 containers, we want to distribute  the resources like this
+we have over all resources for cpu and memory `2000`
+```
+web container         1000 
+postgres              500
+backend               500
+```
+ `web` container take half of the chart resources so now web will take `1000`
+ 
+`Dynamic`
+```yaml
+resources:
+  limits: 
+    memory: "{{ div .Values.resources.limits.memory 2 }}Mi"
+    cpu: "{{ div .Values.resources.limits.cpu  2 }}m"
+```
+or `Static`
+```yaml
+resources:
+  limits: 
+    memory: "1000Mi"
+    cpu: "1000m"
+```
+In the `LimitRange` object, we will subtract the half (1000) that was used by the previous container/pod, then divide the rest of resources on all the other containers/pods, in this example I have 2 other containers/pods, so each will take `500`
+
+`Dynamic`
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: solution-limit-range
+spec:
+  limits:
+  - default:
+      cpu: "{{ div  (sub .Values.resources.limits.cpu (div .Values.resources.limits.cpu 2))  2 }}m"
+      memory: "{{ div (sub .Values.resources.limits.memory (div .Values.resources.limits.memory 2)) 2 }}Mi"
+    defaultRequest:
+      cpu: "265m"
+      memory: "100Mi"
+    type: Container
+
+```
+or `Static`
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: solution-limit-range
+spec:
+  limits:
+  - default:
+      cpu: "500m"
+      memory: "500Mi"
+    defaultRequest:
+      cpu: "265m"
+      memory: "100Mi"
+    type: Container
+
+```
+
+for more information about managing resources please check the [documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+
+### Resource Quota
+Additionally to a LimitRange, we should also add a resource quota to the namespace.
+Namespaces act as virtual clusters for multiple purposes and requirements, therefore we recommend that you set resource quotas for namespaces.
+Here are two of the restrictions that a resource quota imposes on a namespace:
+- Every Container that runs in the namespace must have its own resources limit.
+- The total amount of memory, cpu used by all Containers in the namespace must not exceed a specified limit.
+
+This example creates a CPU and memory quota:
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: test-resource-quota
+spec:
+  hard:
+    limits.cpu: "3000m"  
+    limits.memory: "3072m"
+```
+
+you can get the solution flavour set by the chatflow and use it
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: mastodon-resource-quota
+spec:
+  hard:
+    limits.cpu: "{{ .Values.resources.limits.cpu }}m"
+    limits.memory: "{{ .Values.resources.limits.memory }}Mi"
+```
+
+after deploying your solution you can verify that the quota was applied with the kubectl describe command:
+```bash
+kubectl describe resourcequota/<name-of-resource-quota-object> --namespace <your-name-space>
+```
+
+for more information about resource quotas please check the [documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
+
 ## Adding Labels
  Make sure the deployment file or statefulset file in your chart has **some labels**, that will help in listing the solution instances:
   ```yaml
@@ -179,6 +319,7 @@ Make sure to add `global.ingress.certresolver` field in your values.
     traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
     {{- end }}
   ```
+
 ## Chart README
 please make sure all your chart has a well written `README.md` file that describes:
  - Aim

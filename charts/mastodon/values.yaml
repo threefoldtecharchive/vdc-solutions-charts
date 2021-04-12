@@ -1,3 +1,6 @@
+global:
+  ingress:
+    certresolver: default
 env:
   singleUserMode: "true"
   registration: {}
@@ -40,8 +43,8 @@ httpd:
 
 web:
   name: web
-  image: abom/mastodon
-  imageTag: v3.3.0
+  image: threefolddev/tf-mastodon
+  imageTag: v3.3.0.tf
   imagePullPolicy: IfNotPresent
   servicePort: 3000
   containerPort: 3000
@@ -61,13 +64,6 @@ web:
       accessMode: ReadWriteOnce
       size: 8Gi
       hostPath: "/web-assets"
-  resources:
-    limits:
-      memory: 1024Mi
-      cpu: 1000m
-    requests:
-      memory: 256Mi
-      cpu: 100m
 streaming:
   name: streaming
   image: tootsuite/mastodon
@@ -145,8 +141,6 @@ postgres:
         cpu: 100m
 
 
-threefoldVdc:
-  backup: ""
 
 postgresPassword: dummy
 redisPassword: dummy
@@ -162,6 +156,6 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-    cpu: 2000
-    memory: 2048
+    cpu: 3000
+    memory: 3072
 
