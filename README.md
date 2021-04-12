@@ -5,6 +5,7 @@
   - [Configuring Chart Pods](#Configuring-Chart-Pods)
   - [Ingress Configuration](#Ingress-Configuration)
   - [Resources Limits](#Resources-Limits)
+  - [Set Resource Quotas and Limits](#Set-Resource-Quotas-and-Limits)
   - [Adding Labels](#Adding-Labels)
   - [Enable Https](#Adding-Labels)
   - [Chart README](#Chart-README)
@@ -129,7 +130,7 @@ spec:
 
 Make sure that your chart already configures resources limits for `memory` and `cpu` in `values.yaml` in resources section, just in case your chart go beyond deployed cluster resources.
 
-###### example
+#### example
 
 ```yaml
 resources:
@@ -144,35 +145,13 @@ resources:
     cpu: 900m
     memory: 1000Mi
 ```
-## Adding Labels
- Make sure the deployment file or statefulset file in your chart has **some labels**, that will help in listing the solution instances:
-  ```yaml
-  app.kubernetes.io/name: <your-chart-name>
-  app.kubernetes.io/instance: {{ .Release.Name }}
-  app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-  ```
-
-## Enable Https
-To enable https on your chart using `gridca` as a certificate resolver, you can do the following
-
-Make sure to add `global.ingress.certresolver` field in your values.
-  ```yaml
-  global:
-    ingress:
-      certresolver: default
-  ```
-  and include it in your ingress annotations in your ingress.yaml in the parent and subcharts if needed
-  ```yaml
-  annotations:
-    {{- if .Values.global.ingress.certresolver }}
-    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
-    {{- end }}
-  ```
-
-# Resource Limits
+## Set Resource Quotas and Limits
+You should set resource quotas and limits for your solution and its namespace, because By default, a pod running on a cluster can use unbounded computing resources, including CPU and memory resources of nodes. In this case, pods in a namespace may monopolize all available resources of the cluster.
+you can set the limits per workload by specifying the resources limits in the workload deployments or/and have a default values for all using a `LimitRange` 
+### Limit Range
 to add resources limits, you have two options
 
-### First 
+#### First 
 to define the resources limits for the container/pod, it can be either a static value or dynamic value which is calculated from the whole chart resource limit
 
 `static`
@@ -192,7 +171,7 @@ resources:
     cpu: "{{ div .Values.resources.limits.cpu  3 }}m"
 ```
 
-### Second
+#### Second
 Define `LimitRange` object, in which you can specify the memory and cpu that you want to be divided equally on all pods/containers
 ```yaml
 apiVersion: v1
@@ -215,7 +194,7 @@ you can mix the two approaches by giving a container/pod specific limits, then d
 
 you have to be sure that the total limits don't exceed the chart resources and enough for containers/pods to start
 
-#### Example
+##### Example
 we have 3 containers, we want to distribute  the resources like this
 we have over all resources for cpu and memory `2000`
 ```
@@ -278,6 +257,68 @@ spec:
 
 for more information about managing resources please check the [documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
+### Resource Quota
+Additionally to a LimitRange, we should also add a resource quota to the namespace.
+Namespaces act as virtual clusters for multiple purposes and requirements, therefore we recommend that you set resource quotas for namespaces.
+Here are two of the restrictions that a resource quota imposes on a namespace:
+- Every Container that runs in the namespace must have its own resources limit.
+- The total amount of memory, cpu used by all Containers in the namespace must not exceed a specified limit.
+
+This example creates a CPU and memory quota:
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: test-resource-quota
+spec:
+  hard:
+    limits.cpu: "3000m"  
+    limits.memory: "3072m"
+```
+
+you can get the solution flavour set by the chatflow and use it
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: mastodon-resource-quota
+spec:
+  hard:
+    limits.cpu: "{{ .Values.resources.limits.cpu }}m"
+    limits.memory: "{{ .Values.resources.limits.memory }}Mi"
+```
+
+after deploying your solution you can verify that the quota was applied with the kubectl describe command:
+```bash
+kubectl describe resourcequota/<name-of-resource-quota-object> --namespace <your-name-space>
+```
+
+for more information about resource quotas please check the [documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
+
+## Adding Labels
+ Make sure the deployment file or statefulset file in your chart has **some labels**, that will help in listing the solution instances:
+  ```yaml
+  app.kubernetes.io/name: <your-chart-name>
+  app.kubernetes.io/instance: {{ .Release.Name }}
+  app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+  ```
+
+## Enable Https
+To enable https on your chart using `gridca` as a certificate resolver, you can do the following
+
+Make sure to add `global.ingress.certresolver` field in your values.
+  ```yaml
+  global:
+    ingress:
+      certresolver: default
+  ```
+  and include it in your ingress annotations in your ingress.yaml in the parent and subcharts if needed
+  ```yaml
+  annotations:
+    {{- if .Values.global.ingress.certresolver }}
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
+    {{- end }}
+  ```
 
 ## Chart README
 please make sure all your chart has a well written `README.md` file that describes:

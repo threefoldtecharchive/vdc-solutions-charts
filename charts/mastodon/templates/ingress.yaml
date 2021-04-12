@@ -1,11 +1,8 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
-    {{- if .Values.global.ingress.certresolver }}
-    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
-    {{- end }}
   labels:
     app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
@@ -19,13 +16,19 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: {{ .Release.Name }}-{{ .Chart.Name }}-{{ .Values.web.name }}
-          servicePort: {{ .Values.web.servicePort }}
+          service:
+            name: {{ .Release.Name }}-{{ .Chart.Name }}-{{ .Values.web.name }}
+            port:
+              number: {{ .Values.web.servicePort }}
       - path: /api/v1/streaming
+        pathType: Prefix
         backend:
-          serviceName: {{ .Release.Name }}-{{ .Chart.Name }}-{{ .Values.streaming.name }}
-          servicePort: {{ .Values.streaming.servicePort }}
+          service:
+            name: {{ .Release.Name }}-{{ .Chart.Name }}-{{ .Values.streaming.name }}
+            port:
+              number: {{ .Values.streaming.servicePort }}
   tls:
   - secretName: {{ template "name" . }}-lego-secret
     hosts:
