@@ -38,6 +38,7 @@ global:
 env:          
   "rpcuser": "tfnow" 
   "rpcpasswd": "tfdgb2020"
+  "node_ingress_ip": ""
 
 resources: 
     limits:
