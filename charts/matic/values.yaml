@@ -42,6 +42,8 @@ env:
     "node_type": ""
     "node_ingress_ip": ""
     "moniker": ""
+    "heimdall_svcp": ""
+    "bor_svcp": ""
     
 ports:
     heimdall: "26656"
