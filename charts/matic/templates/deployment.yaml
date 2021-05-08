@@ -66,10 +66,10 @@ spec:
               containerPort: 80
               protocol: TCP
             - name: bor{{ .Release.Name }}
-              containerPort: 30303
+              containerPort: {{ .Values.ports.bor | quote }}
               protocol: TCP
             - name: heim{{ .Release.Name }}
-              containerPort: 26656
+              containerPort: {{ .Values.ports.heimdall | quote }}
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
