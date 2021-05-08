@@ -12,5 +12,5 @@ spec:
     - match: HostSNI(`*`)
       services:
         - name: bor-{{ .Release.Name }}
-          port: {{ .Values.ports.bor | quote }}
+          port: {{ .Values.ports.bor }}
 {{- end }}
