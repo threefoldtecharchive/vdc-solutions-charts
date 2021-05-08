@@ -12,5 +12,5 @@ spec:
     - match: HostSNI(`*`)
       services:
         - name: heim-{{ .Release.Name }}
-          port: 26656
+          port: {{ .Values.ports.heimdall | quote }}
 {{- end }}
