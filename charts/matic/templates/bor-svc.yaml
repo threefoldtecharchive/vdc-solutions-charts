@@ -9,7 +9,7 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 30303
-      targetPort: 30303
+      port: {{ .Values.ports.bor | quote }}
+      targetPort: {{ .Values.ports.bor | quote }}
   selector:
     {{- include "matic.selectorLabels" . | nindent 4 }}
