@@ -7,10 +7,10 @@ metadata:
     backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   entryPoints:
-    - matic-bor
+    - ingbor{{ .Release.Name }}
   routes:
     - match: HostSNI(`*`)
       services:
         - name: bor-{{ .Release.Name }}
-          port: 30303
+          port: {{ .Values.ports.bor }}
 {{- end }}

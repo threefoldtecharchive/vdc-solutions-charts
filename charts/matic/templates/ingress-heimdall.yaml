@@ -7,10 +7,10 @@ metadata:
     backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   entryPoints:
-    - matic-heimdall
+    - ingheim{{ .Release.Name }}
   routes:
     - match: HostSNI(`*`)
       services:
         - name: heim-{{ .Release.Name }}
-          port: 26656
+          port: {{ .Values.ports.heimdall }}
 {{- end }}

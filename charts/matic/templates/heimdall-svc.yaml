@@ -9,7 +9,7 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 26656
-      targetPort: 26656
+      port: {{ .Values.ports.heimdall }}
+      targetPort: {{ .Values.ports.heimdall }}
   selector:
     {{- include "matic.selectorLabels" . | nindent 4 }}

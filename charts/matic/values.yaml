@@ -42,7 +42,13 @@ env:
     "node_type": ""
     "node_ingress_ip": ""
     "moniker": ""
-
+    "heimdall_svcp": ""
+    "bor_svcp": ""
+    
+ports:
+    heimdall: "26656"
+    bor: "30303"
+    
 resources: 
     limits:
       cpu: 2000m
