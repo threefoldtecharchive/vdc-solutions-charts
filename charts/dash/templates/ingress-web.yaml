@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: dash-node-ingress-web-{{ .Release.Name }}
+  name: dash-ingweb-{{ .Release.Name }}
   labels:
     {{- include "dash.labels" . | nindent 4 }}
     backupType: {{ .Values.threefoldVdc.backup | quote }}
