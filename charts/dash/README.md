@@ -1,4 +1,4 @@
-## Dash Full Node
+## Dash Node
 
 This helm chart(solution) is going to launch a Dash full node on Mainnet. The chart should have 3 inputs,
 
@@ -7,6 +7,7 @@ This helm chart(solution) is going to launch a Dash full node on Mainnet. The ch
 * Node Name (which will serve as the subdomain and it can be converted to an FQDN from the chatflow itself)
 * rpcuser (The node RPC credentials user/pass)
 * rpcpasswd
+* bls_priv_key (To be provided by the user)
 
 Here is an example,
 
@@ -19,8 +20,8 @@ helm --install dgb-node charts/dash --set global.ingress.host="mynodesomething.w
 ### Services that need to be exposed
 
 * WEB - Default traefik config should work with web ports (80/443) TCP
-* RPC - 14022 TCP - from the chatflow
-* P2P - 12024 TCP - from the chatflow
+* RPC - 9998 TCP - from the chatflow
+* P2P - 9999 TCP - from the chatflow
 
 ### Chatflow steps
 
