@@ -29,9 +29,9 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-        - name: dgb-storage-{{ .Release.Name }}
+        - name: dash-storage-{{ .Release.Name }}
           persistentVolumeClaim:
-            claimName: dgb-volume-claim-{{ .Release.Name }}
+            claimName: dash-volume-claim-{{ .Release.Name }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -44,14 +44,14 @@ spec:
               value: {{ $v | quote }}
           {{- end }}
           volumeMounts:
-            - name: dgb-storage-{{ .Release.Name }}
-              mountPath: /dgb
+            - name: dash-storage-{{ .Release.Name }}
+              mountPath: /dash
           ports:
             - name: p2p-{{ .Release.Name }}
-              containerPort: 12024
+              containerPort: 9999
               protocol: TCP
             - name: rpc-{{ .Release.Name }}
-              containerPort: 14022
+              containerPort: 9998
               protocol: TCP
             - name: web-{{ .Release.Name }}
               containerPort: 80

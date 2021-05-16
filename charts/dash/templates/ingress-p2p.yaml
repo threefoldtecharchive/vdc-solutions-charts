@@ -2,7 +2,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
-  name: dash-node-ingress-p2p-{{ .Release.Name }}
+  name: dash-ingp2p-{{ .Release.Name }}
   labels:
     backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
@@ -11,6 +11,6 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: p2p-dash-node-{{ .Release.Name }}
-          port: 12024
+        - name: p2p-{{ .Release.Name }}
+          port: 9999
 {{- end }}
