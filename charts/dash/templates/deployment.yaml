@@ -43,6 +43,16 @@ spec:
             - name: {{ $k | quote }}
               value: {{ $v | quote }}
           {{- end }}
+            - name: "ACCESS_CODE"
+              valueFrom:
+                secretKeyRef:
+                  key:  access_code
+                  name: {{ .Release.Name }}-auth         
+            - name: "BLS_PRIV_KEY"
+              valueFrom:
+                secretKeyRef:
+                  key:  bls_priv_key
+                  name: {{ .Release.Name }}-auth
           volumeMounts:
             - name: dash-storage-{{ .Release.Name }}
               mountPath: /dash
