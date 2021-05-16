@@ -4,7 +4,7 @@ replicaCount: 1
 image:
   repository: arrajput/dash
   pullPolicy: Always
-  tag: "2.7"
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -37,13 +37,13 @@ global:
 # These values should be overrided from the chatflow (rpcuser & rpcuser)
 env:          
   "rpcuser": "tfnow" 
-  "rpcpasswd": "tfdgb2020"
+  "rpcpasswd": "tfdash2020"
   "node_ingress_ip": ""
 
 resources: 
     limits:
       cpu: 2000m
-      memory: 2048Mi
+      memory: 4096Mi
 
 autoscaling:
   enabled: false
