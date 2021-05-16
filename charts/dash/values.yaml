@@ -33,6 +33,10 @@ global:
   paths: 
     - "/"
   tls: []
+  
+# Node secrets - These should be set from the chatflow
+access_code: ""  
+bls_priv_key: ""
  
 # These values should be overrided from the chatflow (rpcuser & rpcuser)
 env:          
