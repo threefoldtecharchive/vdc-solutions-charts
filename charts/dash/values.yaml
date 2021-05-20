@@ -43,6 +43,7 @@ env:
   "rpcuser": "tfnow" 
   "rpcpasswd": "tfdash2020"
   "node_ingress_ip": ""
+  "node_type": "Full"
 
 resources: 
     limits:
