@@ -1,4 +1,5 @@
 # Default values for dash.
+
 replicaCount: 1
 
 image:
@@ -16,40 +17,23 @@ serviceAccount:
   name: ""
 
 podAnnotations: {}
-
 podSecurityContext: {}
-
 securityContext: {}
-
-global:
- ingress:
+ingress:
   enabled: true
-# The host should be overrided with the domain name in the chatflow  
+  
   host: "fullnode.dash"
-  certresolver: default
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    ingress.kubernetes.io/ssl-passthrough: "true"
   paths: 
     - "/"
   tls: []
-  
-# Node secrets - These should be set from the chatflow
-access_code: ""  
-bls_priv_key: ""
- 
-# These values should be overrided from the chatflow (rpcuser & rpcuser)
-env:          
-  "rpcuser": "" 
-  "rpcpasswd": ""
-  "node_ingress_ip": ""
-  "node_type": ""
-  "network_type": ""
 
 resources: 
-    limits:
-      cpu: 2000m
-      memory: 4096Mi
+  limits:
+     cpu: 2000m
+     memory: 4096Mi
+  requests:
+     cpu: 1800m
+     memory: 4000Mi
 
 autoscaling:
   enabled: false
