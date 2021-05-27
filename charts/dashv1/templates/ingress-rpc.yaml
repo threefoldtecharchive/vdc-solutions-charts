@@ -1,16 +1,16 @@
-{{- if .Values.global.ingress.enabled -}}
+{{- if .Values.ingress.enabled -}}
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
-  name: dash-ingp2p-{{ .Release.Name }}
+  name: dash-node-ingress-rpc
   labels:
     backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   entryPoints:
-    - dash-p2p
+    - dash-rpc
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: p2p-{{ .Release.Name }}
-          port: 9999
+        - name: rpc-dash-node
+          port: 9998
 {{- end }}

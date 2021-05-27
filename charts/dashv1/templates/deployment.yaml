@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: {{ include "dash.fullname" . }}
   labels:
-    backupType: {{ .Values.threefoldVdc.backup | quote }}
     {{- include "dash.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -29,43 +29,29 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-        - name: dash-storage-{{ .Release.Name }}
+        - name: dash-storage
           persistentVolumeClaim:
-            claimName: dash-volume-claim-{{ .Release.Name }}
+            claimName: dash-volume-claim
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:          
-          {{ range $k, $v := .Values.env }}
-            - name: {{ $k | quote }}
-              value: {{ $v | quote }}
-          {{- end }}
-            - name: "ACCESS_CODE"
-              valueFrom:
-                secretKeyRef:
-                  key:  access_code
-                  name: {{ .Release.Name }}-auth         
-            - name: "BLS_PRIV_KEY"
-              valueFrom:
-                secretKeyRef:
-                  key:  bls_priv_key
-                  name: {{ .Release.Name }}-auth
           volumeMounts:
-            - name: dash-storage-{{ .Release.Name }}
+            - name: dash-storage
               mountPath: /dash
           ports:
-            - name: p2p-{{ .Release.Name }}
+            - name: ssh
+              containerPort: 22
+              protocol: TCP
+            - name: p2p
               containerPort: 9999
               protocol: TCP
-            - name: rpc-{{ .Release.Name }}
+            - name: rpc
               containerPort: 9998
               protocol: TCP
-            - name: web-{{ .Release.Name }}
-              containerPort: 80
-              protocol: TCP
+                                                        
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
