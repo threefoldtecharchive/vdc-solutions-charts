@@ -46,6 +46,14 @@ redis:
       requests:
         cpu: 100m
         memory: 256Mi
+peertube:
+  resources:
+    limits:
+      cpu: 650m
+      memory: 512Mi
+    requests:
+      cpu: 650m
+      memory: 512Mi
 
 global:
   ingress:
@@ -64,11 +72,11 @@ webserver:
 
 resources:
   limits:
-    cpu: 650m
-    memory: 512Mi
+    cpu: 1000m
+    memory: 1024Mi
   requests:
-    cpu: 650m
-    memory: 512Mi
+    cpu: 1000m
+    memory: 1024Mi
 
 
 threefoldVdc:
