@@ -1,0 +1,106 @@
+# Default values for publishtools.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+global:
+  ingress:
+    certresolver: default
+
+
+replicaCount: 1
+
+image:
+  repository: abom/publishtools
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  host: chart-example.local
+  paths:
+      - /
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 500m
+    memory: 256Mi
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+
+ssh_key: ""
+
+env:
+  name: ""
+  dns_port: 53
+  dns_enabled: true
+  http_port: 80
+  http_session_secret: fbc5def3-bbef-4836-8c76-51e0cef14e2f
+  http_devport: 3000
+  http_publishtoolsport: 9998
+  hyperdrive_path: ~/.digitaltwin'
+  hyperdrive_enabled: false
+  hyperdrive_drives: []
+  publishtools_root: /workspace/publisher/
+  publishtools_sitesconfig: https://github.com/threefoldfoundation/www_config_private/tree/main
+  threebot_passphrase: analyst wrist friend quick person embrace spell bacon congress gorilla price figure mind camp vanish enrich large rhythm space garden arrive doctor poverty special
+  # should be always = false
+  nodejs_production: false
+  nodejs_ssl: false
+
+
+threefoldVdc:
+  backup: ''
