@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "publishtools.fullname" . }}
+  labels:
+    {{- include "publishtools.labels" . | nindent 4 }}
+    backupType: {{ .Values.threefoldVdc.backup | quote }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "publishtools.selectorLabels" . | nindent 4 }}
