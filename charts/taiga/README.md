@@ -1,15 +1,15 @@
-# How to use taiga6 chart
+# How to use taiga chart
 - add helm repo
 ```
-helm repo add marketplace https://threefoldtech.github.io/vdc-solutions-charts/
+helm repo add test-helm-charts https://sameh-farouk.github.io/test-helm-charts/
 ```
 
-- install the chart 
+- install the chart
 ```
-helm install markteplace/taiga
+helm install test-helm-charts/taiga
 ```
 
 - installing the chart with different parameters
 ```
-helm install markteplace/taiga --set ingress.host="domain"
+helm install test-helm-charts/taiga --set ingress.host="domain" --set threefoldlogin.apiAppSecret="login-api-secret-key" --set threefoldlogin.apiAppPublicKey="login-api-public-key" --set threefoldlogin.apiUrl="login-url" --set threefoldlogin.openKycUrl="login-openkyc-url"
 ```

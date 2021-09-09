@@ -1,3 +1,4 @@
+{{- if .Values.resources -}}
 apiVersion: v1
 kind: LimitRange
 metadata:
@@ -31,3 +32,4 @@ spec:
 # taiga-events,
 # taiga-events-rabbitmq,
 # taiga-back
+{{- end }}

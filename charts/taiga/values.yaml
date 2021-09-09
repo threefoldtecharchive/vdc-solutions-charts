@@ -7,11 +7,11 @@ replicaCount: 1
 # TFLogin customized images
 images:
   backend:
-    repository: threefolddev/tf-taiga-back
+    repository: threefolddev/taiga-back-threefold
     tag: latest
     pullPolicy: Always
   frontend:
-    repository: threefolddev/tf-taiga-front
+    repository: threefolddev/taiga-front-threefold
     tag: latest
     pullPolicy: Always
 
@@ -91,15 +91,10 @@ services:
     port: 8000
     targetPort: 80 
 
-global:
-  ingress:
-    certresolver: default
-
 ingress:
   enabled: true
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    ingress.kubernetes.io/ssl-passthrough: "true"
+  annotations: {}
+    # traefik.ingress.kubernetes.io/router.tls.certresolver: default
   host: "domain" # replaced when installing chart by --set ingress.host=<domain>
   paths:
     - "/"
@@ -132,3 +127,9 @@ affinity: {}
 
 threefoldVdc:
   backup: ''
+
+threefoldlogin:
+  apiAppSecret : "2W/qhWFeMF6XawIPuEnJ3dWge49bYZNhSsELF64daus="
+  apiAppPublicKey : "K4nQYVJJrcV0Y/6QuqeM3FKPGffdKC5/3HpOa/BmewY="
+  apiUrl : "https://login.threefold.me"
+  openKycUrl: "https://openkyc.live/verification/verify-sei"
