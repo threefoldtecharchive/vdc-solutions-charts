@@ -91,10 +91,15 @@ services:
     port: 8000
     targetPort: 80 
 
+global:
+  ingress:
+    certresolver: default
+
 ingress:
   enabled: true
   annotations: {}
-    # traefik.ingress.kubernetes.io/router.tls.certresolver: default
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
   host: "domain" # replaced when installing chart by --set ingress.host=<domain>
   paths:
     - "/"

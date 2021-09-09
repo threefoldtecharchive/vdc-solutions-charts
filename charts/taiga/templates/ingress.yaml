@@ -7,15 +7,20 @@ metadata:
     backupType: {{ .Values.threefoldVdc.backup | quote }}
 {{- with .Values.ingress.annotations }}
   annotations:
+    traefik.ingress.kubernetes.io/router.tls.certresolver: {{ .Values.global.ingress.certresolver }}
 {{ toYaml . | nindent 4 }}
 {{- end }}
     
 spec:
-   rules:
-   - host: {{ .Values.ingress.host }}
-     http:
-       paths:
-       - path: /
-         backend:
-           serviceName: {{ index .Values "services" "taiga-gateway" "name" }}
-           servicePort: {{ index .Values "services" "taiga-gateway" "port" }}
+{{- if .Values.ingress.tls }}
+  tls:
+{{ toYaml .Values.ingress.tls | indent 4 }}
+{{- end }}
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ index .Values "services" "taiga-gateway" "name" }}
+          servicePort: {{ index .Values "services" "taiga-gateway" "port" }}
