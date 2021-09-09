@@ -116,6 +116,15 @@ spec:
               value: {{ .Values.ingress.host }}
             - name: TAIGA_SITES_SCHEME
               value: https
+            - name: THREEFOLD_API_APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-app-secret-key
+                  key: secret
+            - name: THREEFOLD_URL
+              value: {{ .Values.threefoldlogin.apiUrl }}
+            - name: THREEFOLD_OPENKYC_URL
+              value: {{ .Values.threefoldlogin.openKycUrl }}
           volumeMounts:
             - mountPath: /taiga-back/static
               name: taiga-static-data
@@ -269,6 +278,10 @@ spec:
               value: {{ printf "https://%s" .Values.ingress.host }}
             - name: TAIGA_WEBSOCKETS_URL
               value: {{ printf "wss://%s" .Values.ingress.host }}
+            - name: THREEFOLD_API_APP_PUBLIC_KEY
+              value: {{ .Values.threefoldlogin.apiAppPublicKey }}
+            - name: THREEFOLD_URL
+              value: {{ .Values.threefoldlogin.apiUrl }}
           resources:
             limits:
               cpu: 50m
