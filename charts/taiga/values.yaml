@@ -8,12 +8,18 @@ replicaCount: 1
 images:
   backend:
     repository: threefolddev/taiga-back-threefold
-    tag: latest
+    tag: 6.4.1
     pullPolicy: Always
   frontend:
     repository: threefolddev/taiga-front-threefold
-    tag: latest
+    tag: 6.4.1
     pullPolicy: Always
+  events:
+    repository: taigaio/taiga-events
+    tag: 6.4.0
+  protected:
+    repository: taigaio/taiga-protected
+    tag: 6.4.0
 
 imagePullSecrets: []
 nameOverride: ""

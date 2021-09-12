@@ -315,7 +315,7 @@ spec:
     spec:
       containers:
         - name: taiga-events
-          image: taigaio/taiga-events:latest
+          image: "{{ .Values.images.events.repository }}:{{ .Values.images.events.tag | default .Chart.AppVersion }}"
           env:
             - name: RABBITMQ_PASS
               value: {{ .Values.rabbitmq.rabbitmqPassword }}
@@ -390,7 +390,7 @@ spec:
     spec:
       containers:
         - name: taiga-protected
-          image: taigaio/taiga-protected:latest
+          image: "{{ .Values.images.protected.repository }}:{{ .Values.images.protected.tag | default .Chart.AppVersion }}"
           env:
             - name: MAX_AGE
               value: "360"
