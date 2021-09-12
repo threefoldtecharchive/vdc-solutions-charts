@@ -1,5 +1,5 @@
 name: taiga
-description: A Taiga Helm Chart generated for docker-compose from Skippbox Kompose
+description: A helm chart to deploy taiga with Threefold Auth login plugin
 version: 0.0.2
 appVersion: 6.4.1
 apiVersion: v1
