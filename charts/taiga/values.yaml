@@ -139,6 +139,17 @@ affinity: {}
 threefoldVdc:
   backup: ''
 
+emailSettings:
+  emailEnabled: false
+  emailFrom: "taiga@mycompany.net"
+  # You cannot use both (TLS and SSL) at the same time!
+  emailUseTls: "True"
+  emailUseSsl: "False"
+  emailSmtpHost: "smtp.example.com"
+  emailSmtpPort: 587
+  emailSmtpUser: "user@example.com"
+  emailSmtpPassword: ""
+  
 threefoldlogin:
   apiAppSecret : "2W/qhWFeMF6XawIPuEnJ3dWge49bYZNhSsELF64daus="
   apiAppPublicKey : "K4nQYVJJrcV0Y/6QuqeM3FKPGffdKC5/3HpOa/BmewY="
