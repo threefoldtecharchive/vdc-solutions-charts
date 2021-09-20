@@ -1,6 +1,6 @@
 name: taiga
 description: A helm chart to deploy taiga with Threefold Auth login plugin
-version: 0.0.2
+version: 0.0.3
 appVersion: 6.4.1
 apiVersion: v1
 keywords:

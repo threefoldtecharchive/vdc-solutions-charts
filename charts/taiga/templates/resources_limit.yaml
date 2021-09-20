@@ -8,8 +8,8 @@ metadata:
 spec:
   limits:
   - max:
-      cpu: "{{ div (sub .Values.resources.cpu 300) 5 }}m"
-      memory: "{{ div (sub .Values.resources.memory 300) 5 }}Mi"
+      cpu: "{{ div (sub .Values.resources.cpu 300) 6 }}m"
+      memory: "{{ div (sub .Values.resources.memory 300) 6 }}Mi"
     defaultRequest:
       cpu: "{{ div .Values.resources.cpu 10 }}m"
       memory: "{{ div .Values.resources.memory 10 }}Mi"
@@ -19,17 +19,17 @@ spec:
 
 # Const Resources:
 #                     cpu mem
-# taiga-gateway:      50 50
-# taiga-front:        50 50
-# taiga-db:           100 100
+# taiga-gateway:      100 100
+# taiga-front:        100 100
 # taiga-protected:    100 100
 # ----------------------------
 #                     300 300
 
-# the rest is divided equally on these 5 pods
+# the rest is divided equally on these 6 pods
 # taiga-async,
 # taiga-async-rabbitmq,
 # taiga-events,
 # taiga-events-rabbitmq,
-# taiga-back
+# taiga-back,
+# taiga-db
 {{- end }}
