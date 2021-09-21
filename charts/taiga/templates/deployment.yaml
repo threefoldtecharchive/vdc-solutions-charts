@@ -296,13 +296,15 @@ spec:
               value: {{ .Values.threefoldlogin.apiAppPublicKey }}
             - name: THREEFOLD_URL
               value: {{ .Values.threefoldlogin.apiUrl }}
+          {{- if .Values.resources }}
           resources:
             limits:
-              cpu: 50m
-              memory: 50Mi
+              cpu: 100m
+              memory: 100Mi
             requests:
-              cpu: 50m
-              memory: 50Mi
+              cpu: 100m
+              memory: 100Mi
+          {{- end }}
       restartPolicy: Always
 
 ---
@@ -413,6 +415,7 @@ spec:
                 secretKeyRef:
                   name: taiga-back-secret-key
                   key: secret
+          {{- if .Values.resources }}
           resources:
             limits:
               cpu: 100m
@@ -420,6 +423,7 @@ spec:
             requests:
               cpu: 100m
               memory: 100Mi
+          {{- end }}
       restartPolicy: Always
 
 ---
@@ -457,13 +461,15 @@ spec:
               name: taiga-static-data
             - mountPath: /taiga/media
               name: taiga-media-data
+          {{- if .Values.resources }}
           resources:
             limits:
-              cpu: 50m
-              memory: 50Mi
+              cpu: 100m
+              memory: 100Mi
             requests:
-              cpu: 50m
-              memory: 50Mi
+              cpu: 100m
+              memory: 100Mi
+          {{- end }}
       volumes:
         - name: taiga-nginx-conf
           configMap:
