@@ -115,13 +115,13 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources:
+resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    cpu: 3000
-    memory: 3072
+  #  cpu: 3000
+  #  memory: 3072
 
 autoscaling:
   enabled: false
@@ -141,13 +141,13 @@ threefoldVdc:
 
 emailSettings:
   emailEnabled: false
-  emailFrom: "taiga@mycompany.net"
+  emailFrom: taiga@mycompany.net
   # You cannot use both (TLS and SSL) at the same time!
   emailUseTls: "True"
   emailUseSsl: "False"
-  emailSmtpHost: "smtp.example.com"
+  emailSmtpHost: smtp.example.com
   emailSmtpPort: 587
-  emailSmtpUser: "user@example.com"
+  emailSmtpUser: user@example.com
   emailSmtpPassword: ""
   
 threefoldlogin:

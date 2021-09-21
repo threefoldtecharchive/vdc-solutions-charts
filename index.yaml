@@ -3,7 +3,7 @@ entries:
   3bot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.32113998+02:00"
+    created: "2021-09-21T20:56:11.694211832+02:00"
     description: A Helm chart for Kubernetes
     digest: db0aadd55ed3ae98a19c564a0489c97492beda70536189f6447b26c8a56d4549
     name: 3bot
@@ -14,7 +14,7 @@ entries:
   cryptpad:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-09-19T22:36:22.32231169+02:00"
+    created: "2021-09-21T20:56:11.695241459+02:00"
     description: A Helm chart for Cryptpad
     digest: 20fd2cc8e119e6f102402e05af44d56c0787c251aed34abdaf4f50b38531f80f
     name: cryptpad
@@ -25,7 +25,7 @@ entries:
   dash:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.323514938+02:00"
+    created: "2021-09-21T20:56:11.696211759+02:00"
     description: Dash Helm chart for Kubernetes
     digest: 5d99743017ae0f202df0fb9fff4d07910af960b2cf7f857cc2a3aad8e1640019
     name: dash
@@ -36,7 +36,7 @@ entries:
   digibyte:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.324932476+02:00"
+    created: "2021-09-21T20:56:11.696897356+02:00"
     description: Digibyte Helm chart for Kubernetes
     digest: 50896b641853d7d19d9438527a8fec6a67b32ee1c9a33874fb9c5a9881df5314
     name: digibyte
@@ -49,7 +49,7 @@ entries:
       category: Forum
     apiVersion: v2
     appVersion: 2.6.3
-    created: "2021-09-19T22:36:22.33996644+02:00"
+    created: "2021-09-21T20:56:11.711358262+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -127,7 +127,7 @@ entries:
   documentserver:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.34076094+02:00"
+    created: "2021-09-21T20:56:11.712122372+02:00"
     description: A helm chart for the onlyoffice documentserver solution
     digest: 6d7a22dc95e34fbf35bfb8124f82eded4c0e35432a83ae3cf59f6b391a4e6360
     name: documentserver
@@ -140,7 +140,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 3.4.14
-    created: "2021-09-19T22:36:22.344464226+02:00"
+    created: "2021-09-21T20:56:11.715021086+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -170,7 +170,7 @@ entries:
   filebrowser:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.345471617+02:00"
+    created: "2021-09-21T20:56:11.715717465+02:00"
     description: A Helm chart for Kubernetes
     digest: c97a1f87bd497232660f9f3e8bd4c103e9a4d83bf0fa7017c09808ba0796c6f1
     name: filebrowser
@@ -181,7 +181,7 @@ entries:
   gitea:
   - apiVersion: v2
     appVersion: 1.13.0
-    created: "2021-09-19T22:36:22.359316238+02:00"
+    created: "2021-09-21T20:56:11.72697082+02:00"
     dependencies:
     - condition: gitea.cache.builtIn.enabled
       name: memcached
@@ -230,7 +230,7 @@ entries:
   grafana:
   - apiVersion: v1
     appVersion: 7.2.1
-    created: "2021-09-19T22:36:22.362787389+02:00"
+    created: "2021-09-21T20:56:11.729321299+02:00"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e82e2c8282b5e406f1ae32b633881e76c5767a24345b17f11743c643d5f95dae
     home: https://grafana.net
@@ -254,7 +254,7 @@ entries:
   harmony:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.363706382+02:00"
+    created: "2021-09-21T20:56:11.729763883+02:00"
     description: Harmony Helm chart for Kubernetes
     digest: 4a05274f748527bb86ac5028daaf480ed9e376dcfdda787b9bb38da677bb9e0e
     name: harmony
@@ -267,7 +267,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2021-09-19T22:36:22.389448506+02:00"
+    created: "2021-09-21T20:56:11.753982183+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -308,7 +308,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2.0.1
-    created: "2021-09-19T22:36:22.403315945+02:00"
+    created: "2021-09-21T20:56:11.764090026+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -334,7 +334,7 @@ entries:
   mastodon:
   - apiVersion: v2
     appVersion: 3.3.0
-    created: "2021-09-19T22:36:22.405357596+02:00"
+    created: "2021-09-21T20:56:11.765474775+02:00"
     description: A Helm chart for Mastodon
     digest: 5b1631202c02b6f9a388e32ef582972d96a3f4c6559eaf5a0d935296c808fa73
     maintainers:
@@ -350,7 +350,7 @@ entries:
   matic:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.40635479+02:00"
+    created: "2021-09-21T20:56:11.766307133+02:00"
     description: Matic Helm chart for Kubernetes
     digest: 4e0a38fad90685bc967e47d6a3789b1ca46e7a026974bdb48f8f9289b58ea27b
     name: matic
@@ -361,7 +361,7 @@ entries:
   mattermost:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2021-09-19T22:36:22.410810673+02:00"
+    created: "2021-09-21T20:56:11.770552913+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -382,7 +382,7 @@ entries:
   mattermostonsteroids:
   - apiVersion: v1
     appVersion: 5.29.0
-    created: "2021-09-19T22:36:22.414436529+02:00"
+    created: "2021-09-21T20:56:11.774876549+02:00"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -403,7 +403,7 @@ entries:
   meetings:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.415307841+02:00"
+    created: "2021-09-21T20:56:11.77565719+02:00"
     description: Meetings Helm chart
     digest: 3da60a2e3275226b9f5df16e5d1b34b86ac81c12b8b1ebc81c32aa743e55d478
     icon: https://now.threefold.io/now/assets/static/connect.42db587.cd56aaeb262f9548a2c2518f76e70ca0.png
@@ -415,7 +415,7 @@ entries:
   minio:
   - apiVersion: v1
     appVersion: master
-    created: "2021-09-19T22:36:22.417425586+02:00"
+    created: "2021-09-21T20:56:11.77822299+02:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 36009427617b8f52d6c231d9feb26617e87a339b86ac7b36af587b9fd8e35200
     home: https://min.io
@@ -440,7 +440,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.43.2
-    created: "2021-09-19T22:36:22.43805651+02:00"
+    created: "2021-09-21T20:56:11.799517425+02:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -485,7 +485,7 @@ entries:
   oauthproxy:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.438784307+02:00"
+    created: "2021-09-21T20:56:11.800098947+02:00"
     description: A Helm chart for Kubernetes oauth proxy server built using https://github.com/threefoldtech/oauth-proxy
     digest: 4a2aba10c302523306289eb0a7fbaa8416eb38ddd81c825d9cfc77b570e98b09
     name: oauthproxy
@@ -498,7 +498,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 10.6.0
-    created: "2021-09-19T22:36:22.446665675+02:00"
+    created: "2021-09-21T20:56:11.805923605+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -534,7 +534,7 @@ entries:
   peertube:
   - apiVersion: v2
     appVersion: production-stretch
-    created: "2021-09-19T22:36:22.45811217+02:00"
+    created: "2021-09-21T20:56:11.813732717+02:00"
     dependencies:
     - condition: deps.pg.managed
       name: postgresql
@@ -565,7 +565,7 @@ entries:
   presearch:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.459056005+02:00"
+    created: "2021-09-21T20:56:11.814169258+02:00"
     description: Presearch Helm chart for Kubernetes
     digest: 2193c4997c393d4d31ad2b0a85c1087790fdf77679fb864b80672024efb11cf3
     name: presearch
@@ -576,7 +576,7 @@ entries:
   publishingtools:
   - apiVersion: v2
     appVersion: v1.0.0-alpha.18
-    created: "2021-09-19T22:36:22.460067698+02:00"
+    created: "2021-09-21T20:56:11.81484619+02:00"
     description: A Helm chart for Kubernetes to deploy websites and wikis using publishingtools
     digest: 1bc2f782224facd27b6dfdaca2c7c28be5a2114a1e71aa782b44a461832873f6
     name: publishingtools
@@ -587,9 +587,9 @@ entries:
   taiga:
   - apiVersion: v1
     appVersion: 6.4.1
-    created: "2021-09-19T22:36:22.464454923+02:00"
+    created: "2021-09-21T20:56:11.817690445+02:00"
     description: A helm chart to deploy taiga with Threefold Auth login plugin
-    digest: 97ded92ef3f464fee60b0fa5573f762b9f9e5488772f75393cf740f828a19331
+    digest: 6041a9914c56cefae309a27d3e56f30e3d98a719f060c79cc38c01dbbd9bd049
     keywords:
     - taiga
     name: taiga
@@ -598,7 +598,7 @@ entries:
     version: 0.0.3
   - apiVersion: v1
     appVersion: 6.4.1
-    created: "2021-09-19T22:36:22.463627852+02:00"
+    created: "2021-09-21T20:56:11.816783835+02:00"
     description: A helm chart to deploy taiga with Threefold Auth login plugin
     digest: 58b77cbc96226d3cb180673796264116cf1059b1d39cb22f2bb49eba5e70ae74
     keywords:
@@ -609,7 +609,7 @@ entries:
     version: 0.0.2
   - apiVersion: v1
     appVersion: 6.0.6
-    created: "2021-09-19T22:36:22.462368755+02:00"
+    created: "2021-09-21T20:56:11.815648081+02:00"
     description: A Taiga Helm Chart generated for docker-compose from Skippbox Kompose
     digest: 6a22a76cdc7daa6596814eb96348de5c064829b70666e16ff22ff771caef7500
     keywords:
@@ -621,7 +621,7 @@ entries:
   taiga_old:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-09-19T22:36:22.468491322+02:00"
+    created: "2021-09-21T20:56:11.822822477+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -635,7 +635,7 @@ entries:
   tomo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.469149228+02:00"
+    created: "2021-09-21T20:56:11.823342135+02:00"
     description: A Helm chart for Kubernetes
     digest: 025999865d61326fc1c55ab3dee854a08d14fa7ce539b27757a426398885af4b
     name: tomo
@@ -646,7 +646,7 @@ entries:
   zeroci:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-19T22:36:22.469816373+02:00"
+    created: "2021-09-21T20:56:11.823859249+02:00"
     description: zeroci helm chart
     digest: 24579bb2bc9af7a759f337cd27db66db9d37d9efe2bff8473c636d6838c696f8
     name: zeroci
@@ -654,4 +654,4 @@ entries:
     urls:
     - https://threefoldtech.github.io/vdc-solutions-charts/zeroci-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-19T22:36:22.318564925+02:00"
+generated: "2021-09-21T20:56:11.69319956+02:00"
